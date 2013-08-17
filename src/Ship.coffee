@@ -6,6 +6,7 @@
 window.SpaceDom or= {}
 
 GameObject = window.SpaceDom.GameObject
+Projectile = window.SpaceDom.Projectile
 
 window.SpaceDom.Ship = class Ship extends GameObject
   status:
@@ -36,6 +37,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
         vel: 1000
         accel: 0
         initvel: 1000
+        lifetime: 1
     
     @status.weapons.push weapon
     @status.curweapon = 0
@@ -62,7 +64,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
     
     wp = @status.weapons[@status.curweapon]
     projectiles = for point in wp.points
-      proj = new GameObject @game.preload.getResult(wp.image), @game, wp.projectile
+      proj = new Projectile @game.preload.getResult(wp.image), @game, wp.projectile, this
       
       offsetXY.x = point.x - this.regX
       offsetXY.y = point.y - this.regY
