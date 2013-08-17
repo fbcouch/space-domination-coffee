@@ -5,6 +5,8 @@
 
 root = this
 
+SpaceDominationGame = root.SpaceDom.SpaceDominationGame
+
 KEYCODE_ENTER = 13
 KEYCODE_SPACE = 32
 KEYCODE_SHIFT = 16
@@ -19,12 +21,22 @@ KEYCODE_D = 68
 KEYCODE_S = 83
 KEYCODE_0 = 48
 
+keys = {}
+  
+keyMap =
+  accel: [KEYCODE_W, KEYCODE_UP]
+  brake: [KEYCODE_S, KEYCODE_DOWN]
+  left: [KEYCODE_A, KEYCODE_LEFT]
+  right: [KEYCODE_D, KEYCODE_RIGHT]
+  fire: [KEYCODE_SPACE]
+
 canvas = {}
 stage = {}
 canvasWidth = canvasHeight = 0
 preload = {}
 progressbar = {}
 messageField = {}
+game = {}
 
 init = ->
   console.log 'game init'
@@ -49,6 +61,7 @@ init = ->
   manifest = [
     {id: 'base-fighter1', src: 'assets/base-fighter1.png'},
     {id: 'block1', src: 'assets/block1.png'},
+    {id: 'base-enemy1', src: 'assets/base-enemy1.png'},
   ]
   
   preload = new createjs.LoadQueue()
@@ -88,18 +101,18 @@ handleClick = () ->
   start()
   
 handleKeyDown = (e) ->
-  e = window.event if not e
-  console.log e.keyCode
+  e or= window.event
+  (keys[key] = true if e.keyCode in keyMap[key]) for key of keyMap
   false
   
 handleKeyUp = (e) ->
-  e = window.event if not e
-  console.log e.keyCode
+  e or= window.event
+  (keys[key] = false if e.keyCode in keyMap[key]) for key of keyMap
   false
   
 start = () ->
   console.log 'Start game...'
-  
+  game = new SpaceDominationGame stage, canvas, preload
   createjs.Ticker.addEventListener('tick', tick) if not createjs.Ticker.hasEventListener('tick')
   createjs.Ticker.setFPS 30
   
@@ -108,6 +121,7 @@ tick = (event) ->
   return if not event.delta?
   
   # update things
+  game.update delta, keys
   stage.update()
   
 init()
