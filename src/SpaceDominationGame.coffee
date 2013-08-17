@@ -19,9 +19,9 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     
     @addObject @player
     
-    testEnemy = new GameObject @preload.getResult('base-enemy1'), this
+    testEnemy = new Ship @preload.getResult('base-enemy1'), this
     testEnemy.x = @canvas.width * 3/4
-    testEnemy.y = @player.y + 25
+    testEnemy.y = @player.y
     
     @addObject testEnemy
     
@@ -48,6 +48,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       if Math.abs(@player.accel.y * delta) >= Math.abs(@player.vel.y)
         @player.accel.y = @player.vel.y = 0 
     
+    @player.fire() if keys.fire
+    
     for obj in @gameObjects
       obj.vel.x += obj.accel.x * delta
       obj.vel.y += obj.accel.y * delta
@@ -60,6 +62,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       
       obj.x += obj.vel.x * delta
       obj.y += obj.vel.y * delta
+      
+      obj.update delta
       
     @removeObject(obj) for obj in @gameObjects when obj?.isRemove
       

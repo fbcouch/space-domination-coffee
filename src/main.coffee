@@ -62,6 +62,8 @@ init = ->
     {id: 'base-fighter1', src: 'assets/base-fighter1.png'},
     {id: 'block1', src: 'assets/block1.png'},
     {id: 'base-enemy1', src: 'assets/base-enemy1.png'},
+    {id: 'laser-green1', src: 'assets/laser-green1.png'},
+    {id: 'laser-red1', src: 'assets/laser-red1.png'},
   ]
   
   preload = new createjs.LoadQueue()
