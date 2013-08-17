@@ -6,13 +6,14 @@
 window.SpaceDom or= {}
 # imports
 GameObject = window.SpaceDom.GameObject
+Ship = window.SpaceDom.Ship
 
 window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   gameObjects: []
   
   constructor: (@stage, @canvas, @preload) ->
     
-    @player = new GameObject @preload.getResult('base-fighter1'), this
+    @player = new Ship @preload.getResult('base-fighter1'), this
     @player.x = @canvas.width / 4
     @player.y = (@canvas.height - @player.image.height) / 2
     
@@ -27,17 +28,17 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   update: (delta, keys) ->
     
     if keys.left and not keys.right
-      @player.rotation -= 50 * delta
+      @player.rotation -= @player.specs.rotate * delta
     else if keys.right and not keys.left
-      @player.rotation += 50 * delta
+      @player.rotation += @player.specs.rotate * delta
     
     if keys.accel and not keys.brake
-      @player.accel.x = 100 * Math.cos @player.rotation * Math.PI / 180
-      @player.accel.y = 100 * Math.sin @player.rotation * Math.PI / 180
+      @player.accel.x = @player.specs.accel * Math.cos @player.rotation * Math.PI / 180
+      @player.accel.y = @player.specs.accel * Math.sin @player.rotation * Math.PI / 180
     else if keys.brake and not keys.accel and (@player.vel.x isnt 0 or @player.vel.y isnt 0)
       angle = Math.atan2 @player.vel.y, @player.vel.x
-      @player.accel.x = -100 * Math.cos angle
-      @player.accel.y = -100 * Math.sin angle
+      @player.accel.x = -1 * @player.specs.brake * Math.cos angle
+      @player.accel.y = -1 * @player.specs.brake * Math.sin angle
     else
       @player.accel.x = @player.accel.y = 0
       
@@ -51,8 +52,16 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       obj.vel.x += obj.accel.x * delta
       obj.vel.y += obj.accel.y * delta
       
+      # clamp velocity to max
+      if obj.specs.vel * obj.specs.vel < obj.vel.x * obj.vel.x + obj.vel.y * obj.vel.y
+        angle = Math.atan2 obj.vel.y, obj.vel.x
+        obj.vel.x = obj.specs.vel * Math.cos angle
+        obj.vel.y = obj.specs.vel * Math.sin angle
+      
       obj.x += obj.vel.x * delta
       obj.y += obj.vel.y * delta
+      
+    @removeObject(obj) for obj in @gameObjects when obj?.isRemove
       
     
   addObject: (obj) ->

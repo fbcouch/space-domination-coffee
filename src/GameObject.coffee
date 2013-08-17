@@ -6,7 +6,9 @@
 window.SpaceDom or= {}
 
 window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
-  constructor: (image, @game) ->
+  isRemove: false
+  
+  constructor: (image, @game, @specs) ->
     @initialize image
     
     # TODO: perhaps use a vector2 class?
@@ -17,6 +19,12 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
     @regY = @image.height * 0.5
     
     @collideRect = {x: 0, y: 0, w: @image.width, h: @image.height}
+    
+    @specs or=
+      accel: 100
+      brake: 50
+      vel: 100
+      rotate: 50
     
   update: (delta) ->
     
