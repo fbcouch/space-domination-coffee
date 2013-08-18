@@ -97,8 +97,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
       if wp.regentimer <= 0
         wp.regentimer = wp.regen
         wp.curammo++
-        wp.curammo = wp.maxammo if wp.curammo > wp.maxammo
-      
+        wp.curammo = wp.maxammo if wp.curammo > wp.maxammo      
     
   canCollide: (other) ->
     super other

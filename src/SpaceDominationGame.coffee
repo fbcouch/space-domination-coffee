@@ -65,6 +65,9 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       
       obj.update delta
       
+      for other in @gameObjects[@gameObjects.indexOf(obj)+1..]
+        console.log 'collide' if GameObject.collideRect(obj, other) and GameObject.pixelCollide(obj, other)
+      
     @removeObject(obj) for obj in @gameObjects when obj?.isRemove
       
     
