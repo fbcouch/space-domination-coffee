@@ -22,7 +22,7 @@ window.SpaceDom.Projectile = class Projectile extends GameObject
     @isRemove = true if @lifetime <= 0
 
   canCollide: (other) ->
-    super other
+    other isnt @ship and not (other instanceof Projectile)
     
   collide: (other) ->
-    super other
+    @isRemove = true

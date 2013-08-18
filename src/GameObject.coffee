@@ -29,12 +29,11 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
   update: (delta) ->
     
   canCollide: (other) ->
-    false
+    true
     
   collide: (other) ->
     
   @collideRect: (obj1, obj2) ->
-    # arbitrarily, we will transform obj2 onto obj1 then determine if it falls into obj1's collideRect
     
     obj2rect = [
       obj2.localToLocal(obj2.collideRect.x                     , obj2.collideRect.y                     , obj1),
@@ -45,7 +44,19 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
     
     for point in obj2rect
       return true if obj1.collideRect.x <= point.x <= obj1.collideRect.x + obj1.collideRect.w and
-                     obj1.collideRect.y <= point.y <= obj1.collideRect.x + obj1.collideRect.w
+                     obj1.collideRect.y <= point.y <= obj1.collideRect.y + obj1.collideRect.h
+                     
+    obj1rect = [
+      obj1.localToLocal(obj1.collideRect.x                     , obj1.collideRect.y                     , obj2),
+      obj1.localToLocal(obj1.collideRect.x + obj1.collideRect.w, obj1.collideRect.y                     , obj2),
+      obj1.localToLocal(obj1.collideRect.x                     , obj1.collideRect.y + obj1.collideRect.h, obj2),
+      obj1.localToLocal(obj1.collideRect.x + obj1.collideRect.w, obj1.collideRect.y + obj1.collideRect.h, obj2),
+    ]
+    
+    for point in obj1rect
+      return true if obj2.collideRect.x <= point.x <= obj2.collideRect.x + obj2.collideRect.w and
+                     obj2.collideRect.y <= point.y <= obj2.collideRect.y + obj2.collideRect.h
+    
     return false
     
   @pixelCollide: (obj1, obj2) ->
