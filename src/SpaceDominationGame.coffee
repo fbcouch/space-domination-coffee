@@ -28,7 +28,7 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     @addObject testEnemy
     
   update: (delta, keys) ->
-    
+    console.log "FPS: #{1/delta}"
     if keys.left and not keys.right
       @player.rotation -= @player.specs.rotate * delta
     else if keys.right and not keys.left
@@ -68,7 +68,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       obj.update delta
       
       for other in @gameObjects[@gameObjects.indexOf(obj)+1..]
-        if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other) and GameObject.pixelCollide(obj, other) #TODO fix pixelcollide
+        if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other) and ndgmr.checkPixelCollision(obj, other, 0, false)
+          console.log 'collide!'
           obj.collide other
           other.collide obj
       
