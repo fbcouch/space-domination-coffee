@@ -66,7 +66,7 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       obj.update delta
       
       for other in @gameObjects[@gameObjects.indexOf(obj)+1..]
-        if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other)# and GameObject.pixelCollide(obj, other) #TODO fix pixelcollide
+        if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other) and GameObject.pixelCollide(obj, other) #TODO fix pixelcollide
           obj.collide other
           other.collide obj
       

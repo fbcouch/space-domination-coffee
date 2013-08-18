@@ -60,39 +60,34 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
     return false
     
   @pixelCollide: (obj1, obj2) ->
-    collideCanvas1 = document.createElement 'canvas'
-    ctx1 = collideCanvas1.getContext '2d'
     
-    collideCanvas2 = document.createElement 'canvas'
-    ctx2 = collideCanvas2.getContext '2d'
+    obj1rect = [
+      obj1.localToLocal(obj1.collideRect.x                     , obj1.collideRect.y                     , obj2),
+      obj1.localToLocal(obj1.collideRect.x + obj1.collideRect.w, obj1.collideRect.y                     , obj2),
+      obj1.localToLocal(obj1.collideRect.x                     , obj1.collideRect.y + obj1.collideRect.h, obj2),
+      obj1.localToLocal(obj1.collideRect.x + obj1.collideRect.w, obj1.collideRect.y + obj1.collideRect.h, obj2),
+    ]
     
-    collideCanvas1.width = obj1.image.width
-    collideCanvas1.height = obj1.image.height
-    ctx1.drawImage obj1.image, 0, 0
+    checkRect = {}
+    for point in obj1rect
+      checkRect.x1 = point.x if not checkRect.x1 or obj2.collideRect.x <= point.x <= checkRect.x1
+      checkRect.x2 = point.x if not checkRect.x2 or checkRect.x2 <= point.x <= obj2.collideRect.x + obj2.collideRect.w
+      checkRect.y1 = point.y if not checkRect.y1 or obj2.collideRect.y <= point.y <= checkRect.y1
+      checkRect.y2 = point.y if not checkRect.y2 or checkRect.y2 <= point.y <= obj2.collideRect.y + obj2.collideRect.h 
     
-    collideCanvas2.width = obj2.image.width
-    collideCanvas2.height = obj2.image.height
-    ctx2.drawImage obj2.image, 0, 0
+    checkRect.x1 = obj2.collideRect.x if checkRect.x1 < obj2.collideRect.x or checkRect.x1 > checkRect.x2
+    checkRect.x2 = obj2.collideRect.x + obj2.collideRect.w if checkRect.x2 > obj2.collideRect.x + obj2.collideRect.w or checkRect.x2 < checkRect.x1
+    checkRect.y1 = obj2.collideRect.y if checkRect.y1 < obj2.collideRect.y or checkRect.y1 > checkRect.y2
+    checkRect.y2 = obj2.collideRect.y + obj2.collideRect.h if checkRect.y2 > obj2.collideRect.y + obj2.collideRect.h or checkRect.y2 < checkRect.y1
     
-    data1 = ctx1.getImageData(0, 0, obj1.image.width, obj1.image.height).data
-    data2 = ctx2.getImageData(0, 0, obj2.image.width, obj2.image.height).data
-    
-    # for now, just check all obj2 against obj1
-    for x in [obj2.collideRect.x..obj2.collideRect.x+obj2.collideRect.w]
-      for y in [obj2.collideRect.y..obj2.collideRect.y+obj2.collideRect.h]
+    for x in [Math.round(checkRect.x1)..Math.round(checkRect.x2)]
+      for y in [Math.round(checkRect.y1)..Math.round(checkRect.y2)]
         point = obj2.localToLocal x, y, obj1
+        point.x = Math.round point.x
+        point.y = Math.round point.y
         if obj1.collideRect.x <= point.x <= obj1.collideRect.x + obj1.collideRect.w and
            obj1.collideRect.y <= point.y <= obj1.collideRect.y + obj1.collideRect.h and
-           data1[parseInt(point.x) * parseInt(point.y) * 4 + 4] > 50 and data2[x * y * 4 + 4] > 50
-          # uncomment this to draw debug circles
-          #g = new createjs.Graphics()
-          #pt = obj1.localToGlobal parseInt(point.x), parseInt(point.y)
-          #g.beginFill(createjs.Graphics.getRGB(255, 0, 0)).drawCircle 0, 0, 1
-          
-          #s = new createjs.Shape(g)
-          #s.x = pt.x
-          #s.y = pt.y
-          
-          return true
+           obj1.hitTest(point.x, point.y) and obj2.hitTest(x, y)
+          return true  
     false
     
