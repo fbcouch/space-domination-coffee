@@ -12,6 +12,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   gameObjects: []
   
   constructor: (@stage, @canvas, @preload) ->
+    @gameObjGroup = new createjs.Container()
+    @stage.addChild @gameObjGroup
     
     @player = new Ship @preload.getResult('base-fighter1'), this
     @player.x = @canvas.width / 4
@@ -71,12 +73,16 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
           other.collide obj
       
     @removeObject(obj) for obj in @gameObjects when obj?.isRemove
+    
+    # center display on player
+    @gameObjGroup.x = @canvas.width * 0.5 - @player.x
+    @gameObjGroup.y = @canvas.height * 0.5 - @player.y
       
     
   addObject: (obj) ->
     @gameObjects.push obj if obj not in @gameObjects
-    @stage.addChild obj
+    @gameObjGroup.addChild obj
     
   removeObject: (obj) ->
     @gameObjects.splice(@gameObjects.indexOf(obj), 1) if obj in @gameObjects
-    @stage.removeChild obj
+    @gameObjGroup.removeChild obj
