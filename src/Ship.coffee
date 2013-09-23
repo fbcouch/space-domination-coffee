@@ -9,19 +9,25 @@ GameObject = window.SpaceDom.GameObject
 Projectile = window.SpaceDom.Projectile
 
 window.SpaceDom.Ship = class Ship extends GameObject
-  status:
-    curhp: 0
-    maxhp: 0
-    hregen: 0
-    shield: 0
-    maxshield: 0
-    sregen: 0
-    armor: 0
-    weapons: []  
-    curweapon: -1
-  
-  constructor: (@image, @game, @specs) ->
-    super @image, @game, @specs
+  hud: true
+
+  constructor: (@image, @game, specs) ->
+    super @image, @game, specs
+
+    @status =
+      curhp: 0
+      maxhp: 0
+      hregen: 0
+      shield: 0
+      maxshield: 0
+      sregen: 0
+      armor: 0
+      weapons: []
+      curweapon: -1
+
+    @status[key] = value for key, value of @specs
+
+    @status[key] = value for key, value of specs
     
     weapon =
       image: 'laser-red1'
@@ -38,7 +44,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
         accel: 0
         initvel: 1000
         lifetime: 1
-    
+
     @status.weapons.push weapon
     @status.curweapon = 0
     
@@ -85,14 +91,15 @@ window.SpaceDom.Ship = class Ship extends GameObject
     
   update: (delta) ->
     super delta
+
+    @isRemove = true if @status.curhp <= 0
     
     for wp in @status.weapons
       
       if wp.firetimer > 0
         wp.firetimer -= delta
         wp.firetimer = 0 if wp.firetimer <= 0
-      
-      
+
       wp.regentimer -= delta
       if wp.regentimer <= 0
         wp.regentimer = wp.regen
@@ -104,4 +111,13 @@ window.SpaceDom.Ship = class Ship extends GameObject
     
   collide: (other) ->
     super other
-    
+
+  takeDamage: (other) ->
+    if other instanceof Ship
+      console.log 'collide ship'
+    else if other instanceof Projectile
+      console.log 'collide projectile'
+      @status.shield -= other.specs.damage
+      if @status.shield < 0
+        @status.curhp += @status.shield
+        @status.shield = 0

@@ -9,11 +9,10 @@ GameObject = window.SpaceDom.GameObject
 Ship = window.SpaceDom.Ship
 
 window.SpaceDom.Projectile = class Projectile extends GameObject
-  lifetime: 0
   
-  constructor: (@image, @game, @specs, @ship) ->
-    super @image, @game, @specs
-    @lifetime = @specs.lifetime
+  constructor: (@image, @game, specs, @ship) ->
+    super @image, @game, specs
+    @lifetime = specs.lifetime
 
   update: (delta) ->
     super delta
@@ -22,8 +21,9 @@ window.SpaceDom.Projectile = class Projectile extends GameObject
     @isRemove = true if @lifetime <= 0
 
   canCollide: (other) ->
-    other isnt @ship and other instanceof Ship
+    other isnt @ship and not (other instanceof Projectile)
     
   collide: (other) ->
+    console.log 'collide'
     other.takeDamage? this
     @isRemove = true

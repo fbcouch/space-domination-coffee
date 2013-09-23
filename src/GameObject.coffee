@@ -5,27 +5,35 @@
 
 window.SpaceDom or= {}
 
-window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
+window.SpaceDom.GameObject = class GameObject extends createjs.Container
   isRemove: false
+  hud: false
   
-  constructor: (image, @game, @specs) ->
-    @initialize image
-    
+  constructor: (image, @game, specs) ->
+    @initialize()
+
+    @image = new createjs.Bitmap image
+    @addChild @image
+    @width = @image.image.width
+    console.log @image
+    @height = @image.image.height
+    @regX = @width / 2
+    @regY = @height / 2
+
     # TODO: perhaps use a vector2 class?
     @vel = {x: 0, y: 0}
     @accel = {x: 0, y: 0}
     
-    @regX = @image.width * 0.5
-    @regY = @image.height * 0.5
-    
-    @collideRect = {x: 0, y: 0, w: @image.width, h: @image.height}
-    
-    @specs or=
+    @collideRect = {x: 0, y: 0, w: @width, h: @height}
+
+    @specs =
       accel: 100
       brake: 50
       vel: 100
       rotate: 50
-    
+
+    @specs[key] = value for key, value of specs
+
   update: (delta) ->
     
   canCollide: (other) ->
@@ -34,7 +42,7 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Bitmap
   collide: (other) ->
     
   @collideRect: (obj1, obj2) ->
-    
+
     obj2rect = [
       obj2.localToLocal(obj2.collideRect.x                     , obj2.collideRect.y                     , obj1),
       obj2.localToLocal(obj2.collideRect.x + obj2.collideRect.w, obj2.collideRect.y                     , obj1),

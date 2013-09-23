@@ -7,6 +7,7 @@ window.SpaceDom or= {}
 # imports
 GameObject = window.SpaceDom.GameObject
 Ship = window.SpaceDom.Ship
+HUD = window.SpaceDom.HUD
 
 window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   gameObjects: []
@@ -17,24 +18,28 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     @backgroundGroup = new createjs.Container()
     @foregroupGroup = new createjs.Container()
     @gameObjGroup = new createjs.Container()
+    @HUD = new HUD @
     
     @levelGroup.addChild @backgroundGroup
     @levelGroup.addChild @gameObjGroup
     @levelGroup.addChild @foregroundGroup
+    @levelGroup.addChild @HUD
     
     @stage.addChild @levelGroup
-    
-    @player = new Ship @preload.getResult('base-fighter1'), this
+
+    @player = new Ship @preload.getResult('base-fighter1'), this, { curhp: 100, maxhp: 100 }
     @player.x = @canvas.width / 4
-    @player.y = (@canvas.height - @player.image.height) / 2
+    @player.y = (@canvas.height - @player.height) / 2
     
     @addObject @player
     
-    testEnemy = new Ship @preload.getResult('base-enemy1'), this
+    testEnemy = new Ship @preload.getResult('base-enemy1'), this, { curhp: 50, maxhp: 50 }
     testEnemy.x = @canvas.width * 3/4
     testEnemy.y = @player.y
     
     @addObject testEnemy
+
+    console.log @player
     
   update: (delta, keys) ->
     
@@ -75,9 +80,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       obj.y += obj.vel.y * delta
       
       obj.update delta
-      
       for other in @gameObjects[@gameObjects.indexOf(obj)+1..]
-        if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other) and ndgmr.checkPixelCollision(obj, other, 0, false)
+        if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other) and ndgmr.checkPixelCollision(obj.image, other.image, 0, false)
           console.log 'collide!'
           obj.collide other
           other.collide obj
@@ -87,6 +91,9 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     # center display on player
     @levelGroup.x = @canvas.width * 0.5 - @player.x
     @levelGroup.y = @canvas.height * 0.5 - @player.y
+
+    # update hud
+    @HUD.update()
     
   addObject: (obj) ->
     @gameObjects.push obj if obj not in @gameObjects
