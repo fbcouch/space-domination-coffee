@@ -31,6 +31,8 @@ window.SpaceDom.Ship = class Ship extends GameObject
     
     @status.weapons.push weapon for weapon in @proto.weapons
     @status.curweapon = 0
+
+    @particle_timer = 0
     
   canFire: ->
     false if @status.curweapon < 0 or @status.curweapon >= @status.weapons.length
@@ -83,6 +85,22 @@ window.SpaceDom.Ship = class Ship extends GameObject
         particle.x = @x
         particle.y = @y
         @game.addParticle particle
+
+    @particle_timer -= delta
+    if @particle_timer <= 0 and (@accel.x isnt 0 or @accel.y isnt 0) and @proto.engine?
+      for point in @proto.engine.points
+        particle = new SpaceDom.Particle @proto.engine.image, @game
+        offsetXY = { x: point.x - @regX, y: point.y - @regY }
+        offset = { angle: 0, mag: 0 }
+        offset.angle = Math.atan2 offsetXY.y, offsetXY.x
+        offset.mag = Math.sqrt offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y
+        angle = this.rotation * Math.PI / 180
+
+        particle.x = @x + offset.mag * Math.cos offset.angle + angle
+        particle.y = @y + offset.mag * Math.sin offset.angle + angle
+
+        @game.addParticle particle
+      @particle_timer = 0.1
 
     for wp in @status.weapons
       

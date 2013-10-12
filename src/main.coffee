@@ -68,6 +68,7 @@ init = ->
     {id: 'explosion1', src: 'assets/explosion1.png'},
     {id: 'hull-hit', src: 'assets/hull-hit.png'},
     {id: 'shield-hit', src: 'assets/shield-hit.png'},
+    {id: 'engine-glow-purple', src: 'assets/engine-glow-purple.png'},
     {id: 'shiplist', src: 'assets/ships.json'},
     {id: 'particles', src: 'assets/particles.json'}
   ]

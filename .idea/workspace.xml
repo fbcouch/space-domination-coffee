@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpaceDominationGame.coffee" afterPath="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ship.coffee" afterPath="$PROJECT_DIR$/src/Ship.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO.md" afterPath="$PROJECT_DIR$/TODO.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.coffee" afterPath="$PROJECT_DIR$/src/main.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/particles.json" afterPath="$PROJECT_DIR$/assets/particles.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/ships.json" afterPath="$PROJECT_DIR$/assets/ships.json" />
     </list>
     <ignored path="space-domination-coffee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -10,17 +14,17 @@
     <file path="/Projectile.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1379388275448" ignored="false" />
     <file path="/SpaceDominationGame.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381595299404" ignored="false" />
     <file path="/GameObject.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1379897571307" ignored="false" />
-    <file path="/Ship.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381594676916" ignored="false" />
+    <file path="/Ship.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381597811208" ignored="false" />
     <file path="/HUD.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1379897876143" ignored="false" />
     <file path="/index.html" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381591730535" ignored="false" />
     <file path="$PROJECT_DIR$/out/HUD.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1379898072471" ignored="false" />
-    <file path="/TODO.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381538779790" ignored="false" />
+    <file path="/TODO.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381597895235" ignored="false" />
     <file path="/main.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381593932595" ignored="false" />
     <file path="$PROJECT_DIR$/../../nextgxdx/kloud-kraken/scraper/parsers/pdf.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381581968408" ignored="false" />
     <file path="$PROJECT_DIR$/../../nextgxdx/dp-rules/WASHGENE.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381585145483" ignored="false" />
-    <file path="/ships.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381593979702" ignored="false" />
+    <file path="/ships.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381597661792" ignored="false" />
     <file path="/Particle.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381593488381" ignored="false" />
-    <file path="/particles.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381593767728" ignored="false" />
+    <file path="/particles.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381596768339" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +88,7 @@
       <file leaf-file-name="ships.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/ships.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="23" selection-start="1275" selection-end="1275" vertical-scroll-proportion="-20.923077">
+            <state line="17" column="58" selection-start="455" selection-end="455" vertical-scroll-proportion="-11.115385">
               <folding />
             </state>
           </provider>
@@ -102,7 +106,16 @@
       <file leaf-file-name="particles.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/particles.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="5" selection-start="559" selection-end="559" vertical-scroll-proportion="-9.807693">
+            <state line="19" column="50" selection-start="744" selection-end="744" vertical-scroll-proportion="-12.423077">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="68" selection-start="1897" selection-end="1897" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,19 +130,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameObject.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameObject.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="31" selection-start="443" selection-end="443" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TODO.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TODO.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="5" selection-start="209" selection-end="209" vertical-scroll-proportion="0.17">
+            <state line="18" column="21" selection-start="458" selection-end="458" vertical-scroll-proportion="0.34">
               <folding />
             </state>
           </provider>
@@ -138,7 +142,7 @@
       <file leaf-file-name="Ship.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="57" selection-start="2876" selection-end="2876" vertical-scroll-proportion="0.0">
+            <state line="89" column="67" selection-start="2480" selection-end="2480" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -166,14 +170,14 @@
         <option value="$PROJECT_DIR$/src/HUD.coffee" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/Particle.coffee" />
-        <option value="$PROJECT_DIR$/src/main.coffee" />
         <option value="$PROJECT_DIR$/src/Projectile.coffee" />
-        <option value="$PROJECT_DIR$/src/Ship.coffee" />
-        <option value="$PROJECT_DIR$/assets/particles.json" />
         <option value="$PROJECT_DIR$/src/GameObject.coffee" />
-        <option value="$PROJECT_DIR$/TODO.md" />
-        <option value="$PROJECT_DIR$/assets/ships.json" />
         <option value="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
+        <option value="$PROJECT_DIR$/src/main.coffee" />
+        <option value="$PROJECT_DIR$/assets/particles.json" />
+        <option value="$PROJECT_DIR$/assets/ships.json" />
+        <option value="$PROJECT_DIR$/src/Ship.coffee" />
+        <option value="$PROJECT_DIR$/TODO.md" />
       </list>
     </option>
   </component>
@@ -544,13 +548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="18" selection-start="1847" selection-end="1847" vertical-scroll-proportion="0.3128621">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Projectile.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="21" selection-start="601" selection-end="601" vertical-scroll-proportion="0.4722222">
@@ -565,30 +562,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/particles.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="5" selection-start="559" selection-end="559" vertical-scroll-proportion="-9.807693">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="57" selection-start="2876" selection-end="2876" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/ships.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="23" selection-start="1275" selection-end="1275" vertical-scroll-proportion="-20.923077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="49" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="68" selection-start="1897" selection-end="1897" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/particles.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="50" selection-start="744" selection-end="744" vertical-scroll-proportion="-12.423077">
           <folding />
         </state>
       </provider>
@@ -600,9 +590,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/ships.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="58" selection-start="455" selection-end="455" vertical-scroll-proportion="-11.115385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="67" selection-start="2480" selection-end="2480" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TODO.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="5" selection-start="209" selection-end="209" vertical-scroll-proportion="0.17">
+        <state line="18" column="21" selection-start="458" selection-end="458" vertical-scroll-proportion="0.34">
           <folding />
         </state>
       </provider>

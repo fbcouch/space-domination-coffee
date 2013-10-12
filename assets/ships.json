@@ -13,6 +13,10 @@
             "sregen": 1,
             "armor": 0
         },
+        "engine": {
+            "image": "glow-purple",
+            "points": [{"x": 0, "y": 30}, {"x": 0, "y": 50}]
+        },
         "weapons": [
             {
                 "image": "laser-red1",
