@@ -39,7 +39,11 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     
     @addObject testEnemy
 
-    console.log @player
+    @generateBackground 'bg-starfield-sparse'
+
+  resize: () ->
+    @backgroundGroup.removeAllChildren()
+    @generateBackground 'bg-starfield-sparse'
     
   update: (delta, keys) ->
     
@@ -92,6 +96,10 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     @levelGroup.x = @canvas.width * 0.5 - @player.x
     @levelGroup.y = @canvas.height * 0.5 - @player.y
 
+    # move background to where player is
+    @backgroundGroup.x = (Math.floor(@player.x / 512) - Math.floor(@backgroundGroup.width / 512 * 0.5)) * 512
+    @backgroundGroup.y = (Math.floor(@player.y / 512) - Math.floor(@backgroundGroup.height / 512 * 0.5)) * 512
+
     # update hud
     @HUD.update()
     
@@ -102,3 +110,15 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   removeObject: (obj) ->
     @gameObjects.splice(@gameObjects.indexOf(obj), 1) if obj in @gameObjects
     @gameObjGroup.removeChild obj
+
+  generateBackground: (img) ->
+    bg = @preload.getResult img
+    for y in [0..Math.floor(@canvas.height / bg.height) + 1]
+      for x in [0..Math.floor(@canvas.width / bg.width) + 1]
+        bgobj = new createjs.Bitmap bg
+        bgobj.x = bgobj.image.width * x
+        bgobj.y = bgobj.image.height * y
+        @backgroundGroup.addChild bgobj
+        @backgroundGroup.width = bgobj.x + bgobj.image.width
+        @backgroundGroup.height = bgobj.y + bgobj.image.height
+

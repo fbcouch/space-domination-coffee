@@ -64,6 +64,7 @@ init = ->
     {id: 'base-enemy1', src: 'assets/base-enemy1.png'},
     {id: 'laser-green1', src: 'assets/laser-green1.png'},
     {id: 'laser-red1', src: 'assets/laser-red1.png'},
+    {id: 'bg-starfield-sparse', src: 'assets/bg-starfield-sparse.png'},
   ]
   
   preload = new createjs.LoadQueue()
@@ -83,6 +84,7 @@ init = ->
     canvasWidth = canvas.width = document.documentElement.clientWidth
     canvasHeight = canvas.height = document.documentElement.clientHeight
     stage.update()
+    game.resize()
   
 updateLoading = ->
   messageField.text = "Loading #{preload.progress*100|0}%"
