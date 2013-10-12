@@ -9,7 +9,7 @@ v0.1:
     - same for missiles
 - basic animations
     - engine glow
-    - laser hit burst
-    - ship explosions
+    + laser hit burst
+    + ship explosions
 + scrolling background
     + less dense starfield that original

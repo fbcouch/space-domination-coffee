@@ -28,7 +28,9 @@
                     "vel": 1000,
                     "accel": 0,
                     "initvel": 1000,
-                    "lifetime": 1
+                    "lifetime": 1,
+                    "hull": "hull-hit",
+                    "shield": "shield-hit"
                 }
             }
         ]
@@ -43,10 +45,11 @@
             "curhp": 50,
             "maxhp": 50,
             "hregen": 0,
-            "shield": 0,
+            "shield": 10,
             "sregen": 0,
             "armor": 0
         },
+        "destroyed": "explosion-md",
         "weapons": [
             {
                 "image": "laser-red1",
@@ -62,7 +65,9 @@
                     "vel": 1000,
                     "accel": 0,
                     "initvel": 1000,
-                    "lifetime": 1
+                    "lifetime": 1,
+                    "hull": "hull-hit",
+                    "shield": "shield-hit"
                 }
             }
         ]

@@ -24,6 +24,5 @@ window.SpaceDom.Projectile = class Projectile extends GameObject
     other isnt @ship and not (other instanceof Projectile)
     
   collide: (other) ->
-    console.log 'collide'
     other.takeDamage? this
     @isRemove = true

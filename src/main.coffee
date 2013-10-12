@@ -65,7 +65,11 @@ init = ->
     {id: 'laser-green1', src: 'assets/laser-green1.png'},
     {id: 'laser-red1', src: 'assets/laser-red1.png'},
     {id: 'bg-starfield-sparse', src: 'assets/bg-starfield-sparse.png'},
-    {id: 'shiplist', src: 'assets/ships.json'}
+    {id: 'explosion1', src: 'assets/explosion1.png'},
+    {id: 'hull-hit', src: 'assets/hull-hit.png'},
+    {id: 'shield-hit', src: 'assets/shield-hit.png'},
+    {id: 'shiplist', src: 'assets/ships.json'},
+    {id: 'particles', src: 'assets/particles.json'}
   ]
   
   preload = new createjs.LoadQueue()

@@ -8,15 +8,17 @@ window.SpaceDom or= {}
 GameObject = window.SpaceDom.GameObject
 Ship = window.SpaceDom.Ship
 HUD = window.SpaceDom.HUD
+Particle = window.SpaceDom.Particle
 
 window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   gameObjects: []
+  particles: []
   
   constructor: (@stage, @canvas, @preload) ->
     @levelGroup = new createjs.Container()
     
     @backgroundGroup = new createjs.Container()
-    @foregroupGroup = new createjs.Container()
+    @foregroundGroup = new createjs.Container()
     @gameObjGroup = new createjs.Container()
     @HUD = new HUD @
     
@@ -27,7 +29,6 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     
     @stage.addChild @levelGroup
 
-    console.log @preload.getResult 'shiplist'
     @shiplist = @preload.getResult 'shiplist'
 
     @player = new Ship @preload.getResult(@shiplist['base-fighter'].image), this, @shiplist['base-fighter']
@@ -87,13 +88,15 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       obj.y += obj.vel.y * delta
       
       obj.update delta
-      for other in @gameObjects[@gameObjects.indexOf(obj)+1..]
+      continue if obj.isRemove
+      for other in @gameObjects[@gameObjects.indexOf(obj)+1..] when not other.isRemove
         if obj.canCollide?(other) and other.canCollide?(obj) and GameObject.collideRect(obj, other) and ndgmr.checkPixelCollision(obj.image, other.image, 0, false)
-          console.log 'collide!'
           obj.collide other
           other.collide obj
       
     @removeObject(obj) for obj in @gameObjects when obj?.isRemove
+
+    @removeParticle particle for particle in @particles when particle?.isComplete()
     
     # center display on player
     @levelGroup.x = @canvas.width * 0.5 - @player.x
@@ -113,6 +116,14 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   removeObject: (obj) ->
     @gameObjects.splice(@gameObjects.indexOf(obj), 1) if obj in @gameObjects
     @gameObjGroup.removeChild obj
+
+  addParticle: (particle) ->
+    @particles.push particle
+    @foregroundGroup.addChild particle
+
+  removeParticle: (particle) ->
+    @particles.splice(@particles.indexOf(particle), 1) if particle in @particles
+    @foregroundGroup.removeChild particle
 
   generateBackground: (img) ->
     bg = @preload.getResult img

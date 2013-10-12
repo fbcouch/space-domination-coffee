@@ -15,7 +15,6 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Container
     @image = new createjs.Bitmap image
     @addChild @image
     @width = @image.image.width
-    console.log @image
     @height = @image.image.height
     @regX = @width / 2
     @regY = @height / 2

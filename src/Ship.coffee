@@ -76,8 +76,14 @@ window.SpaceDom.Ship = class Ship extends GameObject
   update: (delta) ->
     super delta
 
-    @isRemove = true if @status.curhp <= 0
-    
+    if @status.curhp <= 0
+      @isRemove = true
+      if @proto.destroyed?
+        particle = new SpaceDom.Particle @proto.destroyed, @game
+        particle.x = @x
+        particle.y = @y
+        @game.addParticle particle
+
     for wp in @status.weapons
       
       if wp.firetimer > 0
@@ -98,10 +104,16 @@ window.SpaceDom.Ship = class Ship extends GameObject
 
   takeDamage: (other) ->
     if other instanceof Ship
-      console.log 'collide ship'
+      console.log 'collide ship' # TODO take some damage?
     else if other instanceof Projectile
-      console.log 'collide projectile'
       @status.shield -= other.specs.damage
       if @status.shield < 0
         @status.curhp += @status.shield
         @status.shield = 0
+        particle = new SpaceDom.Particle other.specs['hull'] or 'hull-hit', @game
+      else
+        particle = new SpaceDom.Particle other.specs['shield'] or other.specs['hull'] or 'hull-hit', @game
+      if particle?
+        particle.x = other.x
+        particle.y = other.y
+        @game.addParticle particle
