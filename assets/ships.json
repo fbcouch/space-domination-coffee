@@ -1,0 +1,70 @@
+{
+    "base-fighter": {
+        "image": "base-fighter1",
+        "specs": {
+            "accel": 100,
+            "brake": 50,
+            "vel": 100,
+            "rotate": 50,
+            "curhp": 100,
+            "maxhp": 100,
+            "hregen": 0,
+            "shield": 100,
+            "sregen": 1,
+            "armor": 0
+        },
+        "weapons": [
+            {
+                "image": "laser-red1",
+                "points": [{"x": 40, "y": 2}, {"x": 40, "y": 77}],
+                "maxammo": 6 ,
+                "curammo": 6,
+                "regen": 0.5,
+                "regentimer": 0,
+                "firerate": 0.1,
+                "firetimer": 0,
+                "projectile": {
+                    "damage": 5,
+                    "vel": 1000,
+                    "accel": 0,
+                    "initvel": 1000,
+                    "lifetime": 1
+                }
+            }
+        ]
+    },
+    "base-enemy": {
+        "image": "base-enemy1",
+        "specs": {
+            "accel": 100,
+            "brake": 50,
+            "vel": 100,
+            "rotate": 50,
+            "curhp": 50,
+            "maxhp": 50,
+            "hregen": 0,
+            "shield": 0,
+            "sregen": 0,
+            "armor": 0
+        },
+        "weapons": [
+            {
+                "image": "laser-red1",
+                "points": [{"x": 40, "y": 2}, {"x": 40, "y": 77}],
+                "maxammo": 6,
+                "curammo": 6,
+                "regen": 0.5,
+                "regentimer": 0,
+                "firerate": 0.05,
+                "firetimer": 0,
+                "projectile": {
+                    "damage": 5,
+                    "vel": 1000,
+                    "accel": 0,
+                    "initvel": 1000,
+                    "lifetime": 1
+                }
+            }
+        ]
+    }
+}

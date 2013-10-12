@@ -11,8 +11,8 @@ Projectile = window.SpaceDom.Projectile
 window.SpaceDom.Ship = class Ship extends GameObject
   hud: true
 
-  constructor: (@image, @game, specs) ->
-    super @image, @game, specs
+  constructor: (@image, @game, @proto) ->
+    super @image, @game, @proto.specs
 
     @status =
       curhp: 0
@@ -27,25 +27,9 @@ window.SpaceDom.Ship = class Ship extends GameObject
 
     @status[key] = value for key, value of @specs
 
-    @status[key] = value for key, value of specs
+    @status[key] = value for key, value of @proto.specs
     
-    weapon =
-      image: 'laser-red1'
-      points: [{x: 40, y: 2}, {x: 40, y: 77}]
-      maxammo: 10
-      curammo: 10
-      regen: 0.1 # sec
-      regentimer: 0
-      firerate: 0.05 # sec
-      firetimer: 0
-      projectile:
-        damage: 5
-        vel: 1000
-        accel: 0
-        initvel: 1000
-        lifetime: 1
-
-    @status.weapons.push weapon
+    @status.weapons.push weapon for weapon in @proto.weapons
     @status.curweapon = 0
     
   canFire: ->

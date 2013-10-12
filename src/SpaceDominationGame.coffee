@@ -27,16 +27,19 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     
     @stage.addChild @levelGroup
 
-    @player = new Ship @preload.getResult('base-fighter1'), this, { curhp: 100, maxhp: 100 }
+    console.log @preload.getResult 'shiplist'
+    @shiplist = @preload.getResult 'shiplist'
+
+    @player = new Ship @preload.getResult(@shiplist['base-fighter'].image), this, @shiplist['base-fighter']
     @player.x = @canvas.width / 4
     @player.y = (@canvas.height - @player.height) / 2
     
     @addObject @player
     
-    testEnemy = new Ship @preload.getResult('base-enemy1'), this, { curhp: 50, maxhp: 50 }
+    testEnemy = new Ship @preload.getResult(@shiplist['base-enemy'].image), this, @shiplist['base-enemy']
     testEnemy.x = @canvas.width * 3/4
     testEnemy.y = @player.y
-    
+
     @addObject testEnemy
 
     @generateBackground 'bg-starfield-sparse'
