@@ -1,6 +1,6 @@
 {
     "explosion-md": {
-        "images": ["explosion1"],
+        "images": ["explosion-md"],
         "frames": { "width": 100, "height": 100, "regX": 50, "regY": 50},
         "animations": { "anim": [0, 42, false, 1] }
     },

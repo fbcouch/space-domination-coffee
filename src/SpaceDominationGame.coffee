@@ -135,4 +135,3 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
         @backgroundGroup.addChild bgobj
         @backgroundGroup.width = bgobj.x + bgobj.image.width
         @backgroundGroup.height = bgobj.y + bgobj.image.height
-

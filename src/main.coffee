@@ -57,25 +57,24 @@ init = ->
   
   stage.addChild messageField
   stage.update()
-  
+
+  # JC: Preloading asset definitions and then all images
   manifest = [
-    {id: 'base-fighter1', src: 'assets/base-fighter1.png'},
-    {id: 'block1', src: 'assets/block1.png'},
-    {id: 'base-enemy1', src: 'assets/base-enemy1.png'},
-    {id: 'laser-green1', src: 'assets/laser-green1.png'},
-    {id: 'laser-red1', src: 'assets/laser-red1.png'},
-    {id: 'bg-starfield-sparse', src: 'assets/bg-starfield-sparse.png'},
-    {id: 'explosion1', src: 'assets/explosion1.png'},
-    {id: 'hull-hit', src: 'assets/hull-hit.png'},
-    {id: 'shield-hit', src: 'assets/shield-hit.png'},
-    {id: 'engine-glow-purple', src: 'assets/engine-glow-purple.png'},
     {id: 'shiplist', src: 'assets/ships.json'},
-    {id: 'particles', src: 'assets/particles.json'}
+    {id: 'particles', src: 'assets/particles.json'},
+    {id: 'missions', src: 'assets/missions.json'},
+    {id: 'training-crates', src: 'assets/missions/training-crates.json'}
   ]
   
   preload = new createjs.LoadQueue()
-  preload.addEventListener 'complete', doneLoading
-  preload.addEventListener 'progress', updateLoading
+  preload.addEventListener 'complete', ->
+    images = []
+    images.push {id: image, src: "assets/#{image}.png"} for image in gather_images(preload.getResult item.src) for item in manifest
+
+    preload.removeAllEventListeners 'complete'
+    preload.addEventListener 'complete', doneLoading
+    preload.addEventListener 'progress', updateLoading
+    preload.loadManifest images
   preload.loadManifest manifest
   
   # add exports to the root
@@ -92,6 +91,17 @@ init = ->
     stage.update()
     game?.resize()
   
+gather_images = (obj) ->
+  images = []
+  for key, val of obj
+    if key is 'image'
+      images.push val
+    else if key is 'images'
+      images.push img for img in val
+    else if typeof val is 'object'
+      images.push image for image in gather_images val
+  images
+
 updateLoading = ->
   messageField.text = "Loading #{preload.progress*100|0}%"
   stage.update()

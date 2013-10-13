@@ -80,8 +80,8 @@ window.SpaceDom.Ship = class Ship extends GameObject
 
     if @status.curhp <= 0
       @isRemove = true
-      if @proto.destroyed?
-        particle = new SpaceDom.Particle @proto.destroyed, @game
+      if @proto.destroyed?.particle?
+        particle = new SpaceDom.Particle @proto.destroyed.particle, @game
         particle.x = @x
         particle.y = @y
         @game.addParticle particle
@@ -128,9 +128,9 @@ window.SpaceDom.Ship = class Ship extends GameObject
       if @status.shield < 0
         @status.curhp += @status.shield
         @status.shield = 0
-        particle = new SpaceDom.Particle other.specs['hull'] or 'hull-hit', @game
+        particle = new SpaceDom.Particle other.specs['hull'].particle or 'hull-hit', @game
       else
-        particle = new SpaceDom.Particle other.specs['shield'] or other.specs['hull'] or 'hull-hit', @game
+        particle = new SpaceDom.Particle other.specs['shield'].particle or other.specs['hull'] or 'hull-hit', @game
       if particle?
         particle.x = other.x
         particle.y = other.y
