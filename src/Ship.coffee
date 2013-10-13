@@ -89,7 +89,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
     @particle_timer -= delta
     if @particle_timer <= 0 and (@accel.x isnt 0 or @accel.y isnt 0) and @proto.engine?
       for point in @proto.engine.points
-        particle = new SpaceDom.Particle @proto.engine.image, @game
+        particle = new SpaceDom.Particle @proto.engine.particle, @game
         offsetXY = { x: point.x - @regX, y: point.y - @regY }
         offset = { angle: 0, mag: 0 }
         offset.angle = Math.atan2 offsetXY.y, offsetXY.x
