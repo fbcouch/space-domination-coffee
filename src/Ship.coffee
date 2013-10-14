@@ -29,7 +29,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
 
     @status[key] = value for key, value of @proto.specs
     
-    @status.weapons.push weapon for weapon in @proto.weapons
+    @status.weapons.push weapon for weapon in @proto.weapons if @proto.weapons?
     @status.curweapon = 0
 
     @particle_timer = 0

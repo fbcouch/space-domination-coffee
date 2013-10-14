@@ -13,6 +13,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     super @preload
 
     @level = @preload.getResult level
+    @shiplist = @preload.getResult 'shiplist'
 
   show: () ->
     @levelGroup = new createjs.Container()
@@ -29,25 +30,11 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     @addChild @levelGroup
 
-    @shiplist = @preload.getResult 'shiplist'
-
-    @player = new SpaceDom.Ship @preload.getResult(@shiplist['base-fighter'].image), this, @shiplist['base-fighter']
-    @player.x = 0
-    @player.y = 0
-
-    @addObject @player
-
-    testEnemy = new SpaceDom.Ship @preload.getResult(@shiplist['base-enemy'].image), this, @shiplist['base-enemy']
-    testEnemy.x = 400
-    testEnemy.y = 100
-
-    @addObject testEnemy
-
-    @generateBackground 'bg-starfield-sparse'
+    @generateLevel()
 
   resize: (@width, @height) ->
     @backgroundGroup.removeAllChildren()
-    @generateBackground 'bg-starfield-sparse'
+    @generateBackground()
 
   update: (delta, keys) ->
     super(delta, keys)
@@ -126,8 +113,8 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @particles.splice(@particles.indexOf(particle), 1) if particle in @particles
     @foregroundGroup.removeChild particle
 
-  generateBackground: (img) ->
-    bg = @preload.getResult img
+  generateBackground: () ->
+    bg = @preload.getResult @level.background.image or 'bg-starfield-sparse'
     for y in [0..Math.floor(@height / bg.height) + 1]
       for x in [0..Math.floor(@width / bg.width) + 1]
         bgobj = new createjs.Bitmap bg
@@ -136,3 +123,16 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
         @backgroundGroup.addChild bgobj
         @backgroundGroup.width = bgobj.x + bgobj.image.width
         @backgroundGroup.height = bgobj.y + bgobj.image.height
+
+  generateLevel: ->
+    for spawn in @level.spawns
+      if spawn.id is 'player'
+        ship = @player = new SpaceDom.Ship @preload.getResult(@shiplist['base-fighter'].image), this, @shiplist['base-fighter']
+      else
+        ship = new SpaceDom.Ship @preload.getResult(@shiplist[spawn.id].image), this, @shiplist[spawn.id]
+      ship.x = spawn.x or 0
+      ship.y = spawn.y or 0
+      ship.rotation = spawn.r or 0
+      @addObject ship
+
+    @generateBackground()

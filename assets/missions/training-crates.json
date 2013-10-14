@@ -12,31 +12,37 @@
         {
             "x": 200,
             "y": -100,
+            "r": 45,
             "id": "supply-crate"
         },
         {
             "x": 400,
             "y": -100,
+            "r": 45,
             "id": "supply-crate"
         },
         {
             "x": 600,
             "y": -100,
+            "r": 45,
             "id": "supply-crate"
         },
         {
             "x": 200,
             "y": 100,
+            "r": 45,
             "id": "supply-crate"
         },
         {
             "x": 400,
             "y": 100,
+            "r": 45,
             "id": "supply-crate"
         },
         {
             "x": 600,
             "y": 100,
+            "r": 45,
             "id": "supply-crate"
         }
 
