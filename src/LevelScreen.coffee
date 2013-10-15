@@ -15,6 +15,8 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @level = @preload.getResult level
     @shiplist = @preload.getResult 'shiplist'
 
+    @gameState = 'paused'
+
   show: () ->
     @levelGroup = new createjs.Container()
 
@@ -40,57 +42,61 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
   update: (delta, keys) ->
     super(delta, keys)
 
-    # prevent bleed-thru of input from menu
-    if not @first_pass_done?
-      @first_pass_done = true
-      keys[key] = false for key of keys
+    switch @gameState
+      when 'paused'
+        console.log 'paused'
+      when 'running'
+        # prevent bleed-thru of input from menu
+        if not @first_pass_done?
+          @first_pass_done = true
+          keys[key] = false for key of keys
 
-    if keys.left and not keys.right
-      @player.rotation -= @player.specs.rotate * delta
-    else if keys.right and not keys.left
-      @player.rotation += @player.specs.rotate * delta
+        if keys.left and not keys.right
+          @player.rotation -= @player.specs.rotate * delta
+        else if keys.right and not keys.left
+          @player.rotation += @player.specs.rotate * delta
 
-    if keys.accel and not keys.brake
-      @player.accel.x = @player.specs.accel * Math.cos @player.rotation * Math.PI / 180
-      @player.accel.y = @player.specs.accel * Math.sin @player.rotation * Math.PI / 180
-    else if keys.brake and not keys.accel and (@player.vel.x isnt 0 or @player.vel.y isnt 0)
-      angle = Math.atan2 @player.vel.y, @player.vel.x
-      @player.accel.x = -1 * @player.specs.brake * Math.cos angle
-      @player.accel.y = -1 * @player.specs.brake * Math.sin angle
-    else
-      @player.accel.x = @player.accel.y = 0
+        if keys.accel and not keys.brake
+          @player.accel.x = @player.specs.accel * Math.cos @player.rotation * Math.PI / 180
+          @player.accel.y = @player.specs.accel * Math.sin @player.rotation * Math.PI / 180
+        else if keys.brake and not keys.accel and (@player.vel.x isnt 0 or @player.vel.y isnt 0)
+          angle = Math.atan2 @player.vel.y, @player.vel.x
+          @player.accel.x = -1 * @player.specs.brake * Math.cos angle
+          @player.accel.y = -1 * @player.specs.brake * Math.sin angle
+        else
+          @player.accel.x = @player.accel.y = 0
 
-      # prevent acceleration backwards
-      if Math.abs(@player.accel.x * delta) >= Math.abs(@player.vel.x)
-        @player.accel.x = @player.vel.x = 0
-      if Math.abs(@player.accel.y * delta) >= Math.abs(@player.vel.y)
-        @player.accel.y = @player.vel.y = 0
+          # prevent acceleration backwards
+          if Math.abs(@player.accel.x * delta) >= Math.abs(@player.vel.x)
+            @player.accel.x = @player.vel.x = 0
+          if Math.abs(@player.accel.y * delta) >= Math.abs(@player.vel.y)
+            @player.accel.y = @player.vel.y = 0
 
-    @player.fire() if keys.fire
+        @player.fire() if keys.fire
 
-    for obj in @gameObjects
-      obj.vel.x += obj.accel.x * delta
-      obj.vel.y += obj.accel.y * delta
+        for obj in @gameObjects
+          obj.vel.x += obj.accel.x * delta
+          obj.vel.y += obj.accel.y * delta
 
-      # clamp velocity to max
-      if obj.specs.vel * obj.specs.vel < obj.vel.x * obj.vel.x + obj.vel.y * obj.vel.y
-        angle = Math.atan2 obj.vel.y, obj.vel.x
-        obj.vel.x = obj.specs.vel * Math.cos angle
-        obj.vel.y = obj.specs.vel * Math.sin angle
+          # clamp velocity to max
+          if obj.specs.vel * obj.specs.vel < obj.vel.x * obj.vel.x + obj.vel.y * obj.vel.y
+            angle = Math.atan2 obj.vel.y, obj.vel.x
+            obj.vel.x = obj.specs.vel * Math.cos angle
+            obj.vel.y = obj.specs.vel * Math.sin angle
 
-      obj.x += obj.vel.x * delta
-      obj.y += obj.vel.y * delta
+          obj.x += obj.vel.x * delta
+          obj.y += obj.vel.y * delta
 
-      obj.update delta
-      continue if obj.isRemove
-      for other in @gameObjects[@gameObjects.indexOf(obj)+1..] when not other.isRemove
-        if obj.canCollide?(other) and other.canCollide?(obj) and SpaceDom.GameObject.collideRect(obj, other) and ndgmr.checkPixelCollision(obj.image, other.image, 0, false)
-          obj.collide other
-          other.collide obj
+          obj.update delta
+          continue if obj.isRemove
+          for other in @gameObjects[@gameObjects.indexOf(obj)+1..] when not other.isRemove
+            if obj.canCollide?(other) and other.canCollide?(obj) and SpaceDom.GameObject.collideRect(obj, other) and ndgmr.checkPixelCollision(obj.image, other.image, 0, false)
+              obj.collide other
+              other.collide obj
 
-    @removeObject(obj) for obj in @gameObjects when obj?.isRemove
+        @removeObject(obj) for obj in @gameObjects when obj?.isRemove
 
-    @removeParticle particle for particle in @particles when particle?.isComplete()
+        @removeParticle particle for particle in @particles when particle?.isComplete()
 
     # center display on player
     @levelGroup.x = @width * 0.5 - @player.x

@@ -27,8 +27,6 @@ window.SpaceDom.MissionSelectScreen = class MissionSelectScreen extends SpaceDom
     bg.y = (@height - bg.image.height) * 0.5
     @addChild bg
 
-    menuContainer = new createjs.Container()
-
     titletxt = new createjs.Text "SPACE DOMINATION", "bold 40px Arial", "#3366FF"
     titletxt.textAlign = "center"
     titletxt.y = 100
@@ -36,47 +34,15 @@ window.SpaceDom.MissionSelectScreen = class MissionSelectScreen extends SpaceDom
 
     @addChild titletxt
 
-    @_buttons = []
-    for level, l in @levels when level isnt null
-      btn = new SpaceDom.TextButton level.title
-      btn.y = 100 * l
-      btn.action = l
-      @_buttons.push btn
-      menuContainer.addChild btn
+    menuContainer = new SpaceDom.TextMenu ({text: level.title, level: l} for level, l in @levels), null, (item) =>
+      @game.setScreen new SpaceDom.LevelScreen @preload, @game, @preload.getResult('missions')[item.level]
 
-    { x: x, y: y, width: menuContainer.width, height: menuContainer.height } = menuContainer.getBounds()
     menuContainer.x = (@width - menuContainer.width) * 0.5
     menuContainer.y = (@height - menuContainer.height) * 0.5
+
     @addChild menuContainer
-
-    for btn in @_buttons
-      btn.x = (menuContainer.width - btn.getBounds().width) * 0.5
-
-    @_selected = 0
-    @_buttons[@_selected]?.select()
 
   update: (delta, keys) ->
     super(delta, keys)
 
-    @_buttons[@_selected]?.deselect()
-
-    @_selected-- if keys.accel and not @keysDown.accel
-    @_selected++ if keys.brake and not @keysDown.brake
-
-    if keys.fire and not @keysDown.fire
-      @game.setScreen new SpaceDom.LevelScreen @preload, @game, @preload.getResult('missions')[@_buttons[@_selected].action]
-
-    @_selected %= @_buttons.length
-    @_buttons[@_selected]?.select()
-
-    for key, val of keys
-      @keysDown[key] = val
-
-#    console.log @_selected
-    update_children = (obj, delta, keys) ->
-      for child in obj.children
-        child.update?(delta, keys)
-        if child.children?
-          update_children child, delta, keys
-    update_children @, delta, keys
-    #child.update?(delta, keys) for child in @children
+    child.update? delta, keys for child in @children
