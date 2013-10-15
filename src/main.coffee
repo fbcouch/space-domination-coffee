@@ -62,7 +62,11 @@ init = ->
   manifest = [
     {id: 'shiplist', src: 'assets/ships.json'},
     {id: 'particles', src: 'assets/particles.json'},
-    {id: 'missions', src: 'assets/missions.json'},
+    {id: 'missions', src: 'assets/missions.json'}
+  ]
+
+  other = [
+    {id: 'bg-menu', src: 'assets/bg-menu.png'}
   ]
   
   preload = new createjs.LoadQueue()
@@ -73,6 +77,7 @@ init = ->
       images = []
       images.push {id: image, src: "assets/#{image}.png"} for image in gather_images(preload.getResult item.id) for item in manifest
       images.push {id: image, src: "assets/#{image}.png"} for image in gather_images(preload.getResult item.id) for item in missions
+      images.push item for item in other
 
       preload.removeAllEventListeners 'complete'
       preload.addEventListener 'complete', doneLoading
@@ -130,7 +135,7 @@ start = () ->
   console.log 'Start game...'
   game = new SpaceDominationGame stage, canvas, preload
   createjs.Ticker.addEventListener('tick', tick) if not createjs.Ticker.hasEventListener('tick')
-  createjs.Ticker.setFPS 60
+  createjs.Ticker.setFPS 30
   
 tick = (event) ->
   delta = event.delta / 1000

@@ -11,11 +11,11 @@ window.SpaceDom.TextButton = class TextButton extends createjs.Container
     @initialize()
     @button_style or=
       unselected:
-        font: "20px Arial"
+        font: "bold 24px Courier"
         color: "#FFFFFF"
       selected:
-        font: "20px Arial"
-        color: "#FF3333"
+        font: "bold 24px Courier"
+        color: "#FF0000"
 
     @state = 'unselected'
     @textObj = new createjs.Text()
@@ -30,7 +30,7 @@ window.SpaceDom.TextButton = class TextButton extends createjs.Container
       @textObj.text = @text
       @textObj.font = @button_style[@state]?.font
       @textObj.color = @button_style[@state]?.color
-      @textObj.textAlign = "center"
+      @textObj.textAlign = "left"
 
       {width: @width, height: @height} = @textObj.getBounds()
 

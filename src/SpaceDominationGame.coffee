@@ -16,8 +16,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
 #    @setScreen(new SpaceDom.LevelScreen @preload, 'training-crates')
     @setScreen new SpaceDom.MissionSelectScreen(@preload, @)
 
-  update: (delta, keys) ->
-    @screen?.update? delta, keys
+  update: (delta, @keys) ->
+    @screen?.update? delta, @keys
 
   resize: () ->
     @screen.resize @canvas.width, @canvas.height
