@@ -9,8 +9,8 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
   gameObjects: []
   particles: []
 
-  constructor: (@preload, level) ->
-    super @preload
+  constructor: (@preload, @game, level) ->
+    super @preload, @game
 
     @level = @preload.getResult level
     @shiplist = @preload.getResult 'shiplist'
@@ -33,8 +33,9 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @generateLevel()
 
   resize: (@width, @height) ->
-    @backgroundGroup.removeAllChildren()
-    @generateBackground()
+    if @backgroundGroup?
+      @backgroundGroup.removeAllChildren()
+      @generateBackground()
 
   update: (delta, keys) ->
     super(delta, keys)
@@ -114,7 +115,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @foregroundGroup.removeChild particle
 
   generateBackground: () ->
-    bg = @preload.getResult @level.background.image or 'bg-starfield-sparse'
+    bg = @preload.getResult (@level.background.image or 'bg-starfield-sparse')
     for y in [0..Math.floor(@height / bg.height) + 1]
       for x in [0..Math.floor(@width / bg.width) + 1]
         bgobj = new createjs.Bitmap bg

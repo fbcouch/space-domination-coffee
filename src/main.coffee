@@ -63,18 +63,22 @@ init = ->
     {id: 'shiplist', src: 'assets/ships.json'},
     {id: 'particles', src: 'assets/particles.json'},
     {id: 'missions', src: 'assets/missions.json'},
-    {id: 'training-crates', src: 'assets/missions/training-crates.json'}
   ]
   
   preload = new createjs.LoadQueue()
   preload.addEventListener 'complete', ->
-    images = []
-    images.push {id: image, src: "assets/#{image}.png"} for image in gather_images(preload.getResult item.src) for item in manifest
-
+    missions = ({id: mission, src: "assets/missions/#{mission}.json"} for mission in preload.getResult 'missions')
     preload.removeAllEventListeners 'complete'
-    preload.addEventListener 'complete', doneLoading
-    preload.addEventListener 'progress', updateLoading
-    preload.loadManifest images
+    preload.addEventListener 'complete', ->
+      images = []
+      images.push {id: image, src: "assets/#{image}.png"} for image in gather_images(preload.getResult item.id) for item in manifest
+      images.push {id: image, src: "assets/#{image}.png"} for image in gather_images(preload.getResult item.id) for item in missions
+
+      preload.removeAllEventListeners 'complete'
+      preload.addEventListener 'complete', doneLoading
+      preload.addEventListener 'progress', updateLoading
+      preload.loadManifest images
+    preload.loadManifest missions
   preload.loadManifest manifest
   
   # add exports to the root
@@ -108,15 +112,7 @@ updateLoading = ->
 
 doneLoading = ->
   messageField.text = "Loading complete"
-  stage.update()
-  watchClick()
-  
-watchClick = ->
-  canvas.onclick = handleClick
-
-handleClick = () ->
-  canvas.onclick = null
-  stage.removeChild messageField
+  stage.removeAllChildren()
   stage.update()
   start()
   
@@ -134,7 +130,7 @@ start = () ->
   console.log 'Start game...'
   game = new SpaceDominationGame stage, canvas, preload
   createjs.Ticker.addEventListener('tick', tick) if not createjs.Ticker.hasEventListener('tick')
-  createjs.Ticker.setFPS 30
+  createjs.Ticker.setFPS 60
   
 tick = (event) ->
   delta = event.delta / 1000

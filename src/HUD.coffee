@@ -26,7 +26,7 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
       text.x = text.gameobj.x
       text.y = text.gameobj.y + text.gameobj.height * 0.5
 
-    for i in [0...@texts.length] when @texts[i].gameobj.isRemove
+    for i in [0...@texts.length] when @texts[i]?.gameobj.isRemove
       @removeChild @texts[i]
       @texts.splice(i, 1)
 

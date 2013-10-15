@@ -1,4 +1,4 @@
 [
-    "missions/training-crates.json",
-    "missions/training-drone.json"
+    "training-crates",
+    "training-drones"
 ]

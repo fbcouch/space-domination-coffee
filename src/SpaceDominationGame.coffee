@@ -13,14 +13,22 @@ Particle = window.SpaceDom.Particle
 window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
 
   constructor: (@stage, @canvas, @preload) ->
-    @screen = new SpaceDom.LevelScreen @preload, 'training-crates'
-    @screen.show()
-    @screen.resize @canvas.width, @canvas.height
-
-    @stage.addChild @screen
+#    @setScreen(new SpaceDom.LevelScreen @preload, 'training-crates')
+    @setScreen new SpaceDom.MissionSelectScreen(@preload, @)
 
   update: (delta, keys) ->
     @screen?.update? delta, keys
 
   resize: () ->
     @screen.resize @canvas.width, @canvas.height
+
+  setScreen: (screen) ->
+    if @screen?
+      @screen.hide?()
+      @stage.removeChild @screen
+
+    @screen = screen
+    @screen.resize @canvas.width, @canvas.height
+    @screen.show()
+
+    @stage.addChild @screen

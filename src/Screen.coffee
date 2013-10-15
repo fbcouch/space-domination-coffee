@@ -7,10 +7,14 @@ window.SpaceDom or= {}
 
 window.SpaceDom.Screen = class Screen extends createjs.Container
 
-  constructor: (@preload) ->
+  constructor: (@preload, @game) ->
     @initialize()
+
+  show: ->
 
   resize: (@width, @height) ->
 
   update: (delta, keys) ->
+
+  hide: ->
 

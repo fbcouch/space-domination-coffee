@@ -12,8 +12,10 @@ v0.1:
     + laser hit burst
     + ship explosions
 + scrolling background
-    + less dense starfield that original
+    + less dense starfield than original
 - two missions
-    - training mission : kill crates
-    - training mission : kill drone
+    + training mission : kill crates
+    - training mission : kill drones
 - mission select menu
+    + TextButton
+    - ImageButton
