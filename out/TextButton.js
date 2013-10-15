@@ -15,12 +15,12 @@
       this.initialize();
       this.button_style || (this.button_style = {
         unselected: {
-          font: "20px Arial",
+          font: "bold 24px Courier",
           color: "#FFFFFF"
         },
         selected: {
-          font: "20px Arial",
-          color: "#FF3333"
+          font: "bold 24px Courier",
+          color: "#FF0000"
         }
       });
       this.state = 'unselected';
@@ -35,7 +35,7 @@
         this.textObj.text = this.text;
         this.textObj.font = (_ref2 = this.button_style[this.state]) != null ? _ref2.font : void 0;
         this.textObj.color = (_ref3 = this.button_style[this.state]) != null ? _ref3.color : void 0;
-        this.textObj.textAlign = "center";
+        this.textObj.textAlign = "left";
         return _ref4 = this.textObj.getBounds(), this.width = _ref4.width, this.height = _ref4.height, _ref4;
       }
     };

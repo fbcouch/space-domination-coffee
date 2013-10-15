@@ -22,7 +22,8 @@
 
     SpaceDominationGame.prototype.update = function(delta, keys) {
       var _ref;
-      return (_ref = this.screen) != null ? typeof _ref.update === "function" ? _ref.update(delta, keys) : void 0 : void 0;
+      this.keys = keys;
+      return (_ref = this.screen) != null ? typeof _ref.update === "function" ? _ref.update(delta, this.keys) : void 0 : void 0;
     };
 
     SpaceDominationGame.prototype.resize = function() {

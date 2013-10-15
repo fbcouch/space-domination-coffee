@@ -46,8 +46,14 @@
     };
 
     LevelScreen.prototype.update = function(delta, keys) {
-      var angle, obj, other, particle, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3;
+      var angle, key, obj, other, particle, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1, _ref2, _ref3;
       LevelScreen.__super__.update.call(this, delta, keys);
+      if (this.first_pass_done == null) {
+        this.first_pass_done = true;
+        for (key in keys) {
+          keys[key] = false;
+        }
+      }
       if (keys.left && !keys.right) {
         this.player.rotation -= this.player.specs.rotate * delta;
       } else if (keys.right && !keys.left) {

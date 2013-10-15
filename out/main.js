@@ -58,7 +58,7 @@
   game = {};
 
   init = function() {
-    var manifest;
+    var manifest, other;
     console.log('game init');
     canvas = document.getElementById('gameCanvas');
     canvas.style.background = '#000';
@@ -83,6 +83,12 @@
         src: 'assets/missions.json'
       }
     ];
+    other = [
+      {
+        id: 'bg-menu',
+        src: 'assets/bg-menu.png'
+      }
+    ];
     preload = new createjs.LoadQueue();
     preload.addEventListener('complete', function() {
       var mission, missions;
@@ -101,7 +107,7 @@
       })();
       preload.removeAllEventListeners('complete');
       preload.addEventListener('complete', function() {
-        var image, images, item, _i, _j, _k, _l, _len, _len1, _len2, _len3, _ref, _ref1;
+        var image, images, item, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1;
         images = [];
         for (_i = 0, _len = manifest.length; _i < _len; _i++) {
           item = manifest[_i];
@@ -124,6 +130,10 @@
               src: "assets/" + image + ".png"
             });
           }
+        }
+        for (_m = 0, _len4 = other.length; _m < _len4; _m++) {
+          item = other[_m];
+          images.push(item);
         }
         preload.removeAllEventListeners('complete');
         preload.addEventListener('complete', doneLoading);
@@ -209,7 +219,7 @@
     if (!createjs.Ticker.hasEventListener('tick')) {
       createjs.Ticker.addEventListener('tick', tick);
     }
-    return createjs.Ticker.setFPS(60);
+    return createjs.Ticker.setFPS(30);
   };
 
   tick = function(event) {

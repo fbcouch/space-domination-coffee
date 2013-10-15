@@ -34,11 +34,21 @@
     };
 
     MissionSelectScreen.prototype.resize = function(width, height) {
-      var btn, l, level, _i, _len, _ref, _ref1;
+      var bg, btn, l, level, menuContainer, titletxt, x, y, _i, _j, _len, _len1, _ref, _ref1, _ref2, _ref3;
       this.width = width;
       this.height = height;
       MissionSelectScreen.__super__.resize.call(this, this.width, this.height);
       this.removeAllChildren();
+      bg = new createjs.Bitmap(this.preload.getResult('bg-menu'));
+      bg.x = (this.width - bg.image.width) * 0.5;
+      bg.y = (this.height - bg.image.height) * 0.5;
+      this.addChild(bg);
+      menuContainer = new createjs.Container();
+      titletxt = new createjs.Text("SPACE DOMINATION", "bold 40px Arial", "#3366FF");
+      titletxt.textAlign = "center";
+      titletxt.y = 100;
+      titletxt.x = this.width * 0.5;
+      this.addChild(titletxt);
       this._buttons = [];
       _ref = this.levels;
       for (l = _i = 0, _len = _ref.length; _i < _len; l = ++_i) {
@@ -47,18 +57,26 @@
           continue;
         }
         btn = new SpaceDom.TextButton(level.title);
-        btn.x = this.width * 0.5;
-        btn.y = 100 * (l + 1);
+        btn.y = 100 * l;
         btn.action = l;
         this._buttons.push(btn);
-        this.addChild(btn);
+        menuContainer.addChild(btn);
+      }
+      _ref1 = menuContainer.getBounds(), x = _ref1.x, y = _ref1.y, menuContainer.width = _ref1.width, menuContainer.height = _ref1.height;
+      menuContainer.x = (this.width - menuContainer.width) * 0.5;
+      menuContainer.y = (this.height - menuContainer.height) * 0.5;
+      this.addChild(menuContainer);
+      _ref2 = this._buttons;
+      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+        btn = _ref2[_j];
+        btn.x = (menuContainer.width - btn.getBounds().width) * 0.5;
       }
       this._selected = 0;
-      return (_ref1 = this._buttons[this._selected]) != null ? _ref1.select() : void 0;
+      return (_ref3 = this._buttons[this._selected]) != null ? _ref3.select() : void 0;
     };
 
     MissionSelectScreen.prototype.update = function(delta, keys) {
-      var child, key, val, _i, _len, _ref, _ref1, _ref2, _results;
+      var key, update_children, val, _ref, _ref1;
       MissionSelectScreen.__super__.update.call(this, delta, keys);
       if ((_ref = this._buttons[this._selected]) != null) {
         _ref.deselect();
@@ -80,13 +98,24 @@
         val = keys[key];
         this.keysDown[key] = val;
       }
-      _ref2 = this.children;
-      _results = [];
-      for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
-        child = _ref2[_i];
-        _results.push(typeof child.update === "function" ? child.update(delta, keys) : void 0);
-      }
-      return _results;
+      update_children = function(obj, delta, keys) {
+        var child, _i, _len, _ref2, _results;
+        _ref2 = obj.children;
+        _results = [];
+        for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
+          child = _ref2[_i];
+          if (typeof child.update === "function") {
+            child.update(delta, keys);
+          }
+          if (child.children != null) {
+            _results.push(update_children(child, delta, keys));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      };
+      return update_children(this, delta, keys);
     };
 
     return MissionSelectScreen;

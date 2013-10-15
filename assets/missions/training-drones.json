@@ -10,40 +10,16 @@
             "id": "player"
         },
         {
-            "x": 200,
-            "y": -100,
+            "x": 400,
+            "y": 200,
             "r": 45,
-            "id": "supply-crate"
+            "id": "base-enemy"
         },
         {
             "x": 400,
-            "y": -100,
-            "r": 45,
-            "id": "supply-crate"
-        },
-        {
-            "x": 600,
-            "y": -100,
-            "r": 45,
-            "id": "supply-crate"
-        },
-        {
-            "x": 200,
-            "y": 100,
-            "r": 45,
-            "id": "supply-crate"
-        },
-        {
-            "x": 400,
-            "y": 100,
-            "r": 45,
-            "id": "supply-crate"
-        },
-        {
-            "x": 600,
-            "y": 100,
-            "r": 45,
-            "id": "supply-crate"
+            "y": -200,
+            "r": -45,
+            "id": "base-enemy"
         }
 
     ]
