@@ -1,0 +1,22 @@
+{
+    "explosion-md": {
+        "images": ["explosion-md"],
+        "frames": { "width": 100, "height": 100, "regX": 50, "regY": 50},
+        "animations": { "anim": [0, 42, false, 1] }
+    },
+    "hull-hit": {
+        "images": ["hull-hit"],
+        "frames": { "width": 100, "height": 100, "regX": 50, "regY": 50},
+        "animations": { "anim": [0, 18, false, 1] }
+    },
+    "shield-hit": {
+        "images": ["shield-hit"],
+        "frames": { "width": 100, "height": 100, "regX": 50, "regY": 50},
+        "animations": { "anim": [0, 18, false, 1] }
+    },
+    "glow-purple": {
+        "images": ["engine-glow-purple"],
+        "frames": { "width": 10, "height": 10, "regX": 5, "regY": 5},
+        "animations": { "anim": [0, 10, false, 0.5] }
+    }
+}

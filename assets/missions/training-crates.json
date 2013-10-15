@@ -1,0 +1,50 @@
+{
+    "title": "Initial Flight Training",
+    "background": {
+        "image": "bg-starfield-sparse"
+    },
+    "spawns": [
+        {
+            "x": 0,
+            "y": 0,
+            "id": "player"
+        },
+        {
+            "x": 200,
+            "y": -100,
+            "r": 45,
+            "id": "supply-crate"
+        },
+        {
+            "x": 400,
+            "y": -100,
+            "r": 45,
+            "id": "supply-crate"
+        },
+        {
+            "x": 600,
+            "y": -100,
+            "r": 45,
+            "id": "supply-crate"
+        },
+        {
+            "x": 200,
+            "y": 100,
+            "r": 45,
+            "id": "supply-crate"
+        },
+        {
+            "x": 400,
+            "y": 100,
+            "r": 45,
+            "id": "supply-crate"
+        },
+        {
+            "x": 600,
+            "y": 100,
+            "r": 45,
+            "id": "supply-crate"
+        }
+
+    ]
+}
