@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LevelScreen.coffee" afterPath="$PROJECT_DIR$/src/LevelScreen.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MissionSelectScreen.coffee" afterPath="$PROJECT_DIR$/src/MissionSelectScreen.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpaceDominationGame.coffee" afterPath="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ship.coffee" afterPath="$PROJECT_DIR$/src/Ship.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO.md" afterPath="$PROJECT_DIR$/TODO.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TextMenu.coffee" afterPath="$PROJECT_DIR$/src/TextMenu.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.coffee" afterPath="$PROJECT_DIR$/src/main.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="space-domination-coffee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -16,10 +12,10 @@
     <file path="/Projectile.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1379388275448" ignored="false" />
     <file path="/SpaceDominationGame.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381941728803" ignored="false" />
     <file path="/GameObject.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1379897571307" ignored="false" />
-    <file path="/Ship.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381773110719" ignored="false" />
+    <file path="/Ship.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381946547955" ignored="false" />
     <file path="/HUD.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381941860117" ignored="false" />
     <file path="/index.html" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381873132999" ignored="false" />
-    <file path="/TODO.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381942622277" ignored="false" />
+    <file path="/TODO.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381945320670" ignored="false" />
     <file path="/main.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381942199894" ignored="false" />
     <file path="$PROJECT_DIR$/../../nextgxdx/kloud-kraken/scraper/parsers/pdf.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381581968408" ignored="false" />
     <file path="$PROJECT_DIR$/../../nextgxdx/dp-rules/WASHGENE.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381681142801" ignored="false" />
@@ -34,7 +30,7 @@
     <file path="/YALEDIAG.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381686117755" ignored="false" />
     <file path="/training-crates.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381773193801" ignored="false" />
     <file path="/Screen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381846803545" ignored="false" />
-    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381942426700" ignored="false" />
+    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381946623660" ignored="false" />
     <file path="/fragment.js2" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381772679996" ignored="false" />
     <file path="/MissionSelectScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381941086501" ignored="false" />
     <file path="/TextButton.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381940752353" ignored="false" />
@@ -101,55 +97,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TextMenu.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TextMenu.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextButton.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TextButton.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="61" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpaceDominationGame.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="33" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LevelScreen.coffee" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LevelScreen.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="10" selection-start="2190" selection-end="2190" vertical-scroll-proportion="0.0">
+            <state line="149" column="33" selection-start="5061" selection-end="5061" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="training-crates.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/missions/training-crates.json">
+      <file leaf-file-name="Ship.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="16" selection-start="819" selection-end="819" vertical-scroll-proportion="-0.6785714">
+            <state line="123" column="28" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TODO.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TODO.md">
+      <file leaf-file-name="GameObject.coffee" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GameObject.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="21" selection-start="560" selection-end="560" vertical-scroll-proportion="0.5277778">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.13194445">
               <folding />
             </state>
           </provider>
@@ -175,7 +144,6 @@
       <list>
         <option value="$PROJECT_DIR$/assets/particles.json" />
         <option value="$PROJECT_DIR$/assets/ships.json" />
-        <option value="$PROJECT_DIR$/src/Ship.coffee" />
         <option value="$PROJECT_DIR$/assets/missions/training-crates.json" />
         <option value="$PROJECT_DIR$/assets/missions.json" />
         <option value="$PROJECT_DIR$/src/Screen.coffee" />
@@ -187,6 +155,7 @@
         <option value="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
         <option value="$PROJECT_DIR$/src/HUD.coffee" />
         <option value="$PROJECT_DIR$/src/main.coffee" />
+        <option value="$PROJECT_DIR$/src/Ship.coffee" />
         <option value="$PROJECT_DIR$/src/LevelScreen.coffee" />
         <option value="$PROJECT_DIR$/TODO.md" />
       </list>
@@ -435,7 +404,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="1922" height="1054" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -524,23 +493,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/out/Projectile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/missions.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="20" selection-start="45" selection-end="45" vertical-scroll-proportion="-1.3076923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Screen.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="32" selection-start="248" selection-end="248" vertical-scroll-proportion="0.18847007" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/ships.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.27272728">
@@ -592,42 +544,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TextMenu.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0">
+        <state line="9" column="16" selection-start="215" selection-end="215" vertical-scroll-proportion="0.19791667">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TextButton.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="61" selection-start="920" selection-end="920" vertical-scroll-proportion="0.0">
+        <state line="34" column="61" selection-start="920" selection-end="920" vertical-scroll-proportion="0.41782406">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="33" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0">
+        <state line="29" column="33" selection-start="718" selection-end="718" vertical-scroll-proportion="0.6377315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Projectile.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="28" selection-start="3604" selection-end="3604" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/LevelScreen.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="10" selection-start="2190" selection-end="2190" vertical-scroll-proportion="0.0">
+        <state line="149" column="33" selection-start="5061" selection-end="5061" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/missions/training-crates.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="16" selection-start="819" selection-end="819" vertical-scroll-proportion="-0.6785714">
+        <state line="41" column="16" selection-start="819" selection-end="819" vertical-scroll-proportion="0.9318182">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TODO.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="21" selection-start="560" selection-end="560" vertical-scroll-proportion="0.5277778">
+        <state line="24" column="1" selection-start="590" selection-end="590" vertical-scroll-proportion="0.5277778">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameObject.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.13194445">
           <folding />
         </state>
       </provider>

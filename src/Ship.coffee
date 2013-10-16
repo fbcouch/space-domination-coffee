@@ -118,11 +118,14 @@ window.SpaceDom.Ship = class Ship extends GameObject
     super other
     
   collide: (other) ->
-    super other
+    @takeDamage? other
 
   takeDamage: (other) ->
     if other instanceof Ship
-      console.log 'collide ship' # TODO take some damage?
+      @status.shield -= 1
+      if @status.shield < 0
+        @status.curhp += @status.shield
+        @status.shield = 0
     else if other instanceof Projectile
       @status.shield -= other.specs.damage
       if @status.shield < 0

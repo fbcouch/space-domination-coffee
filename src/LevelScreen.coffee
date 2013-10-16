@@ -6,12 +6,12 @@
 window.SpaceDom or= {}
 
 window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
-  constructor: (@preload, @game, level) ->
+  constructor: (@preload, @game, @level_id) ->
     super @preload, @game
     @gameObjects = []
     @particles = []
 
-    @level = @preload.getResult level
+    @level = @preload.getResult @level_id
     @shiplist = @preload.getResult 'shiplist'
 
     @gameState = ''
@@ -37,19 +37,21 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     ]
     @_pauseMenu = new SpaceDom.UpdateContainer()
 
-    text = new createjs.Text "PAUSED", "bold 40px Arial", "#3366FF"
-    @_pauseMenu.addChild text
+    @_pauseMenuTitle = new createjs.Text "PAUSED", "bold 40px Arial", "#3366FF"
+    @_pauseMenu.addChild @_pauseMenuTitle
 
     menu = new SpaceDom.TextMenu menuItems, null, (item) =>
       switch item.action
         when 'quit' then @game.setMenuScreen()
-        when 'unpause' then @unpause()
+        when 'unpause'
+          if @gameState is 'paused' then @unpause() else @game.setScreen new LevelScreen @preload, @game, @level_id
 
     @_pauseMenu.addChild menu
     menu.y = 50
     {width: @_pauseMenu.width, height: @_pauseMenu.height} = @_pauseMenu.getBounds()
 
-    text.x = (@_pauseMenu.width - text.width) * 0.5
+    @_pauseMenuTitle.textAlign = 'center'
+    @_pauseMenuTitle.x = @_pauseMenu.width * 0.5
     menu.x = (@_pauseMenu.width - menu.width) * 0.5
 
     @_pauseMenu.x = (@width - @_pauseMenu.width) * 0.5
@@ -74,7 +76,6 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     switch @gameState
       when 'paused'
-        console.log 'paused'
         @_pauseMenu.update delta, keys
 
         if keys.pause
@@ -136,6 +137,19 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
         @removeObject(obj) for obj in @gameObjects when obj?.isRemove
 
         @removeParticle particle for particle in @particles when particle?.isComplete()
+
+        if @player.isRemove
+          @_pauseMenuTitle.text = "DEFEAT"
+          @addChild @_pauseMenu
+          @gameState = 'gameover'
+
+        if (obj for obj in @gameObjects when obj instanceof SpaceDom.Ship and obj isnt @player and not obj.isRemove).length is 0
+          @_pauseMenuTitle.text = "VICTORY"
+          @addChild @_pauseMenu
+          @gameState = 'gameover'
+
+      when 'gameover'
+        @_pauseMenu.update delta, keys
 
     # center display on player
     @levelGroup.x = @width * 0.5 - @player.x

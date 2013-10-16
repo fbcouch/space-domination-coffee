@@ -20,6 +20,7 @@ v0.1:
     + TextButton
     + Mission Select
     + Pause
-- victory/loss conditions
++ victory/loss conditions
+    + simple: player does --> loss, all enemies dead --> win
 - basic ai
 - fix collision logic
