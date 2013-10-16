@@ -45,4 +45,8 @@ window.SpaceDom.MissionSelectScreen = class MissionSelectScreen extends SpaceDom
   update: (delta, keys) ->
     super(delta, keys)
 
+    if not @first_pass_done?
+      @first_pass_done = true
+      keys[key] = false for key of keys
+
     child.update? delta, keys for child in @children

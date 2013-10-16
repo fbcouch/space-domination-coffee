@@ -13,9 +13,13 @@ v0.1:
     + ship explosions
 + scrolling background
     + less dense starfield than original
-- two missions
++ two missions
     + training mission : kill crates
-    - training mission : kill drones
-- mission select menu
+    + training mission : kill drones
++ basic menus
     + TextButton
-    - ImageButton
+    + Mission Select
+    + Pause
+- victory/loss conditions
+- basic ai
+- fix collision logic

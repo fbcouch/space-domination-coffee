@@ -6,16 +6,15 @@
 window.SpaceDom or= {}
 
 window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
-  gameObjects: []
-  particles: []
-
   constructor: (@preload, @game, level) ->
     super @preload, @game
+    @gameObjects = []
+    @particles = []
 
     @level = @preload.getResult level
     @shiplist = @preload.getResult 'shiplist'
 
-    @gameState = 'paused'
+    @gameState = ''
 
   show: () ->
     @levelGroup = new createjs.Container()
@@ -32,7 +31,33 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     @addChild @levelGroup
 
+    menuItems = [
+      { text: 'Continue', action: 'unpause' },
+      { text: 'Quit', action: 'quit' }
+    ]
+    @_pauseMenu = new SpaceDom.UpdateContainer()
+
+    text = new createjs.Text "PAUSED", "bold 40px Arial", "#3366FF"
+    @_pauseMenu.addChild text
+
+    menu = new SpaceDom.TextMenu menuItems, null, (item) =>
+      switch item.action
+        when 'quit' then @game.setMenuScreen()
+        when 'unpause' then @unpause()
+
+    @_pauseMenu.addChild menu
+    menu.y = 50
+    {width: @_pauseMenu.width, height: @_pauseMenu.height} = @_pauseMenu.getBounds()
+
+    text.x = (@_pauseMenu.width - text.width) * 0.5
+    menu.x = (@_pauseMenu.width - menu.width) * 0.5
+
+    @_pauseMenu.x = (@width - @_pauseMenu.width) * 0.5
+    @_pauseMenu.y = (@height - @_pauseMenu.height) * 0.5
+
     @generateLevel()
+
+    @pause()
 
   resize: (@width, @height) ->
     if @backgroundGroup?
@@ -42,15 +67,23 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
   update: (delta, keys) ->
     super(delta, keys)
 
+    # prevent bleed-thru of input from menu
+    if not @first_pass_done?
+      @first_pass_done = true
+      keys[key] = false for key of keys
+
     switch @gameState
       when 'paused'
         console.log 'paused'
-      when 'running'
-        # prevent bleed-thru of input from menu
-        if not @first_pass_done?
-          @first_pass_done = true
-          keys[key] = false for key of keys
+        @_pauseMenu.update delta, keys
 
+        if keys.pause
+          @unpause() if not @pause_key_down
+          @pause_key_down = true
+        else
+          @pause_key_down = false
+
+      when 'running'
         if keys.left and not keys.right
           @player.rotation -= @player.specs.rotate * delta
         else if keys.right and not keys.left
@@ -73,6 +106,12 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
             @player.accel.y = @player.vel.y = 0
 
         @player.fire() if keys.fire
+
+        if keys.pause
+          @pause() if not @pause_key_down
+          @pause_key_down = true
+        else
+          @pause_key_down = false
 
         for obj in @gameObjects
           obj.vel.x += obj.accel.x * delta
@@ -148,3 +187,11 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
       @addObject ship
 
     @generateBackground()
+
+  pause: () =>
+    @addChild @_pauseMenu
+    @gameState = 'paused'
+
+  unpause: () =>
+    @removeChild @_pauseMenu
+    @gameState = 'running'

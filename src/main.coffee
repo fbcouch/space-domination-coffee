@@ -29,6 +29,7 @@ keyMap =
   left: [KEYCODE_A, KEYCODE_LEFT]
   right: [KEYCODE_D, KEYCODE_RIGHT]
   fire: [KEYCODE_SPACE]
+  pause: [KEYCODE_ENTER]
 
 canvas = {}
 stage = {}
@@ -144,5 +145,13 @@ tick = (event) ->
   # update things
   game.update delta, keys
   stage.update()
-  
+
+window.SpaceDom.UpdateContainer = class UpdateContainer extends createjs.Container
+  constructor: () ->
+    super()
+    @initialize()
+
+  update: (delta, keys) ->
+    child.update? delta, keys for child in @children
+
 init()

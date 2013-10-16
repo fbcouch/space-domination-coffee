@@ -14,7 +14,7 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
 
   constructor: (@stage, @canvas, @preload) ->
 #    @setScreen(new SpaceDom.LevelScreen @preload, 'training-crates')
-    @setScreen new SpaceDom.MissionSelectScreen(@preload, @)
+    @setMenuScreen()
 
   update: (delta, @keys) ->
     @screen?.update? delta, @keys
@@ -25,10 +25,13 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
   setScreen: (screen) ->
     if @screen?
       @screen.hide?()
-      @stage.removeChild @screen
+      @stage.removeAllChildren()
 
     @screen = screen
     @screen.resize @canvas.width, @canvas.height
     @screen.show()
 
     @stage.addChild @screen
+
+  setMenuScreen: () ->
+    @setScreen new SpaceDom.MissionSelectScreen @preload, @
