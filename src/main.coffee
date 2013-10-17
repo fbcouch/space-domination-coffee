@@ -8,6 +8,7 @@ root = this
 SpaceDominationGame = root.SpaceDom.SpaceDominationGame
 
 root.SpaceDom.DEG_TO_RAD = Math.PI / 180
+root.SpaceDom.RAD_TO_DEG = 180 / Math.PI
 
 KEYCODE_ENTER = 13
 KEYCODE_SPACE = 32

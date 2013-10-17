@@ -55,6 +55,8 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Container
 
   rotate: (delta, left) ->
     @rotation += (if left then -1 else 1) * @specs.rotate * delta
+    @rotation -= 360 if @rotation > 360
+    @rotation += 360 if @rotation < 0
     
   @collideRect: (obj1, obj2) ->
 
