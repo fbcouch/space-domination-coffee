@@ -39,6 +39,22 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Container
     true
     
   collide: (other) ->
+
+  thrust: (delta, brake) ->
+    if brake
+      angle = Math.atan2 @vel.y, @vel.x
+      @accel.x = -1 * @specs.brake * Math.cos angle
+      @accel.y = -1 * @specs.brake * Math.sin angle
+
+      @accel.x = @vel.x = 0 if Math.abs(@accel.x * delta) >= Math.abs(@vel.x)
+      @accel.y = @vel.y = 0 if Math.abs(@accel.y * delta) >= Math.abs(@vel.y)
+
+    else
+      @accel.x = @specs.accel * Math.cos @rotation * SpaceDom.DEG_TO_RAD
+      @accel.y = @specs.accel * Math.sin @rotation * SpaceDom.DEG_TO_RAD
+
+  rotate: (delta, left) ->
+    @rotation += (if left then -1 else 1) * @specs.rotate * delta
     
   @collideRect: (obj1, obj2) ->
 

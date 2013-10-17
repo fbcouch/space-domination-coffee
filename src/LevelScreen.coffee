@@ -86,25 +86,28 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
       when 'running'
         if keys.left and not keys.right
-          @player.rotation -= @player.specs.rotate * delta
+#          @player.rotation -= @player.specs.rotate * delta
+          @player.rotate delta, true
         else if keys.right and not keys.left
-          @player.rotation += @player.specs.rotate * delta
-
+#          @player.rotation += @player.specs.rotate * delta
+          @player.rotate delta
         if keys.accel and not keys.brake
-          @player.accel.x = @player.specs.accel * Math.cos @player.rotation * Math.PI / 180
-          @player.accel.y = @player.specs.accel * Math.sin @player.rotation * Math.PI / 180
+#          @player.accel.x = @player.specs.accel * Math.cos @player.rotation * Math.PI / 180
+#          @player.accel.y = @player.specs.accel * Math.sin @player.rotation * Math.PI / 180
+          @player.thrust delta
         else if keys.brake and not keys.accel and (@player.vel.x isnt 0 or @player.vel.y isnt 0)
-          angle = Math.atan2 @player.vel.y, @player.vel.x
-          @player.accel.x = -1 * @player.specs.brake * Math.cos angle
-          @player.accel.y = -1 * @player.specs.brake * Math.sin angle
+#          angle = Math.atan2 @player.vel.y, @player.vel.x
+#          @player.accel.x = -1 * @player.specs.brake * Math.cos angle
+#          @player.accel.y = -1 * @player.specs.brake * Math.sin angle
+          @player.thrust delta, true
         else
           @player.accel.x = @player.accel.y = 0
 
-          # prevent acceleration backwards
-          if Math.abs(@player.accel.x * delta) >= Math.abs(@player.vel.x)
-            @player.accel.x = @player.vel.x = 0
-          if Math.abs(@player.accel.y * delta) >= Math.abs(@player.vel.y)
-            @player.accel.y = @player.vel.y = 0
+#          # prevent acceleration backwards
+#          if Math.abs(@player.accel.x * delta) >= Math.abs(@player.vel.x)
+#            @player.accel.x = @player.vel.x = 0
+#          if Math.abs(@player.accel.y * delta) >= Math.abs(@player.vel.y)
+#            @player.accel.y = @player.vel.y = 0
 
         @player.fire() if keys.fire
 
@@ -194,7 +197,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
       if spawn.id is 'player'
         ship = @player = new SpaceDom.Ship @preload.getResult(@shiplist['base-fighter'].image), this, @shiplist['base-fighter']
       else
-        ship = new SpaceDom.Ship @preload.getResult(@shiplist[spawn.id].image), this, @shiplist[spawn.id]
+        ship = new SpaceDom.AIShip @preload.getResult(@shiplist[spawn.id].image), this, @shiplist[spawn.id]
       ship.x = spawn.x or 0
       ship.y = spawn.y or 0
       ship.rotation = spawn.r or 0
