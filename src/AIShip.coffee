@@ -22,6 +22,6 @@ window.SpaceDom.AIShip = class AIShip extends SpaceDom.Ship
     if @hitTest @targetPos.x, @targetPos.y
       @targetPos = null
 
-#    if @targetPos?
-#      @accel.x = 10
+    if @targetPos?
+      @thrust delta
 #      console.log 'gogo!'
