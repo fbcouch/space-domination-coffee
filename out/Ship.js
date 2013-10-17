@@ -171,13 +171,17 @@
     };
 
     Ship.prototype.collide = function(other) {
-      return Ship.__super__.collide.call(this, other);
+      return typeof this.takeDamage === "function" ? this.takeDamage(other) : void 0;
     };
 
     Ship.prototype.takeDamage = function(other) {
       var particle;
       if (other instanceof Ship) {
-        return console.log('collide ship');
+        this.status.shield -= 1;
+        if (this.status.shield < 0) {
+          this.status.curhp += this.status.shield;
+          return this.status.shield = 0;
+        }
       } else if (other instanceof Projectile) {
         this.status.shield -= other.specs.damage;
         if (this.status.shield < 0) {

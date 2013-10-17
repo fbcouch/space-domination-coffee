@@ -34,7 +34,8 @@
     };
 
     MissionSelectScreen.prototype.resize = function(width, height) {
-      var bg, btn, l, level, menuContainer, titletxt, x, y, _i, _j, _len, _len1, _ref, _ref1, _ref2, _ref3;
+      var bg, l, level, menuContainer, titletxt,
+        _this = this;
       this.width = width;
       this.height = height;
       MissionSelectScreen.__super__.resize.call(this, this.width, this.height);
@@ -43,79 +44,47 @@
       bg.x = (this.width - bg.image.width) * 0.5;
       bg.y = (this.height - bg.image.height) * 0.5;
       this.addChild(bg);
-      menuContainer = new createjs.Container();
       titletxt = new createjs.Text("SPACE DOMINATION", "bold 40px Arial", "#3366FF");
       titletxt.textAlign = "center";
       titletxt.y = 100;
       titletxt.x = this.width * 0.5;
       this.addChild(titletxt);
-      this._buttons = [];
-      _ref = this.levels;
-      for (l = _i = 0, _len = _ref.length; _i < _len; l = ++_i) {
-        level = _ref[l];
-        if (!(level !== null)) {
-          continue;
+      menuContainer = new SpaceDom.TextMenu((function() {
+        var _i, _len, _ref, _results;
+        _ref = this.levels;
+        _results = [];
+        for (l = _i = 0, _len = _ref.length; _i < _len; l = ++_i) {
+          level = _ref[l];
+          _results.push({
+            text: level.title,
+            level: l
+          });
         }
-        btn = new SpaceDom.TextButton(level.title);
-        btn.y = 100 * l;
-        btn.action = l;
-        this._buttons.push(btn);
-        menuContainer.addChild(btn);
-      }
-      _ref1 = menuContainer.getBounds(), x = _ref1.x, y = _ref1.y, menuContainer.width = _ref1.width, menuContainer.height = _ref1.height;
+        return _results;
+      }).call(this), null, function(item) {
+        return _this.game.setScreen(new SpaceDom.LevelScreen(_this.preload, _this.game, _this.preload.getResult('missions')[item.level]));
+      });
       menuContainer.x = (this.width - menuContainer.width) * 0.5;
       menuContainer.y = (this.height - menuContainer.height) * 0.5;
-      this.addChild(menuContainer);
-      _ref2 = this._buttons;
-      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
-        btn = _ref2[_j];
-        btn.x = (menuContainer.width - btn.getBounds().width) * 0.5;
-      }
-      this._selected = 0;
-      return (_ref3 = this._buttons[this._selected]) != null ? _ref3.select() : void 0;
+      return this.addChild(menuContainer);
     };
 
     MissionSelectScreen.prototype.update = function(delta, keys) {
-      var key, update_children, val, _ref, _ref1;
+      var child, key, _i, _len, _ref, _results;
       MissionSelectScreen.__super__.update.call(this, delta, keys);
-      if ((_ref = this._buttons[this._selected]) != null) {
-        _ref.deselect();
-      }
-      if (keys.accel && !this.keysDown.accel) {
-        this._selected--;
-      }
-      if (keys.brake && !this.keysDown.brake) {
-        this._selected++;
-      }
-      if (keys.fire && !this.keysDown.fire) {
-        this.game.setScreen(new SpaceDom.LevelScreen(this.preload, this.game, this.preload.getResult('missions')[this._buttons[this._selected].action]));
-      }
-      this._selected %= this._buttons.length;
-      if ((_ref1 = this._buttons[this._selected]) != null) {
-        _ref1.select();
-      }
-      for (key in keys) {
-        val = keys[key];
-        this.keysDown[key] = val;
-      }
-      update_children = function(obj, delta, keys) {
-        var child, _i, _len, _ref2, _results;
-        _ref2 = obj.children;
-        _results = [];
-        for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
-          child = _ref2[_i];
-          if (typeof child.update === "function") {
-            child.update(delta, keys);
-          }
-          if (child.children != null) {
-            _results.push(update_children(child, delta, keys));
-          } else {
-            _results.push(void 0);
-          }
+      if (this.first_pass_done == null) {
+        this.first_pass_done = true;
+        for (key in keys) {
+          keys[key] = false;
         }
-        return _results;
-      };
-      return update_children(this, delta, keys);
+      }
+      _ref = this.children;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        child = _ref[_i];
+        _results.push(typeof child.update === "function" ? child.update(delta, keys) : void 0);
+      }
+      return _results;
     };
 
     return MissionSelectScreen;

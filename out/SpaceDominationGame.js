@@ -17,7 +17,7 @@
       this.stage = stage;
       this.canvas = canvas;
       this.preload = preload;
-      this.setScreen(new SpaceDom.MissionSelectScreen(this.preload, this));
+      this.setMenuScreen();
     }
 
     SpaceDominationGame.prototype.update = function(delta, keys) {
@@ -36,12 +36,16 @@
         if (typeof (_base = this.screen).hide === "function") {
           _base.hide();
         }
-        this.stage.removeChild(this.screen);
+        this.stage.removeAllChildren();
       }
       this.screen = screen;
       this.screen.resize(this.canvas.width, this.canvas.height);
       this.screen.show();
       return this.stage.addChild(this.screen);
+    };
+
+    SpaceDominationGame.prototype.setMenuScreen = function() {
+      return this.setScreen(new SpaceDom.MissionSelectScreen(this.preload, this));
     };
 
     return SpaceDominationGame;
