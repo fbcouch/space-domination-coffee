@@ -49,14 +49,16 @@
           this.status.weapons.push(weapon);
         }
       }
-      this.status.curweapon = 0;
+      if (this.status.weapons.length > 0) {
+        this.status.curweapon = 0;
+      }
       this.particle_timer = 0;
     }
 
     Ship.prototype.canFire = function() {
       var wp;
       if (this.status.curweapon < 0 || this.status.curweapon >= this.status.weapons.length) {
-        false;
+        return false;
       }
       wp = this.status.weapons[this.status.curweapon];
       return wp.curammo >= wp.points.length && wp.firetimer <= 0;
@@ -171,13 +173,17 @@
     };
 
     Ship.prototype.collide = function(other) {
-      return Ship.__super__.collide.call(this, other);
+      return typeof this.takeDamage === "function" ? this.takeDamage(other) : void 0;
     };
 
     Ship.prototype.takeDamage = function(other) {
       var particle;
       if (other instanceof Ship) {
-        return console.log('collide ship');
+        this.status.shield -= 1;
+        if (this.status.shield < 0) {
+          this.status.curhp += this.status.shield;
+          return this.status.shield = 0;
+        }
       } else if (other instanceof Projectile) {
         this.status.shield -= other.specs.damage;
         if (this.status.shield < 0) {

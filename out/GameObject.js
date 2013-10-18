@@ -38,10 +38,10 @@
         h: this.height
       };
       this.specs = {
-        accel: 100,
-        brake: 50,
-        vel: 100,
-        rotate: 50
+        accel: 0,
+        brake: 0,
+        vel: 0,
+        rotate: 0
       };
       for (key in specs) {
         value = specs[key];
@@ -56,6 +56,34 @@
     };
 
     GameObject.prototype.collide = function(other) {};
+
+    GameObject.prototype.thrust = function(delta, brake) {
+      var angle;
+      if (brake) {
+        angle = Math.atan2(this.vel.y, this.vel.x);
+        this.accel.x = -1 * this.specs.brake * Math.cos(angle);
+        this.accel.y = -1 * this.specs.brake * Math.sin(angle);
+        if (Math.abs(this.accel.x * delta) >= Math.abs(this.vel.x)) {
+          this.accel.x = this.vel.x = 0;
+        }
+        if (Math.abs(this.accel.y * delta) >= Math.abs(this.vel.y)) {
+          return this.accel.y = this.vel.y = 0;
+        }
+      } else {
+        this.accel.x = this.specs.accel * Math.cos(this.rotation * SpaceDom.DEG_TO_RAD);
+        return this.accel.y = this.specs.accel * Math.sin(this.rotation * SpaceDom.DEG_TO_RAD);
+      }
+    };
+
+    GameObject.prototype.rotate = function(delta, left) {
+      this.rotation += (left ? -1 : 1) * this.specs.rotate * delta;
+      if (this.rotation > 360) {
+        this.rotation -= 360;
+      }
+      if (this.rotation < 0) {
+        return this.rotation += 360;
+      }
+    };
 
     GameObject.collideRect = function(obj1, obj2) {
       var obj1rect, obj2rect, point, _i, _j, _len, _len1, _ref, _ref1, _ref2, _ref3;
