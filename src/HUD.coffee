@@ -10,13 +10,16 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
   constructor: (@game) ->
     @initialize()
 
-    @texts = []
+    @shipOverlays = []
 
     @healthBar = new HUDProgressBar 'HULL  |----------|', 'normal 32px Courier', '#0F0'
     @shieldBar = new HUDProgressBar 'SHIELD|----------|', 'normal 32px Courier', '#00F'
 
+    @laserBar = new HUDProgressBar 'LASER|------|', 'normal 32px Courier', '#F00'
+
     @addChild @healthBar
     @addChild @shieldBar
+    @addChild @laserBar
 
   resize: (@width, @height) ->
     @healthBar.y = @height - @healthBar.getBounds().height - 10
@@ -24,30 +27,30 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     @healthBar.x = @width - @healthBar.getBounds().width - 10
     @shieldBar.x = @healthBar.x
 
+    @laserBar.y = @height - @laserBar.getBounds().height - 10
+
   update: () ->
     @healthBar.update @game.player.status.curhp / @game.player.status.maxhp
     if @game.player.status.maxshield? and @game.player.status.maxshield > 0
       @shieldBar.update @game.player.status.shield / @game.player.status.maxshield
 
-    for obj in @game.gameObjects when obj.hud and not @hasText(obj)
-      # create a text
-      text = new HUDProgressBar 'HP|-----|', 'normal 14px Courier', '#0F0'
-      text.textAlign = 'center'
-      text.gameobj = obj
-      @texts.push text
-      @addChild text
+    @laserBar.update @game.player.status.weapons[0].curammo / @game.player.status.weapons[0].maxammo
 
-    for text in @texts
-      text.update text.gameobj.status?.curhp / text.gameobj.status?.maxhp
-      text.x = @game.levelGroup.x + text.gameobj.x
-      text.y = @game.levelGroup.y + text.gameobj.y + text.gameobj.height * 0.5
+    for obj in @game.gameObjects when obj.hud and not @hasOverlay(obj)
+      # create an overlay
+      overlay = new HUDShipOverlay(obj)
+      @shipOverlays.push overlay
+      @addChild overlay
 
-    for i in [0...@texts.length] when @texts[i]?.gameobj.isRemove
-      @removeChild @texts[i]
-      @texts.splice(i, 1)
+    for text in @shipOverlays
+      text.update(@game.levelGroup)
 
-  hasText: (obj) ->
-    return true for text in @texts when text.gameobj is obj
+    for i in [0...@shipOverlays.length] when @shipOverlays[i]?.ship.isRemove
+      @removeChild @shipOverlays[i]
+      @shipOverlays.splice(i, 1)
+
+  hasOverlay: (obj) ->
+    return true for overlay in @shipOverlays when overlay.ship is obj
     false
 
 class HUDProgressBar extends createjs.Text
@@ -61,3 +64,23 @@ class HUDProgressBar extends createjs.Text
   update: (proportion) ->
     filled = Math.floor(proportion * @boxes)
     @text = "#{@label}|#{('#' for h in [0...filled]).join('')}#{('-' for h in [filled...@boxes]).join('')}|"
+
+class HUDShipOverlay extends createjs.Container
+  constructor: (@ship) ->
+    @initialize()
+    @healthBar = new HUDProgressBar 'HP|-----|', 'normal 14px Courier', '#0F0'
+    @shieldBar = new HUDProgressBar 'SP|-----|', 'normal 14px Courier', '#00F'
+
+    @healthBar.y = @shieldBar.getBounds().height + 5
+
+    @addChild @healthBar
+    @addChild @shieldBar if @ship.status?.maxshield > 0
+
+    {width: @width, height: @height} = @getBounds()
+
+  update: (view) ->
+    @healthBar.update @ship.status?.curhp / @ship.status?.maxhp
+    @shieldBar.update @ship.status?.shield / @ship.status?.maxshield if @ship.status?.maxshield > 0
+
+    @x = view.x + @ship.x - @width * 0.5
+    @y = view.y + @ship.y + @ship.height * 0.5
