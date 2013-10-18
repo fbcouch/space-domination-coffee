@@ -30,12 +30,12 @@ window.SpaceDom.Ship = class Ship extends GameObject
     @status[key] = value for key, value of @proto.specs
     
     @status.weapons.push weapon for weapon in @proto.weapons if @proto.weapons?
-    @status.curweapon = 0
+    @status.curweapon = 0 if @status.weapons.length > 0
 
     @particle_timer = 0
     
   canFire: ->
-    false if @status.curweapon < 0 or @status.curweapon >= @status.weapons.length
+    return false if @status.curweapon < 0 or @status.curweapon >= @status.weapons.length
     wp = @status.weapons[@status.curweapon]
     wp.curammo >= wp.points.length and wp.firetimer <= 0
     

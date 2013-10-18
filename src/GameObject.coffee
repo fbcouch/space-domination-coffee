@@ -26,10 +26,10 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Container
     @collideRect = {x: 0, y: 0, w: @width, h: @height}
 
     @specs =
-      accel: 100
-      brake: 50
-      vel: 100
-      rotate: 50
+      accel: 0
+      brake: 0
+      vel: 0
+      rotate: 0
 
     @specs[key] = value for key, value of specs
 

@@ -9,13 +9,36 @@ window.SpaceDom.AIShip = class AIShip extends SpaceDom.Ship
   constructor: (@image, @game, @proto) ->
     super @image, @game, @proto
 
+    @ai =
+      patrol: {x: 0, y: 0, w: 1000, h: 1000}
+      attack_range_sq: 500*500
+
   update: (delta) ->
     super delta
 
     return if @isRemove # don't bother with AI if we're on our way out
 
+    @target = null if @target?.isRemove
+
+    if not @target?
+      # find a target if we can
+      for obj in @game.gameObjects
+        if obj instanceof SpaceDom.Ship and obj isnt @
+          if (not @target? and AIShip.get_dist_sq(@, obj) < @ai.attack_range_sq) \
+              or (AIShip.get_dist_sq(@, obj) < @ai.attack_range_sq and AIShip.get_dist_sq(@, @target) > AIShip.get_dist_sq(@, obj))
+            @target = obj
+
+    if @target?
+      @targetPos =
+        x: @target.x
+        y: @target.y
+
+      @fire() if @canFire() and Math.random() < 0.05
+
     if not @targetPos?
-      @targetPos = @localToLocal Math.floor(Math.random() * 400 + 200), Math.floor(Math.random() * 400 + 200), @parent
+      @targetPos =
+        x: Math.floor(Math.random() * @ai.patrol.w + @ai.patrol.x)
+        y: Math.floor(Math.random() * @ai.patrol.h + @ai.patrol.y)
 
     local = @parent.localToLocal @targetPos.x, @targetPos.y, @
     if @hitTest local.x, local.y
@@ -55,3 +78,6 @@ window.SpaceDom.AIShip = class AIShip extends SpaceDom.Ship
     diff2 = angle2 - angle1
 
     return if Math.abs(diff1) < Math.abs(diff2) then diff1 else diff2
+
+  @get_dist_sq: (ship1, ship2) ->
+    Math.pow(ship1.x - ship2.x, 2) + Math.pow(ship1.y - ship2.y, 2)

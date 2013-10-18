@@ -22,5 +22,5 @@ v0.1:
     + Pause
 + victory/loss conditions
     + simple: player does --> loss, all enemies dead --> win
-- basic ai
++ basic ai
 - fix collision logic
