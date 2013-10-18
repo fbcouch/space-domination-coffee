@@ -56,7 +56,6 @@ window.SpaceDom.AIShip = class AIShip extends SpaceDom.Ship
       angle *= SpaceDom.RAD_TO_DEG
 
       diff = AIShip.get_angle_diff(@rotation, angle)
-      console.log "#{@rotation}, #{angle}, #{diff}"
       if Math.abs(diff) > @specs.rotate * delta
         @rotate delta, diff < 0
       @thrust delta

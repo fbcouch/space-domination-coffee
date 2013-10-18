@@ -23,4 +23,4 @@ v0.1:
 + victory/loss conditions
     + simple: player does --> loss, all enemies dead --> win
 + basic ai
-- fix collision logic
++ fix collision logic

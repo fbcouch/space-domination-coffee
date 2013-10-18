@@ -13,6 +13,7 @@
             "sregen": 1,
             "armor": 0
         },
+        "destroyed": { "particle": "explosion-md" },
         "engine": {
             "particle": "glow-purple",
             "points": [{"x": 0, "y": 30}, {"x": 0, "y": 50}]
@@ -49,11 +50,15 @@
             "curhp": 50,
             "maxhp": 50,
             "hregen": 0,
-            "shield": 10,
+            "shield": 0,
             "sregen": 0,
             "armor": 0
         },
         "destroyed": { "particle": "explosion-md" },
+        "engine": {
+            "particle": "glow-purple",
+            "points": [{"x": 15, "y": 35}, {"x": 15, "y": 45}]
+        },
         "weapons": [
             {
                 "image": "laser-red1",
