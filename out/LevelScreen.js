@@ -23,6 +23,7 @@
       this.level = this.preload.getResult(this.level_id);
       this.shiplist = this.preload.getResult('shiplist');
       this.gameState = '';
+      this.HUD = new SpaceDom.HUD(this);
     }
 
     LevelScreen.prototype.show = function() {
@@ -32,12 +33,11 @@
       this.backgroundGroup = new createjs.Container();
       this.foregroundGroup = new createjs.Container();
       this.gameObjGroup = new createjs.Container();
-      this.HUD = new SpaceDom.HUD(this);
       this.levelGroup.addChild(this.backgroundGroup);
       this.levelGroup.addChild(this.gameObjGroup);
       this.levelGroup.addChild(this.foregroundGroup);
-      this.levelGroup.addChild(this.HUD);
       this.addChild(this.levelGroup);
+      this.addChild(this.HUD);
       menuItems = [
         {
           text: 'Continue',
@@ -79,8 +79,9 @@
       this.height = height;
       if (this.backgroundGroup != null) {
         this.backgroundGroup.removeAllChildren();
-        return this.generateBackground();
+        this.generateBackground();
       }
+      return this.HUD.resize(this.width, this.height);
     };
 
     LevelScreen.prototype.update = function(delta, keys) {

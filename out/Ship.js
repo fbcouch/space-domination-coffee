@@ -53,6 +53,7 @@
         this.status.curweapon = 0;
       }
       this.particle_timer = 0;
+      this.team = 0;
     }
 
     Ship.prototype.canFire = function() {
@@ -118,6 +119,21 @@
           particle.y = this.y;
           this.game.addParticle(particle);
         }
+      }
+      if (this.isRemove) {
+        return;
+      }
+      if (this.status.hregen > 0) {
+        this.status.curhp += this.status.hregen * delta;
+      }
+      if (this.status.curhp > this.status.maxhp) {
+        this.status.curhp = this.status.maxhp;
+      }
+      if (this.status.sregen > 0) {
+        this.status.shield += this.status.sregen * delta;
+      }
+      if (this.status.shield > this.status.maxshield) {
+        this.status.shield = this.status.maxshield;
       }
       this.particle_timer -= delta;
       if (this.particle_timer <= 0 && (this.accel.x !== 0 || this.accel.y !== 0) && (this.proto.engine != null)) {

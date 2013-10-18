@@ -23,6 +23,7 @@
         },
         attack_range_sq: 500 * 500
       };
+      this.team = 1;
     }
 
     AIShip.prototype.update = function(delta) {
@@ -38,7 +39,7 @@
         _ref1 = this.game.gameObjects;
         for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
           obj = _ref1[_i];
-          if (obj instanceof SpaceDom.Ship && obj !== this) {
+          if (obj instanceof SpaceDom.Ship && obj !== this && obj.team !== this.team) {
             if (((this.target == null) && AIShip.get_dist_sq(this, obj) < this.ai.attack_range_sq) || (AIShip.get_dist_sq(this, obj) < this.ai.attack_range_sq && AIShip.get_dist_sq(this, this.target) > AIShip.get_dist_sq(this, obj))) {
               this.target = obj;
             }
@@ -65,12 +66,6 @@
         this.targetPos = null;
       }
       if (this.targetPos != null) {
-        if (this.target_box == null) {
-          this.target_box = new createjs.Shape();
-          this.target_box.graphics.beginFill("#0000ff").drawRect(0, 0, 10, 10);
-          this.addChild(this.target_box);
-        }
-        this.target_box.x = local.x, this.target_box.y = local.y;
         angle = Math.atan2(this.targetPos.y - this.y, this.targetPos.x - this.x);
         angle *= SpaceDom.RAD_TO_DEG;
         diff = AIShip.get_angle_diff(this.rotation, angle);
