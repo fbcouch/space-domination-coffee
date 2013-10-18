@@ -16,20 +16,21 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     @gameState = ''
 
+    @HUD = new SpaceDom.HUD @
+
   show: () ->
     @levelGroup = new createjs.Container()
 
     @backgroundGroup = new createjs.Container()
     @foregroundGroup = new createjs.Container()
     @gameObjGroup = new createjs.Container()
-    @HUD = new SpaceDom.HUD @
 
     @levelGroup.addChild @backgroundGroup
     @levelGroup.addChild @gameObjGroup
     @levelGroup.addChild @foregroundGroup
-    @levelGroup.addChild @HUD
 
     @addChild @levelGroup
+    @addChild @HUD
 
     menuItems = [
       { text: 'Continue', action: 'unpause' },
@@ -65,6 +66,8 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     if @backgroundGroup?
       @backgroundGroup.removeAllChildren()
       @generateBackground()
+
+    @HUD.resize @width, @height
 
   update: (delta, keys) ->
     super(delta, keys)

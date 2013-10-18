@@ -10,6 +10,7 @@
             "maxhp": 100,
             "hregen": 0,
             "shield": 100,
+            "maxshield": 100,
             "sregen": 1,
             "armor": 0
         },
@@ -43,14 +44,15 @@
     "base-enemy": {
         "image": "base-enemy1",
         "specs": {
-            "accel": 100,
+            "accel": 75,
             "brake": 50,
             "vel": 100,
-            "rotate": 50,
+            "rotate": 40,
             "curhp": 50,
             "maxhp": 50,
             "hregen": 0,
             "shield": 0,
+            "maxshield": 0,
             "sregen": 0,
             "armor": 0
         },

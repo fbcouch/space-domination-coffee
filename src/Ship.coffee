@@ -33,6 +33,8 @@ window.SpaceDom.Ship = class Ship extends GameObject
     @status.curweapon = 0 if @status.weapons.length > 0
 
     @particle_timer = 0
+
+    @team = 0
     
   canFire: ->
     return false if @status.curweapon < 0 or @status.curweapon >= @status.weapons.length
@@ -85,6 +87,14 @@ window.SpaceDom.Ship = class Ship extends GameObject
         particle.x = @x
         particle.y = @y
         @game.addParticle particle
+
+    return if @isRemove
+
+    @status.curhp += @status.hregen * delta if @status.hregen > 0
+    @status.curhp = @status.maxhp if @status.curhp > @status.maxhp
+
+    @status.shield += @status.sregen * delta if @status.sregen > 0
+    @status.shield = @status.maxshield if @status.shield > @status.maxshield
 
     @particle_timer -= delta
     if @particle_timer <= 0 and (@accel.x isnt 0 or @accel.y isnt 0) and @proto.engine?
