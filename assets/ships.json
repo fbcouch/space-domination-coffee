@@ -20,25 +20,8 @@
             "points": [{"x": 0, "y": 30}, {"x": 0, "y": 50}]
         },
         "weapons": [
-            {
-                "image": "laser-red1",
-                "points": [{"x": 40, "y": 2}, {"x": 40, "y": 77}],
-                "maxammo": 6 ,
-                "curammo": 6,
-                "regen": 0.5,
-                "regentimer": 0,
-                "firerate": 0.1,
-                "firetimer": 0,
-                "projectile": {
-                    "damage": 5,
-                    "vel": 1000,
-                    "accel": 0,
-                    "initvel": 1000,
-                    "lifetime": 1,
-                    "hull": { "particle": "hull-hit" },
-                    "shield": { "particle": "shield-hit" }
-                }
-            }
+            { "id": "laser-red-mk1", "points": [{"x": 40, "y": 2, "r": 2}, {"x": 40, "y": 77, "r": -2}] },
+            { "id": "missile1", "points": [{"x": "60", "y": "40"}] }
         ]
     },
     "base-enemy": {
@@ -62,25 +45,7 @@
             "points": [{"x": 15, "y": 35}, {"x": 15, "y": 45}]
         },
         "weapons": [
-            {
-                "image": "laser-red1",
-                "points": [{"x": 50, "y": 35}, {"x": 50, "y": 45}],
-                "maxammo": 6,
-                "curammo": 6,
-                "regen": 0.5,
-                "regentimer": 0,
-                "firerate": 0.05,
-                "firetimer": 0,
-                "projectile": {
-                    "damage": 5,
-                    "vel": 1000,
-                    "accel": 0,
-                    "initvel": 1000,
-                    "lifetime": 1,
-                    "hull": "hull-hit",
-                    "shield": "shield-hit"
-                }
-            }
+            { "id": "laser-red-mk1", "points": [{"x": 50, "y": 35}, {"x": 50, "y": 45}] }
         ]
     },
     "supply-crate": {

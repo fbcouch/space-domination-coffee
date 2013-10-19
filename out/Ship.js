@@ -16,7 +16,7 @@
     Ship.prototype.hud = true;
 
     function Ship(image, game, proto) {
-      var key, value, weapon, _i, _len, _ref, _ref1, _ref2;
+      var key, val, value, weapon, weaponlist, wp, _i, _len, _ref, _ref1, _ref2;
       this.image = image;
       this.game = game;
       this.proto = proto;
@@ -42,18 +42,28 @@
         value = _ref1[key];
         this.status[key] = value;
       }
+      weaponlist = this.game.preload.getResult('weapons');
       if (this.proto.weapons != null) {
         _ref2 = this.proto.weapons;
         for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
           weapon = _ref2[_i];
-          this.status.weapons.push(weapon);
+          if (typeof weapon === 'object') {
+            wp = JSON.parse(JSON.stringify(weaponlist[weapon.id]));
+            for (key in weapon) {
+              val = weapon[key];
+              wp[key] = val;
+            }
+            this.status.weapons.push(wp);
+          } else {
+            this.status.weapons.push(JSON.parse(JSON.stringify(weaponlist[weapon])));
+          }
         }
       }
       if (this.status.weapons.length > 0) {
         this.status.curweapon = 0;
       }
-      this.particle_timer = 0;
-      this.team = 0;
+      this.team = 1;
+      this.engine = this.proto.engine;
     }
 
     Ship.prototype.canFire = function() {
@@ -66,7 +76,7 @@
     };
 
     Ship.prototype.fire = function() {
-      var angle, cos, offset, offsetXY, point, proj, projectiles, sin, wp;
+      var angle, cos, offset, offsetXY, point, proj, projectiles, rad, sin, wp;
       if (!this.canFire()) {
         return;
       }
@@ -93,13 +103,14 @@
           offsetXY.y = point.y - this.regY;
           offset.angle = Math.atan2(offsetXY.y, offsetXY.x);
           offset.mag = Math.sqrt(offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y);
+          rad = point.r * SpaceDom.DEG_TO_RAD;
           proj.x = this.x + offset.mag * Math.cos(offset.angle + angle);
           proj.y = this.y + offset.mag * Math.sin(offset.angle + angle);
-          proj.vel.x = wp.projectile.initvel * cos;
-          proj.vel.y = wp.projectile.initvel * sin;
-          proj.accel.x = wp.projectile.accel * cos;
-          proj.accel.y = wp.projectile.accel * sin;
-          proj.rotation = this.rotation;
+          proj.vel.x = wp.projectile.initvel * (point.r != null ? Math.cos(angle + rad) : cos);
+          proj.vel.y = wp.projectile.initvel * (point.r != null ? Math.sin(angle + rad) : sin);
+          proj.accel.x = wp.projectile.accel * (point.r != null ? Math.cos(angle + rad) : cos);
+          proj.accel.y = wp.projectile.accel * (point.r != null ? Math.sin(angle + rad) : sin);
+          proj.rotation = this.rotation + (point.r != null ? point.r : 0);
           this.game.addObject(proj);
           _results.push(wp.curammo--);
         }
@@ -109,7 +120,7 @@
     };
 
     Ship.prototype.update = function(delta) {
-      var angle, offset, offsetXY, particle, point, wp, _i, _j, _len, _len1, _ref, _ref1, _ref2, _results;
+      var particle, wp, _i, _len, _ref, _ref1, _results;
       Ship.__super__.update.call(this, delta);
       if (this.status.curhp <= 0) {
         this.isRemove = true;
@@ -135,33 +146,10 @@
       if (this.status.shield > this.status.maxshield) {
         this.status.shield = this.status.maxshield;
       }
-      this.particle_timer -= delta;
-      if (this.particle_timer <= 0 && (this.accel.x !== 0 || this.accel.y !== 0) && (this.proto.engine != null)) {
-        _ref1 = this.proto.engine.points;
-        for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-          point = _ref1[_i];
-          particle = new SpaceDom.Particle(this.proto.engine.particle, this.game);
-          offsetXY = {
-            x: point.x - this.regX,
-            y: point.y - this.regY
-          };
-          offset = {
-            angle: 0,
-            mag: 0
-          };
-          offset.angle = Math.atan2(offsetXY.y, offsetXY.x);
-          offset.mag = Math.sqrt(offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y);
-          angle = this.rotation * Math.PI / 180;
-          particle.x = this.x + offset.mag * Math.cos(offset.angle + angle);
-          particle.y = this.y + offset.mag * Math.sin(offset.angle + angle);
-          this.game.addParticle(particle);
-        }
-        this.particle_timer = 0.1;
-      }
-      _ref2 = this.status.weapons;
+      _ref1 = this.status.weapons;
       _results = [];
-      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
-        wp = _ref2[_j];
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        wp = _ref1[_i];
         if (wp.firetimer > 0) {
           wp.firetimer -= delta;
           if (wp.firetimer <= 0) {
@@ -169,7 +157,7 @@
           }
         }
         wp.regentimer -= delta;
-        if (wp.regentimer <= 0) {
+        if (wp.regentimer <= 0 && wp.regen > 0) {
           wp.regentimer = wp.regen;
           wp.curammo++;
           if (wp.curammo > wp.maxammo) {
@@ -189,7 +177,7 @@
     };
 
     Ship.prototype.collide = function(other) {
-      return typeof this.takeDamage === "function" ? this.takeDamage(other) : void 0;
+      return typeof other.takeDamage === "function" ? other.takeDamage(this) : void 0;
     };
 
     Ship.prototype.takeDamage = function(other) {
@@ -215,6 +203,14 @@
           return this.game.addParticle(particle);
         }
       }
+    };
+
+    Ship.prototype.switchWeapon = function() {
+      if (this.status.weapons.length === 0) {
+        return;
+      }
+      this.status.curweapon++;
+      return this.status.curweapon %= this.status.weapons.length;
     };
 
     return Ship;

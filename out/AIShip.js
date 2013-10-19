@@ -23,7 +23,7 @@
         },
         attack_range_sq: 500 * 500
       };
-      this.team = 1;
+      this.team = 2;
     }
 
     AIShip.prototype.update = function(delta) {

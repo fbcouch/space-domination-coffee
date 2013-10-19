@@ -27,7 +27,7 @@
     };
 
     SpaceDominationGame.prototype.resize = function() {
-      return this.screen.resize(this.canvas.width, this.canvas.height);
+      return this.screen.resize(this.canvas.width / this.screen.scaleX, this.canvas.height / this.screen.scaleY);
     };
 
     SpaceDominationGame.prototype.setScreen = function(screen) {
@@ -39,7 +39,7 @@
         this.stage.removeAllChildren();
       }
       this.screen = screen;
-      this.screen.resize(this.canvas.width, this.canvas.height);
+      this.resize(this.canvas.width, this.canvas.height);
       this.screen.show();
       return this.stage.addChild(this.screen);
     };

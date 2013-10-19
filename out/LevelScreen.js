@@ -118,6 +118,14 @@
           } else {
             this.player.accel.x = this.player.accel.y = 0;
           }
+          if (keys.altfire) {
+            if (!this.altfire_key_down) {
+              this.player.switchWeapon();
+            }
+            this.altfire_key_down = true;
+          } else {
+            this.altfire_key_down = false;
+          }
           if (keys.fire) {
             this.player.fire();
           }
@@ -181,7 +189,7 @@
             _results = [];
             for (_m = 0, _len4 = _ref4.length; _m < _len4; _m++) {
               obj = _ref4[_m];
-              if (obj instanceof SpaceDom.Ship && obj !== this.player && !obj.isRemove) {
+              if (obj instanceof SpaceDom.Ship && obj !== this.player && !obj.isRemove && obj.team !== this.player.team) {
                 _results.push(obj);
               }
             }
@@ -263,6 +271,7 @@
         ship.x = spawn.x || 0;
         ship.y = spawn.y || 0;
         ship.rotation = spawn.r || 0;
+        ship.team = spawn.team || (spawn.id === 'player' ? 1 : 2);
         this.addObject(ship);
       }
       return this.generateBackground();

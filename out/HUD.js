@@ -15,32 +15,65 @@
       this.shipOverlays = [];
       this.healthBar = new HUDProgressBar('HULL  |----------|', 'normal 32px Courier', '#0F0');
       this.shieldBar = new HUDProgressBar('SHIELD|----------|', 'normal 32px Courier', '#00F');
-      this.laserBar = new HUDProgressBar('LASER|------|', 'normal 32px Courier', '#F00');
       this.addChild(this.healthBar);
       this.addChild(this.shieldBar);
-      this.addChild(this.laserBar);
     }
 
     HUD.prototype.resize = function(width, height) {
+      var _ref;
       this.width = width;
       this.height = height;
       this.healthBar.y = this.height - this.healthBar.getBounds().height - 10;
       this.shieldBar.y = this.healthBar.y - this.shieldBar.getBounds().height - 10;
       this.healthBar.x = this.width - this.healthBar.getBounds().width - 10;
       this.shieldBar.x = this.healthBar.x;
-      return this.laserBar.y = this.height - this.laserBar.getBounds().height - 10;
+      return (_ref = this.weaponStatus) != null ? _ref.y = this.height - this.weaponStatus.getBounds().height - 10 : void 0;
     };
 
     HUD.prototype.update = function() {
-      var i, obj, overlay, text, _i, _j, _k, _len, _len1, _ref, _ref1, _ref2, _ref3, _results;
+      var i, obj, overlay, text, w, weapon, wpbar, _i, _j, _k, _l, _len, _len1, _len2, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _results,
+        _this = this;
+      if (this.weaponStatus == null) {
+        this.weaponStatus = new createjs.Container();
+        _ref = this.game.player.status.weapons;
+        for (w = _i = 0, _len = _ref.length; _i < _len; w = ++_i) {
+          weapon = _ref[w];
+          wpbar = new HUDProgressBar("" + weapon.label + "|" + (((function() {
+            var _j, _ref1, _results;
+            _results = [];
+            for (i = _j = 0, _ref1 = weapon.maxammo; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
+              _results.push('-');
+            }
+            return _results;
+          })()).join('')) + "|", 'normal 32px Courier', '#999');
+          this.weaponStatus.addChild(wpbar);
+          wpbar.y = w * (wpbar.getBounds().height + 10);
+        }
+        this.addChild(this.weaponStatus);
+        if ((_ref1 = this.weaponStatus) != null) {
+          _ref1.y = this.height - this.weaponStatus.getBounds().height - 10;
+        }
+        this.weaponStatus.update = function() {
+          var _j, _len1, _ref2, _results;
+          _ref2 = _this.game.player.status.weapons;
+          _results = [];
+          for (w = _j = 0, _len1 = _ref2.length; _j < _len1; w = ++_j) {
+            weapon = _ref2[w];
+            wpbar = _this.weaponStatus.children[w];
+            wpbar.update(weapon.curammo / weapon.maxammo);
+            _results.push(wpbar.color = (_this.game.player.status.curweapon === w ? '#F00' : '#999'));
+          }
+          return _results;
+        };
+      }
       this.healthBar.update(this.game.player.status.curhp / this.game.player.status.maxhp);
       if ((this.game.player.status.maxshield != null) && this.game.player.status.maxshield > 0) {
         this.shieldBar.update(this.game.player.status.shield / this.game.player.status.maxshield);
       }
-      this.laserBar.update(this.game.player.status.weapons[0].curammo / this.game.player.status.weapons[0].maxammo);
-      _ref = this.game.gameObjects;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        obj = _ref[_i];
+      this.weaponStatus.update();
+      _ref2 = this.game.gameObjects;
+      for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
+        obj = _ref2[_j];
         if (!(obj.hud && !this.hasOverlay(obj))) {
           continue;
         }
@@ -48,14 +81,14 @@
         this.shipOverlays.push(overlay);
         this.addChild(overlay);
       }
-      _ref1 = this.shipOverlays;
-      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-        text = _ref1[_j];
+      _ref3 = this.shipOverlays;
+      for (_k = 0, _len2 = _ref3.length; _k < _len2; _k++) {
+        text = _ref3[_k];
         text.update(this.game.levelGroup);
       }
       _results = [];
-      for (i = _k = 0, _ref2 = this.shipOverlays.length; 0 <= _ref2 ? _k < _ref2 : _k > _ref2; i = 0 <= _ref2 ? ++_k : --_k) {
-        if (!((_ref3 = this.shipOverlays[i]) != null ? _ref3.ship.isRemove : void 0)) {
+      for (i = _l = 0, _ref4 = this.shipOverlays.length; 0 <= _ref4 ? _l < _ref4 : _l > _ref4; i = 0 <= _ref4 ? ++_l : --_l) {
+        if (!((_ref5 = this.shipOverlays[i]) != null ? _ref5.ship.isRemove : void 0)) {
           continue;
         }
         this.removeChild(this.shipOverlays[i]);

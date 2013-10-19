@@ -19,6 +19,7 @@
       this.ship = ship;
       Projectile.__super__.constructor.call(this, this.image, this.game, specs);
       this.lifetime = specs.lifetime;
+      this.engine = specs.engine;
     }
 
     Projectile.prototype.update = function(delta) {

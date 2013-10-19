@@ -47,9 +47,35 @@
         value = specs[key];
         this.specs[key] = value;
       }
+      this.particle_timer = 0;
     }
 
-    GameObject.prototype.update = function(delta) {};
+    GameObject.prototype.update = function(delta) {
+      var angle, offset, offsetXY, particle, point, _i, _len, _ref;
+      this.particle_timer -= delta;
+      if (this.particle_timer <= 0 && (this.accel.x !== 0 || this.accel.y !== 0) && (this.engine != null)) {
+        _ref = this.engine.points;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          point = _ref[_i];
+          particle = new SpaceDom.Particle(this.engine.particle, this.game);
+          offsetXY = {
+            x: point.x - this.regX,
+            y: point.y - this.regY
+          };
+          offset = {
+            angle: 0,
+            mag: 0
+          };
+          offset.angle = Math.atan2(offsetXY.y, offsetXY.x);
+          offset.mag = Math.sqrt(offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y);
+          angle = this.rotation * Math.PI / 180;
+          particle.x = this.x + offset.mag * Math.cos(offset.angle + angle);
+          particle.y = this.y + offset.mag * Math.sin(offset.angle + angle);
+          this.game.addParticle(particle);
+        }
+        return this.particle_timer = 0.1;
+      }
+    };
 
     GameObject.prototype.canCollide = function(other) {
       return true;
