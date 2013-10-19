@@ -15,11 +15,9 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     @healthBar = new HUDProgressBar 'HULL  |----------|', 'normal 32px Courier', '#0F0'
     @shieldBar = new HUDProgressBar 'SHIELD|----------|', 'normal 32px Courier', '#00F'
 
-    @laserBar = new HUDProgressBar 'LASER|------|', 'normal 32px Courier', '#F00'
-
     @addChild @healthBar
     @addChild @shieldBar
-    @addChild @laserBar
+
 
   resize: (@width, @height) ->
     @healthBar.y = @height - @healthBar.getBounds().height - 10
@@ -27,14 +25,30 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     @healthBar.x = @width - @healthBar.getBounds().width - 10
     @shieldBar.x = @healthBar.x
 
-    @laserBar.y = @height - @laserBar.getBounds().height - 10
+    @weaponStatus?.y = @height - @weaponStatus.getBounds().height - 10
 
   update: () ->
+    if not @weaponStatus?
+      @weaponStatus = new createjs.Container()
+
+      for weapon, w in @game.player.status.weapons
+        wpbar = new HUDProgressBar "#{weapon.label}|#{('-' for i in [0...weapon.maxammo]).join('')}|", 'normal 32px Courier', '#999'
+        @weaponStatus.addChild wpbar
+        wpbar.y = w * (wpbar.getBounds().height + 10)
+      @addChild @weaponStatus
+      @weaponStatus?.y = @height - @weaponStatus.getBounds().height - 10
+
+      @weaponStatus.update = =>
+        for weapon, w in @game.player.status.weapons
+          wpbar = @weaponStatus.children[w]
+          wpbar.update weapon.curammo / weapon.maxammo
+          wpbar.color = (if @game.player.status.curweapon is w then '#F00' else '#999')
+
     @healthBar.update @game.player.status.curhp / @game.player.status.maxhp
     if @game.player.status.maxshield? and @game.player.status.maxshield > 0
       @shieldBar.update @game.player.status.shield / @game.player.status.maxshield
 
-    @laserBar.update @game.player.status.weapons[0].curammo / @game.player.status.weapons[0].maxammo
+    @weaponStatus.update()
 
     for obj in @game.gameObjects when obj.hud and not @hasOverlay(obj)
       # create an overlay

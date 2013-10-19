@@ -20,7 +20,7 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     @screen?.update? delta, @keys
 
   resize: () ->
-    @screen.resize @canvas.width, @canvas.height
+    @screen.resize @canvas.width / @screen.scaleX, @canvas.height / @screen.scaleY
 
   setScreen: (screen) ->
     if @screen?
@@ -28,7 +28,7 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       @stage.removeAllChildren()
 
     @screen = screen
-    @screen.resize @canvas.width, @canvas.height
+    @resize @canvas.width, @canvas.height
     @screen.show()
 
     @stage.addChild @screen

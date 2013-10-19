@@ -28,22 +28,30 @@ window.SpaceDom.Ship = class Ship extends GameObject
     @status[key] = value for key, value of @specs
 
     @status[key] = value for key, value of @proto.specs
-    
-    @status.weapons.push weapon for weapon in @proto.weapons if @proto.weapons?
+
+    weaponlist = @game.preload.getResult('weapons')
+    if @proto.weapons?
+      for weapon in @proto.weapons
+        if typeof weapon is 'object'
+          wp = JSON.parse(JSON.stringify(weaponlist[weapon.id]))
+          wp[key] = val for key, val of weapon
+          @status.weapons.push wp
+        else
+          @status.weapons.push JSON.parse JSON.stringify weaponlist[weapon]
+
     @status.curweapon = 0 if @status.weapons.length > 0
 
-    @particle_timer = 0
+    @team = 1
 
-    @team = 0
+    @engine = @proto.engine
     
   canFire: ->
     return false if @status.curweapon < 0 or @status.curweapon >= @status.weapons.length
     wp = @status.weapons[@status.curweapon]
     wp.curammo >= wp.points.length and wp.firetimer <= 0
-    
+
   fire: ->
     if not @canFire() then return
-    
     # setting up some objects that will be reused while looping
     angle = this.rotation * Math.PI / 180   # need angle in radians
     cos = Math.cos angle
@@ -59,19 +67,21 @@ window.SpaceDom.Ship = class Ship extends GameObject
     wp = @status.weapons[@status.curweapon]
     projectiles = for point in wp.points
       proj = new Projectile @game.preload.getResult(wp.image), @game, wp.projectile, this
-      
+
       offsetXY.x = point.x - this.regX
       offsetXY.y = point.y - this.regY
       offset.angle = Math.atan2 offsetXY.y, offsetXY.x
       offset.mag = Math.sqrt offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y
+
+      rad = point.r * SpaceDom.DEG_TO_RAD
       
       proj.x = this.x + offset.mag * Math.cos offset.angle + angle
       proj.y = this.y + offset.mag * Math.sin offset.angle + angle
-      proj.vel.x = wp.projectile.initvel * cos
-      proj.vel.y = wp.projectile.initvel * sin
-      proj.accel.x = wp.projectile.accel * cos
-      proj.accel.y = wp.projectile.accel * sin
-      proj.rotation = this.rotation
+      proj.vel.x = wp.projectile.initvel * (if point.r? then Math.cos angle + rad else cos)
+      proj.vel.y = wp.projectile.initvel * (if point.r? then Math.sin angle + rad else sin)
+      proj.accel.x = wp.projectile.accel * (if point.r? then Math.cos angle + rad else cos)
+      proj.accel.y = wp.projectile.accel * (if point.r? then Math.sin angle + rad else sin)
+      proj.rotation = this.rotation + (if point.r? then point.r else 0)
       
       @game.addObject proj
       wp.curammo--
@@ -96,22 +106,6 @@ window.SpaceDom.Ship = class Ship extends GameObject
     @status.shield += @status.sregen * delta if @status.sregen > 0
     @status.shield = @status.maxshield if @status.shield > @status.maxshield
 
-    @particle_timer -= delta
-    if @particle_timer <= 0 and (@accel.x isnt 0 or @accel.y isnt 0) and @proto.engine?
-      for point in @proto.engine.points
-        particle = new SpaceDom.Particle @proto.engine.particle, @game
-        offsetXY = { x: point.x - @regX, y: point.y - @regY }
-        offset = { angle: 0, mag: 0 }
-        offset.angle = Math.atan2 offsetXY.y, offsetXY.x
-        offset.mag = Math.sqrt offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y
-        angle = this.rotation * Math.PI / 180
-
-        particle.x = @x + offset.mag * Math.cos offset.angle + angle
-        particle.y = @y + offset.mag * Math.sin offset.angle + angle
-
-        @game.addParticle particle
-      @particle_timer = 0.1
-
     for wp in @status.weapons
       
       if wp.firetimer > 0
@@ -119,7 +113,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
         wp.firetimer = 0 if wp.firetimer <= 0
 
       wp.regentimer -= delta
-      if wp.regentimer <= 0
+      if wp.regentimer <= 0 and wp.regen > 0
         wp.regentimer = wp.regen
         wp.curammo++
         wp.curammo = wp.maxammo if wp.curammo > wp.maxammo      
@@ -128,7 +122,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
     super other
     
   collide: (other) ->
-    @takeDamage? other
+    other.takeDamage? @
 
   takeDamage: (other) ->
     if other instanceof Ship
@@ -148,3 +142,8 @@ window.SpaceDom.Ship = class Ship extends GameObject
         particle.x = other.x
         particle.y = other.y
         @game.addParticle particle
+
+  switchWeapon: () ->
+    return if @status.weapons.length is 0
+    @status.curweapon++
+    @status.curweapon %= @status.weapons.length

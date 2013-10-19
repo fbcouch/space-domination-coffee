@@ -1,0 +1,46 @@
+{
+    "laser-red-mk1": {
+        "image": "laser-red1",
+        "label": "LASERMK1",
+        "points": [{"x": 40, "y": 2}, {"x": 40, "y": 77}],
+        "maxammo": 6 ,
+        "curammo": 6,
+        "regen": 0.5,
+        "regentimer": 0,
+        "firerate": 0.1,
+        "firetimer": 0,
+        "projectile": {
+            "damage": 5,
+            "vel": 1000,
+            "accel": 0,
+            "initvel": 1000,
+            "lifetime": 1,
+            "hull": { "particle": "hull-hit" },
+            "shield": { "particle": "shield-hit" }
+        }
+    },
+    "missile1": {
+        "image": "missile1",
+        "label": "MISSILE ",
+        "points": [{"x": "60", "y": "40"}],
+        "maxammo": 3,
+        "curammo": 3,
+        "regen": 0,
+        "regentimer": 0,
+        "firerate": 1,
+        "firetimer": 0,
+        "projectile": {
+            "damage": 50,
+            "vel": 300,
+            "accel": 300,
+            "initvel": 0,
+            "lifetime": 3,
+            "hull": { "particle": "hull-hit" },
+            "shield": { "particle": "shield-hit" },
+            "engine": {
+                "particle": "glow-purple",
+                "points": [{"x": 0, "y": 9}]
+            }
+        }
+    }
+}

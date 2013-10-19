@@ -11,6 +11,7 @@ root.SpaceDom.DEG_TO_RAD = Math.PI / 180
 root.SpaceDom.RAD_TO_DEG = 180 / Math.PI
 
 KEYCODE_ENTER = 13
+KEYCODE_ESC = 27
 KEYCODE_SPACE = 32
 KEYCODE_SHIFT = 16
 KEYCODE_CTRL = 17
@@ -32,7 +33,8 @@ keyMap =
   left: [KEYCODE_A, KEYCODE_LEFT]
   right: [KEYCODE_D, KEYCODE_RIGHT]
   fire: [KEYCODE_SPACE]
-  pause: [KEYCODE_ENTER]
+  altfire: [KEYCODE_SHIFT]
+  pause: [KEYCODE_ESC]
 
 canvas = {}
 stage = {}
@@ -66,7 +68,8 @@ init = ->
   manifest = [
     {id: 'shiplist', src: 'assets/ships.json'},
     {id: 'particles', src: 'assets/particles.json'},
-    {id: 'missions', src: 'assets/missions.json'}
+    {id: 'missions', src: 'assets/missions.json'},
+    {id: 'weapons', src: 'assets/weapons.json'}
   ]
 
   other = [

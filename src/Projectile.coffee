@@ -14,6 +14,8 @@ window.SpaceDom.Projectile = class Projectile extends GameObject
     super @image, @game, specs
     @lifetime = specs.lifetime
 
+    @engine = specs.engine
+
   update: (delta) ->
     super delta
     

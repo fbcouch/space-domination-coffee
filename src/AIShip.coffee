@@ -13,7 +13,7 @@ window.SpaceDom.AIShip = class AIShip extends SpaceDom.Ship
       patrol: {x: 0, y: 0, w: 1000, h: 1000}
       attack_range_sq: 500*500
 
-    @team = 1
+    @team = 2
 
   update: (delta) ->
     super delta

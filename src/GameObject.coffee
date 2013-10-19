@@ -33,7 +33,25 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Container
 
     @specs[key] = value for key, value of specs
 
+    @particle_timer = 0
+
   update: (delta) ->
+
+    @particle_timer -= delta
+    if @particle_timer <= 0 and (@accel.x isnt 0 or @accel.y isnt 0) and @engine?
+      for point in @engine.points
+        particle = new SpaceDom.Particle @engine.particle, @game
+        offsetXY = { x: point.x - @regX, y: point.y - @regY }
+        offset = { angle: 0, mag: 0 }
+        offset.angle = Math.atan2 offsetXY.y, offsetXY.x
+        offset.mag = Math.sqrt offsetXY.x * offsetXY.x + offsetXY.y * offsetXY.y
+        angle = this.rotation * Math.PI / 180
+
+        particle.x = @x + offset.mag * Math.cos offset.angle + angle
+        particle.y = @y + offset.mag * Math.sin offset.angle + angle
+
+        @game.addParticle particle
+      @particle_timer = 0.1
     
   canCollide: (other) ->
     true
