@@ -29,13 +29,28 @@ module.exports = function(grunt) {
 				files: [ 'Gruntfile.js'/*, 'index.html', 'out/*'*/ ],
 				tasks: 'default'
 			}
-		}
+		},
+
+        coffee: {
+            glob_to_multiple: {
+                options: {
+                    sourceMap: true
+                },
+                expand: true,
+                flatten: true,
+                cwd: 'src',
+                src: ['*.coffee'],
+                dest: 'out',
+                ext: '.js'
+            }
+        }
 
 	});
 
 	// Dependencies
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
+    grunt.loadNpmTasks( 'grunt-contrib-coffee' );
 
 	// Default task
 	grunt.registerTask( 'default', [ 'connect', 'watch' ] );

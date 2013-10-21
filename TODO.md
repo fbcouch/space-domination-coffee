@@ -3,10 +3,10 @@ SPACE DOMINATION (COFFEE)
 v0.1:
 + basic controls
     + turn, accel, brake, fire
-- basic combat
++ basic combat
     + fly around, shoot things
     + lasers fire from correct places, hit correctly
-    - same for missiles
+    + same for missiles
 + basic animations
     + engine glow
     + laser hit burst

@@ -1,6 +1,6 @@
 {
   "name": "space-domination",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Space Domination is a top-down space adventure game",
   "homepage": "http://fbcouch.github.io/space-domination-coffee",
   "subdomain": "space-domination",
@@ -22,7 +22,8 @@
   "devDependencies": {
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-connect": "~0.4.1",
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.0",
+    "grunt-contrib-coffee": "~0.7.0"
   },
   "licenses": [
     {

@@ -6,21 +6,41 @@ _(c) 2013 Jami Couch_
 
 fbcouch 'at' gmail 'dot' com
 
-Full source code available from [http://www.ahsgaming.com]ahsgaming.com and [https://github.com/fbcouch/space-domination-coffee]github.com/fbcouch
+Full source code available from and [https://github.com/fbcouch/space-domination-coffee]github.com/fbcouch
 
 ## BUILDING THE GAME ##
 
-From the main folder, run
+With nodejs:
+
+    npm install
+    grunt coffee
+
+Without nodejs:
 
 	coffee -o out/ -c src/*.coffee
 
 ## RUNNING THE GAME ##
 
-From the main folder, run
+With nodejs:
+
+    grunt
+
+Without nodejs:
 
 	python -m SimpleHTTPServer
 
 Then navigate to [http://localhost:8000]http://localhost:8000
+
+## PLAYING THE GAME ##
+
+Use WASD or arrow keys to control the ship:
+
+* W/UP => accelerate
+* S/DOWN => brake
+* A/LEFT, D/RIGHT => rotate
+* SPACE => fire weapon
+* SHIFT => swap weapons
+* ESC => pause/unpause
 
 ## LICENSE ##
 
