@@ -14,7 +14,8 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
 
   constructor: (@stage, @canvas, @preload) ->
 #    @setScreen(new SpaceDom.LevelScreen @preload, 'training-crates')
-    @setMenuScreen()
+#    @setMenuScreen()
+    @setScreen new SpaceDom.ProfileScreen @preload, @
 
   update: (delta, @keys) ->
     @screen?.update? delta, @keys
@@ -35,3 +36,18 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
 
   setMenuScreen: () ->
     @setScreen new SpaceDom.MissionSelectScreen @preload, @
+
+  listPilots: () ->
+    localStorage['pilots'] or= '{}'
+    JSON.parse localStorage['pilots']
+
+  savePilots: (pilots) ->
+    localStorage['pilots'] = JSON.stringify pilots
+
+  loadPilot: (pilot_id) ->
+    JSON.parse(localStorage['pilots'])['pilot_id']
+
+  savePilot: (pilot_id, data) ->
+    pilot_list = @listPilots()
+    pilot_list[pilot_id] = data
+    @savePilots pilot_list

@@ -42,7 +42,7 @@ window.SpaceDom.TextMenu = class TextMenu extends createjs.Container
         btn.x = 0
         btn.y = (@_buttons[i-1]?.y + @_buttons[i-1]?.height or -@style.padding.y) + @style.padding.y
 
-    { width: @width, height: @height } = @getBounds()
+    { width: @width, height: @height } = @getBounds() or {width: 0, height: 0}
 
     if @style.halign is 'center'
       btn.x = (@width - btn.width) * 0.5 for btn in @_buttons

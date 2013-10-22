@@ -6,7 +6,6 @@
 window.SpaceDom or= {}
 
 window.SpaceDom.MissionSelectScreen = class MissionSelectScreen extends SpaceDom.Screen
-  _buttons: []
 
   constructor: (@preload, @game) ->
     super(@preload, @game)
