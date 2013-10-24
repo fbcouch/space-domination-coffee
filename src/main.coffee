@@ -32,7 +32,7 @@ keyMap =
   brake: [KEYCODE_S, KEYCODE_DOWN]
   left: [KEYCODE_A, KEYCODE_LEFT]
   right: [KEYCODE_D, KEYCODE_RIGHT]
-  fire: [KEYCODE_SPACE]
+  fire: [KEYCODE_SPACE, KEYCODE_ENTER]
   altfire: [KEYCODE_SHIFT]
   pause: [KEYCODE_ESC]
 

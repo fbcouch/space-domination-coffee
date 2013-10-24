@@ -38,16 +38,18 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     @setScreen new SpaceDom.MissionSelectScreen @preload, @
 
   listPilots: () ->
-    localStorage['pilots'] or= '{}'
-    JSON.parse localStorage['pilots']
+    localStorage['pilots'] or= '[]'
+    @profiles = JSON.parse localStorage['pilots']
 
-  savePilots: (pilots) ->
+  savePilots: (pilots, noreload) ->
     localStorage['pilots'] = JSON.stringify pilots
+    @listPilots() if not noreload
 
   loadPilot: (pilot_id) ->
-    JSON.parse(localStorage['pilots'])['pilot_id']
+    @profile = JSON.parse(localStorage["pilots.#{pilot_id}"])
 
   savePilot: (pilot_id, data) ->
-    pilot_list = @listPilots()
-    pilot_list[pilot_id] = data
-    @savePilots pilot_list
+    if pilot_id not in @profiles
+      @profiles.push pilot_id
+      @savePilots @profiles
+    localStorage["pilots.#{pilot_id}"] = JSON.stringify data

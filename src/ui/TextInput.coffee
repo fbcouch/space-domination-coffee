@@ -30,7 +30,7 @@ window.SpaceDom.TextInput = class TextInput extends createjs.Container
       {width: @textElement.width, height: @textElement.height} = @textElement.getBounds() or {width: 0, height: 0}
       @cursor.x = @textElement.x + @textElement.width
       @cursor.y = @textElement.y
-      {width: @width, height: @height} = @getBounds()
+      {width: @width, height: @height} = @getBounds() if @text isnt ''
 
     @cursor_timer -= delta
     if not @cursor_timer or @cursor_timer <= 0
