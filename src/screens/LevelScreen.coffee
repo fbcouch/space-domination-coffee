@@ -82,10 +82,10 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
         @_pauseMenu.update delta, keys
 
         if keys.pause
-          @unpause() if not @pause_key_down
-          @pause_key_down = true
+          @unpause() if not @cancel_key_down
+          @cancel_key_down = true
         else
-          @pause_key_down = false
+          @cancel_key_down = false
 
       when 'running'
         if keys.left and not keys.right
@@ -108,10 +108,10 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
         @player.fire() if keys.fire
 
         if keys.pause
-          @pause() if not @pause_key_down
-          @pause_key_down = true
+          @pause() if not @cancel_key_down
+          @cancel_key_down = true
         else
-          @pause_key_down = false
+          @cancel_key_down = false
 
         for obj in @gameObjects
           obj.vel.x += obj.accel.x * delta
@@ -138,14 +138,10 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
         @removeParticle particle for particle in @particles when particle?.isComplete()
 
         if @player.isRemove
-          @_pauseMenuTitle.text = "DEFEAT"
-          @addChild @_pauseMenu
-          @gameState = 'gameover'
+          @endGame false
 
         if (obj for obj in @gameObjects when obj instanceof SpaceDom.Ship and obj isnt @player and not obj.isRemove and obj.team isnt @player.team).length is 0
-          @_pauseMenuTitle.text = "VICTORY"
-          @addChild @_pauseMenu
-          @gameState = 'gameover'
+          @endGame true
 
       when 'gameover'
         @_pauseMenu.update delta, keys
@@ -160,6 +156,13 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     # update hud
     @HUD.update()
+
+  endGame: (victory) ->
+    @_pauseMenuTitle.text = if victory then "VICTORY" else "DEFEAT"
+    @addChild @_pauseMenu
+    @gameState = 'gameover'
+    console.log @player.stats
+    @game.processStats @level_id, @player.stats, victory
 
   addObject: (obj) ->
     @gameObjects.push obj if obj not in @gameObjects

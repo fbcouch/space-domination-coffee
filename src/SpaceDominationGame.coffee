@@ -53,3 +53,39 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       @profiles.push pilot_id
       @savePilots @profiles
     localStorage["pilots.#{pilot_id}"] = JSON.stringify data
+
+  processStats: (level, stats, victory) ->
+    return if not @profile?
+
+    @profile.stats or= {}
+    @profile.stats.alltime or=
+      kills: 0
+      deaths: 0
+      shots_fired: 0
+      shots_hit: 0
+      damage_dealt: 0
+      damage_taken: 0
+      victories: 0
+      defeats: 0
+    @profile.stats.missions or= {}
+    @profile.stats.missions[level] or=
+      kills: 0
+      deaths: 0
+      shots_fired: 0
+      shots_hit: 0
+      damage_dealt: 0
+      damage_taken: 0
+      victories: 0
+      defeats: 0
+
+    for key, val of stats
+      @profile.stats.alltime[key] += val
+      @profile.stats.missions[level][key] += val
+      if victory
+        @profile.stats.alltime.victories++
+        @profile.stats.missions[level].victories++
+      else
+        @profile.stats.alltime.defeats++
+        @profile.stats.missions[level].defeats++
+
+    @savePilot @profile.name, @profile

@@ -54,7 +54,7 @@ window.SpaceDom.TextMenu = class TextMenu extends createjs.Container
     @_selected-- if keys.accel and not @keysDown.accel
     @_selected++ if keys.brake and not @keysDown.brake
 
-    if keys.fire and not @keysDown.fire
+    if keys.menuconfirm and not @keysDown.menuconfirm
       @handler @items[@_buttons[@_selected].action]
 
     @_selected = @_buttons.length - @_selected if @_selected < 0

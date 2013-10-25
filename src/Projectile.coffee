@@ -28,3 +28,4 @@ window.SpaceDom.Projectile = class Projectile extends GameObject
   collide: (other) ->
     other.takeDamage? this
     @isRemove = true
+    @ship.stats.shots_hit++

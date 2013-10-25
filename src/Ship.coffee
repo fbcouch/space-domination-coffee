@@ -82,8 +82,9 @@ window.SpaceDom.Ship = class Ship extends GameObject
       proj.accel.x = wp.projectile.accel * (if point.r? then Math.cos angle + rad else cos)
       proj.accel.y = wp.projectile.accel * (if point.r? then Math.sin angle + rad else sin)
       proj.rotation = this.rotation + (if point.r? then point.r else 0)
-      
+
       @game.addObject proj
+      @stats.shots_fired++
       wp.curammo--
     wp.firetimer = wp.firerate
     
@@ -91,6 +92,8 @@ window.SpaceDom.Ship = class Ship extends GameObject
     super delta
 
     if @status.curhp <= 0
+      @last_damaged_by.stats.kills++ if @last_damaged_by?
+      @stats.deaths++
       @isRemove = true
       if @proto.destroyed?.particle?
         particle = new SpaceDom.Particle @proto.destroyed.particle, @game
@@ -126,11 +129,15 @@ window.SpaceDom.Ship = class Ship extends GameObject
 
   takeDamage: (other) ->
     if other instanceof Ship
+      @stats.damage_taken++
+      other.stats.damage_dealt++
       @status.shield -= 1
       if @status.shield < 0
         @status.curhp += @status.shield
         @status.shield = 0
     else if other instanceof Projectile
+      @stats.damage_taken += other.specs.damage
+      other.ship?.stats.damage_dealt += other.specs.damage
       @status.shield -= other.specs.damage
       if @status.shield < 0
         @status.curhp += @status.shield
@@ -142,6 +149,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
         particle.x = other.x
         particle.y = other.y
         @game.addParticle particle
+    @last_damaged_by = other.ship or other
 
   switchWeapon: () ->
     return if @status.weapons.length is 0

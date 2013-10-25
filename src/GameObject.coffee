@@ -12,6 +12,14 @@ window.SpaceDom.GameObject = class GameObject extends createjs.Container
   constructor: (image, @game, specs) ->
     @initialize()
 
+    @stats =
+      shots_fired: 0
+      shots_hit: 0
+      damage_taken: 0
+      damage_dealt: 0
+      kills: 0
+      deaths: 0
+
     @image = new createjs.Bitmap image
     @addChild @image
     @width = @image.image.width

@@ -76,10 +76,10 @@ window.SpaceDom.ProfileScreen = class ProfileScreen extends SpaceDom.Screen
     if not @first_pass_done?
       @first_pass_done = true
       keys[key] = false for key of keys
-      @fire_key_down = true
+      @confirm_key_down = true
 
-    if keys['fire'] and not @fire_key_down
-      @fire_key_down = true
+    if keys['menuconfirm'] and not @confirm_key_down
+      @confirm_key_down = true
       if @new_profile_mode
         # add new profiles
         if @nameInput.text isnt '' and @nameInput.text not in @game.listPilots()
@@ -87,16 +87,16 @@ window.SpaceDom.ProfileScreen = class ProfileScreen extends SpaceDom.Screen
           # load this profile
           @game.loadPilot @nameInput.text
           @game.setMenuScreen()
-    else if not keys['fire']
-      @fire_key_down = false
+    else if not keys['menuconfirm']
+      @confirm_key_down = false
 
-    if keys['pause'] and not @pause_key_down
-      @pause_key_down = true
+    if keys['menucancel'] and not @cancel_key_down
+      @cancel_key_down = true
       if @new_profile_mode
         @new_profile_mode = false
         @layout()
     else if not keys['pause']
-      @pause_key_down = false
+      @cancel_key_down = false
 
     child.update? delta, keys for child in @children
 
