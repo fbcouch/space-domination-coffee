@@ -13,7 +13,6 @@ Particle = window.SpaceDom.Particle
 window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
 
   constructor: (@stage, @canvas, @preload) ->
-#    @setScreen(new SpaceDom.LevelScreen @preload, 'training-crates')
 #    @setMenuScreen()
     @setScreen new SpaceDom.ProfileScreen @preload, @
 

@@ -15,8 +15,11 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     @healthBar = new HUDProgressBar 'HULL  |----------|', 'normal 32px Courier', '#0F0'
     @shieldBar = new HUDProgressBar 'SHIELD|----------|', 'normal 32px Courier', '#00F'
 
+    @gameTimer = new createjs.Text 'Mission Time:', 'normal 32px Courier', '#CCC'
+
     @addChild @healthBar
     @addChild @shieldBar
+    @addChild @gameTimer
 
 
   resize: (@width, @height) ->
@@ -62,6 +65,10 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     for i in [0...@shipOverlays.length] when @shipOverlays[i]?.ship.isRemove
       @removeChild @shipOverlays[i]
       @shipOverlays.splice(i, 1)
+
+    @gameTimer.x = @width - @gameTimer.getBounds()?.width
+    secs = Math.floor(@game.gameTime % 60)
+    @gameTimer.text = "Mission Time: #{Math.floor(@game.gameTime / 60)}:#{if secs < 10 then '0' else ''}#{secs}"
 
   hasOverlay: (obj) ->
     return true for overlay in @shipOverlays when overlay.ship is obj

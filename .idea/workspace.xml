@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HUD.coffee" afterPath="$PROJECT_DIR$/src/HUD.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/screens/LevelScreen.coffee" afterPath="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Ship.coffee" afterPath="$PROJECT_DIR$/src/Ship.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpaceDominationGame.coffee" afterPath="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/ships.json" afterPath="$PROJECT_DIR$/assets/ships.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="space-domination-coffee.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382664823985" ignored="false" />
+    <file path="/Dummy.txt" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382672261313" ignored="false" />
     <file path="/Projectile.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382666606923" ignored="false" />
     <file path="/SpaceDominationGame.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382671923678" ignored="false" />
     <file path="/GameObject.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382668015636" ignored="false" />
     <file path="/Ship.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382668190901" ignored="false" />
-    <file path="/HUD.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382197443689" ignored="false" />
+    <file path="/HUD.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382673133643" ignored="false" />
     <file path="/index.html" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382412416079" ignored="false" />
     <file path="/TODO.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382396325170" ignored="false" />
     <file path="/main.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382665465705" ignored="false" />
@@ -32,7 +31,7 @@
     <file path="/YALEDIAG.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381686117755" ignored="false" />
     <file path="/training-crates.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382126840297" ignored="false" />
     <file path="/Screen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381846803545" ignored="false" />
-    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382671850862" ignored="false" />
+    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382672958803" ignored="false" />
     <file path="/fragment.js2" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381772679996" ignored="false" />
     <file path="/MissionSelectScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381941086501" ignored="false" />
     <file path="/TextButton.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381940752353" ignored="false" />
@@ -46,6 +45,7 @@
     <file path="/README.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382383919813" ignored="false" />
     <file path="/ProfileScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382655979618" ignored="false" />
     <file path="/TextInput.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382665366217" ignored="false" />
+    <file path="$PROJECT_DIR$/out/SpaceDominationGame.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382672653595" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,10 +108,19 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="SpaceDominationGame.coffee" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="SpaceDominationGame.coffee" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="93" column="46" selection-start="2419" selection-end="2419" vertical-scroll-proportion="0.9056604">
+                <state line="16" column="53" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="HUD.coffee" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="70" column="4" selection-start="2446" selection-end="2446" vertical-scroll-proportion="0.625">
                   <folding />
                 </state>
               </provider>
@@ -160,7 +169,7 @@
           <file leaf-file-name="LevelScreen.coffee" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/screens/LevelScreen.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="220" column="6" selection-start="7111" selection-end="7111" vertical-scroll-proportion="0.5949074">
+                <state line="93" column="26" selection-start="2521" selection-end="2521" vertical-scroll-proportion="0.53125">
                   <folding />
                 </state>
               </provider>
@@ -196,7 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/Gruntfile.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/TODO.md" />
@@ -210,8 +218,9 @@
         <option value="$PROJECT_DIR$/assets/ships.json" />
         <option value="$PROJECT_DIR$/src/GameObject.coffee" />
         <option value="$PROJECT_DIR$/src/Ship.coffee" />
-        <option value="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
         <option value="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
+        <option value="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
+        <option value="$PROJECT_DIR$/src/HUD.coffee" />
       </list>
     </option>
   </component>
@@ -247,7 +256,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -333,6 +341,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,8 +359,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -386,7 +395,17 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -417,17 +436,7 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -504,7 +513,6 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -519,11 +527,12 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20245726" sideWeight="0.67849463" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32150537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -589,13 +598,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="44" selection-start="1357" selection-end="1357" vertical-scroll-proportion="0.59598494">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1320" column="7" selection-start="20810" selection-end="20810" vertical-scroll-proportion="0.33254993">
@@ -687,14 +689,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/LevelScreen.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="220" column="6" selection-start="7111" selection-end="7111" vertical-scroll-proportion="0.5949074">
+        <state line="93" column="26" selection-start="2521" selection-end="2521" vertical-scroll-proportion="0.53125">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="46" selection-start="2419" selection-end="2419" vertical-scroll-proportion="0.9056604">
+        <state line="16" column="53" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="4" selection-start="2446" selection-end="2446" vertical-scroll-proportion="0.625">
           <folding />
         </state>
       </provider>

@@ -15,6 +15,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @shiplist = @preload.getResult 'shiplist'
 
     @gameState = ''
+    @gameTime = 0
 
     @HUD = new SpaceDom.HUD @
 
@@ -90,6 +91,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
           @cancel_key_down = false
 
       when 'running'
+        @gameTime += delta
         if keys.left and not keys.right
           @player.rotate delta, true
         else if keys.right and not keys.left
@@ -163,7 +165,6 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @_pauseMenuTitle.text = if victory then "VICTORY" else "DEFEAT"
     @addChild @_pauseMenu
     @gameState = 'gameover'
-    console.log @player.stats
     @game.processStats @level_id, @player.stats, victory
 
   addObject: (obj) ->
