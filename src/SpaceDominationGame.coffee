@@ -54,7 +54,7 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
       @savePilots @profiles
     localStorage["pilots.#{pilot_id}"] = JSON.stringify data
 
-  processStats: (level, stats, victory) ->
+  processStats: (level, stats, victory, xp, money) ->
     return if not @profile?
 
     @profile.stats or= {}
@@ -81,11 +81,16 @@ window.SpaceDom.SpaceDominationGame = class SpaceDominationGame
     for key, val of stats
       @profile.stats.alltime[key] += val
       @profile.stats.missions[level][key] += val
-      if victory
-        @profile.stats.alltime.victories++
-        @profile.stats.missions[level].victories++
-      else
-        @profile.stats.alltime.defeats++
-        @profile.stats.missions[level].defeats++
+
+    if victory
+      @profile.stats.alltime.victories++
+      @profile.stats.missions[level].victories++
+    else
+      @profile.stats.alltime.defeats++
+      @profile.stats.missions[level].defeats++
+
+    @profile.xp += xp
+    @profile.money += money
+    @profile.rank or= 0 # TODO implement ranks
 
     @savePilot @profile.name, @profile

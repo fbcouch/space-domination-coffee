@@ -22,7 +22,9 @@
         "weapons": [
             { "id": "laser-red-mk1", "points": [{"x": 40, "y": 2, "r": 2}, {"x": 40, "y": 77, "r": -2}] },
             { "id": "missile1", "points": [{"x": "60", "y": "40"}] }
-        ]
+        ],
+        "xp": 50,
+        "bounty": 100
     },
     "base-enemy": {
         "image": "base-enemy1",
@@ -46,7 +48,9 @@
         },
         "weapons": [
             { "id": "laser-red-mk1", "points": [{"x": 50, "y": 35}, {"x": 50, "y": 45}] }
-        ]
+        ],
+        "xp": 25,
+        "bounty": 50
     },
     "supply-crate": {
         "image": "block1",
@@ -54,6 +58,8 @@
             "curhp": 50,
             "maxhp": 50
         },
-        "destroyed": { "particle": "explosion-md" }
+        "destroyed": { "particle": "explosion-md" },
+        "xp": 25,
+        "bounty": 0
     }
 }

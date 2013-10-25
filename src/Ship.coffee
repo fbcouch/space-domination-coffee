@@ -93,6 +93,7 @@ window.SpaceDom.Ship = class Ship extends GameObject
 
     if @status.curhp <= 0
       @last_damaged_by.stats.kills++ if @last_damaged_by?
+      @game.recordKill @last_damaged_by, @
       @stats.deaths++
       @isRemove = true
       if @proto.destroyed?.particle?

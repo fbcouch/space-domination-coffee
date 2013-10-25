@@ -43,7 +43,9 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     menu = new SpaceDom.TextMenu menuItems, null, (item) =>
       switch item.action
-        when 'quit' then @game.setMenuScreen()
+        when 'quit'
+          @endGame false if @gameState isnt 'gameover'
+          @game.setMenuScreen()
         when 'unpause'
           if @gameState is 'paused' then @unpause() else @game.setScreen new LevelScreen @preload, @game, @level_id
 
@@ -212,3 +214,9 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
   unpause: () =>
     @removeChild @_pauseMenu
     @gameState = 'running'
+
+  recordKill: (killer, victim) ->
+    # for now, only bother if we have a victim and the killer is the player
+    if killer? and killer is @player and victim.team isnt killer.team
+      @xp += victim.proto.xp
+      @money += victim.proto.bounty
