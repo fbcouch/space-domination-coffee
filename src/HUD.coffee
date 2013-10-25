@@ -66,7 +66,7 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
       @removeChild @shipOverlays[i]
       @shipOverlays.splice(i, 1)
 
-    @gameTimer.x = @width - @gameTimer.getBounds()?.width
+    @gameTimer.x = @width - @gameTimer.getBounds()?.width - 10
     secs = Math.floor(@game.gameTime % 60)
     @gameTimer.text = "Mission Time: #{Math.floor(@game.gameTime / 60)}:#{if secs < 10 then '0' else ''}#{secs}"
 

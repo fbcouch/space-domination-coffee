@@ -1,0 +1,16 @@
+{
+    "triggers": [
+        {
+            "type": "timer",
+            "value": 10,
+            "action": "defeat",
+            "message": "Destroy the enemies before they escape."
+        },
+        {
+            "type": "timer",
+            "value": 10,
+            "action": "victory",
+            "message": "Survive for 10 seconds."
+        }
+    ]
+}

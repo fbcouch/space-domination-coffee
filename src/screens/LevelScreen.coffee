@@ -141,11 +141,13 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
         @removeParticle particle for particle in @particles when particle?.isComplete()
 
-        if @player.isRemove
-          @endGame false
+        if @checkTriggers()
+          # continue checking conditions
+          if @player.isRemove
+            @endGame false
 
-        if (obj for obj in @gameObjects when obj instanceof SpaceDom.Ship and obj isnt @player and not obj.isRemove and obj.team isnt @player.team).length is 0
-          @endGame true
+          if (obj for obj in @gameObjects when obj instanceof SpaceDom.Ship and obj isnt @player and not obj.isRemove and obj.team isnt @player.team).length is 0
+            @endGame true
 
       when 'gameover'
         @_pauseMenu.update delta, keys
@@ -160,6 +162,27 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     # update hud
     @HUD.update()
+
+  # returns false if the game ends
+  checkTriggers: ->
+    for trigger in @level.triggers
+      switch trigger.type
+        when 'timer'
+          if @gameTime >= trigger.value
+            result = @doAction(trigger.action)
+            return false if not result
+    true
+
+  # returns false if the game ends
+  doAction: (action) ->
+    switch action
+      when 'defeat'
+        @endGame false
+        return false
+      when 'victory'
+        @endGame true
+        return false
+    true
 
   endGame: (victory) ->
     @_pauseMenuTitle.text = if victory then "VICTORY" else "DEFEAT"
