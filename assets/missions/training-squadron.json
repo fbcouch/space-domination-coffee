@@ -22,35 +22,35 @@
             "x": 1000,
             "y": 200,
             "r": -180,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2
         },
         {
             "x": 1000,
             "y": -200,
             "r": -180,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2
         },
         {
             "x": 1200,
             "y": 400,
             "r": -180,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2
         },
         {
             "x": 1200,
             "y": -400,
             "r": -180,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2
         },
         {
             "x": 800,
             "y": 0,
             "r": -180,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2
         }
 

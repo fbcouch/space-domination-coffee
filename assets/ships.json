@@ -1,33 +1,33 @@
 {
     "base-fighter": {
-        "image": "base-fighter1",
+        "image": "gold-fighter-sm",
         "specs": {
             "accel": 100,
             "brake": 50,
             "vel": 100,
             "rotate": 50,
-            "curhp": 100,
-            "maxhp": 100,
+            "curhp": 75,
+            "maxhp": 75,
             "hregen": 0,
-            "shield": 100,
-            "maxshield": 100,
+            "shield": 25,
+            "maxshield": 25,
             "sregen": 1,
             "armor": 0
         },
         "destroyed": { "particle": "explosion-md" },
         "engine": {
             "particle": "glow-purple",
-            "points": [{"x": 0, "y": 30}, {"x": 0, "y": 50}]
+            "points": [{"x": 0, "y": 25}]
         },
         "weapons": [
-            { "id": "laser-red-mk1", "points": [{"x": 40, "y": 2, "r": 2}, {"x": 40, "y": 77, "r": -2}] },
-            { "id": "missile1", "points": [{"x": "60", "y": "40"}] }
+            { "id": "laser-red-mk1", "points": [{"x": 45, "y": 9, "r": 0}, {"x": 45, "y": 41, "r": 0}] },
+            { "id": "missile1", "points": [{"x": "70", "y": "25"}] }
         ],
         "xp": 50,
         "bounty": 100
     },
     "base-enemy": {
-        "image": "base-enemy1",
+        "image": "blue-shuttle",
         "specs": {
             "accel": 75,
             "brake": 50,
@@ -44,10 +44,36 @@
         "destroyed": { "particle": "explosion-md" },
         "engine": {
             "particle": "glow-purple",
-            "points": [{"x": 15, "y": 35}, {"x": 15, "y": 45}]
+            "points": [{"x": 0, "y": 49}]
         },
         "weapons": [
-            { "id": "laser-red-mk1", "points": [{"x": 50, "y": 35}, {"x": 50, "y": 45}] }
+            { "id": "laser-red-mk1", "points": [{"x": 50, "y": 17}, {"x": 50, "y": 81}] }
+        ],
+        "xp": 25,
+        "bounty": 50
+    },
+    "practice-drone": {
+        "image": "blue-shuttle-sm",
+        "specs": {
+            "accel": 75,
+            "brake": 50,
+            "vel": 100,
+            "rotate": 40,
+            "curhp": 50,
+            "maxhp": 50,
+            "hregen": 0,
+            "shield": 0,
+            "maxshield": 0,
+            "sregen": 0,
+            "armor": 0
+        },
+        "destroyed": { "particle": "explosion-md" },
+        "engine": {
+            "particle": "glow-purple",
+            "points": [{"x": 0, "y": 25}]
+        },
+        "weapons": [
+            { "id": "laser-red-mk1", "points": [{"x": 25, "y": 9}, {"x": 25, "y": 36}] }
         ],
         "xp": 25,
         "bounty": 50

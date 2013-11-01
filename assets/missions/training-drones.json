@@ -14,7 +14,7 @@
             "x": 400,
             "y": 200,
             "r": 45,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2,
             "gid": ["delayed", "drones"]
         },
@@ -22,7 +22,7 @@
             "x": 400,
             "y": -200,
             "r": -45,
-            "id": "base-enemy",
+            "id": "practice-drone",
             "team": 2,
             "gid": "drones"
         }
