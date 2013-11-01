@@ -146,8 +146,11 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
           if @player.isRemove
             @endGame false
 
+          # are all active ships either on the players team or dead?
           if (obj for obj in @gameObjects when obj instanceof SpaceDom.Ship and obj isnt @player and not obj.isRemove and obj.team isnt @player.team).length is 0
-            @endGame true
+            # are there any ships that must be destroyed as a condition of victory?
+            if (trigger for trigger in @triggers when not trigger.completed and trigger.type is 'destroy' and trigger.action is 'primary').length is 0
+              @endGame true
 
       when 'gameover'
         @_pauseMenu.update delta, keys
@@ -165,23 +168,50 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
   # returns false if the game ends
   checkTriggers: ->
-    for trigger in @level.triggers
-      switch trigger.type
-        when 'timer'
-          if @gameTime >= trigger.value
-            result = @doAction(trigger.action)
-            return false if not result
+    primary_objs_left = primary_objs_total = 0
+    for trigger in @triggers
+      if not trigger.completed
+        switch trigger.type
+          when 'timer'
+            if @gameTime >= trigger.value
+              trigger.completed = true
+              result = @doAction(trigger.action)
+              return false if not result
+
+          when 'destroy', 'survive'
+            remaining = trigger.ships.reduce(((prev, ship) -> if not ship.isRemove or ship.status.curhp > 0 then prev + 1 else prev), 0)
+            if remaining is 0
+              trigger.completed = true
+              return false if not @doAction trigger.action
+
+      if trigger.action is 'primary'
+        primary_objs_left++ if not trigger.completed
+        primary_objs_total++
+
+        if trigger.completed and trigger.type is 'survive'
+          @endGame false
+          return false
+
+    if primary_objs_left is 0 and primary_objs_total > 0
+      @endGame true
+      return false
     true
 
   # returns false if the game ends
-  doAction: (action) ->
-    switch action
-      when 'defeat'
-        @endGame false
-        return false
-      when 'victory'
-        @endGame true
-        return false
+  doAction: (action, ships) ->
+    if typeof action is "string"
+      switch action
+        when 'defeat'
+          @endGame false
+          return false
+        when 'victory'
+          @endGame true
+          return false
+        when 'spawn'
+          @addObject ship for ship in ships
+    else if typeof action is "object"
+      for key, value of action
+        return false if not @doAction key, value
     true
 
   endGame: (victory) ->
@@ -218,6 +248,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
         @backgroundGroup.height = bgobj.y + bgobj.image.height
 
   generateLevel: ->
+    allships = []
     for spawn in @level.spawns
       if spawn.id is 'player'
         ship = @player = new SpaceDom.Ship @preload.getResult(@shiplist['base-fighter'].image), this, @shiplist['base-fighter']
@@ -227,7 +258,22 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
       ship.y = spawn.y or 0
       ship.rotation = spawn.r or 0
       ship.team = spawn.team or (if spawn.id is 'player' then 1 else 2)
+      ship.gid = spawn.gid
       @addObject ship
+      allships.push ship
+
+    @triggers = []
+    for trigger in @level.triggers or []
+      tg = {}
+      tg[key] = val for key, val of trigger
+      if tg.type in ["destroy", "survive"]
+        tg.ships = (ship for ship in allships when ship.gid is tg.value or (typeof ship.gid is 'object' and tg.value in ship.gid))
+      if typeof tg.action is "object"
+        for key, val of tg.action
+          tg.action[key] = (ship for ship in allships when ship.gid is val or (typeof ship.gid is 'object' and val in ship.gid))
+          @removeObject ship for ship in tg.action[key] if key is 'spawn'
+
+      @triggers.push tg
 
     @generateBackground()
 

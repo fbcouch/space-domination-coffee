@@ -11,6 +11,24 @@
             "value": 10,
             "action": "victory",
             "message": "Survive for 10 seconds."
+        },
+        {
+            "type": "timer",
+            "value": 10,
+            "action": {"spawn": "group"},
+            "message": "Enemy reinforcements arrive in 10 seconds."
+        },
+        {
+            "type": "destroy",
+            "value": "group",
+            "action": "primary",
+            "message": "Destroy certain enemies."
+        },
+        {
+            "type": "survive",
+            "value": "group",
+            "action": "primary",
+            "message": "Certain friendlies must survive."
         }
     ]
 }

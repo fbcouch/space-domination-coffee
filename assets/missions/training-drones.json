@@ -15,15 +15,32 @@
             "y": 200,
             "r": 45,
             "id": "base-enemy",
-            "team": 2
+            "team": 2,
+            "gid": ["delayed", "drones"]
         },
         {
             "x": 400,
             "y": -200,
             "r": -45,
             "id": "base-enemy",
-            "team": 2
+            "team": 2,
+            "gid": "drones"
         }
 
+
+    ],
+    "triggers": [
+        {
+            "type": "timer",
+            "value": 10,
+            "action": {"spawn": "delayed"},
+            "message": "Another drone will spawn in 10 seconds."
+        },
+        {
+            "type": "destroy",
+            "value": "drones",
+            "action": "primary",
+            "message": "Destroy all drones."
+        }
     ]
 }

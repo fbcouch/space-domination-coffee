@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" name="Default" comment="" />
+    <list default="true" id="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/screens/LevelScreen.coffee" afterPath="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/missions/training-drones.json" afterPath="$PROJECT_DIR$/assets/missions/training-drones.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/missions/training-squadron.json" afterPath="$PROJECT_DIR$/assets/missions/training-squadron.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/missions/trigger-examples.json" afterPath="$PROJECT_DIR$/assets/missions/trigger-examples.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="space-domination-coffee.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382672261313" ignored="false" />
+    <file path="/Dummy.txt" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383263006576" ignored="false" />
     <file path="/Projectile.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382666606923" ignored="false" />
     <file path="/SpaceDominationGame.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382671923678" ignored="false" />
     <file path="/GameObject.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382668015636" ignored="false" />
@@ -26,7 +32,7 @@
     <file path="/YALEDIAG.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381686117755" ignored="false" />
     <file path="/training-crates.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382126840297" ignored="false" />
     <file path="/Screen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381846803545" ignored="false" />
-    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382673916686" ignored="false" />
+    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383265323101" ignored="false" />
     <file path="/fragment.js2" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381772679996" ignored="false" />
     <file path="/MissionSelectScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381941086501" ignored="false" />
     <file path="/TextButton.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381940752353" ignored="false" />
@@ -35,12 +41,14 @@
     <file path="/Gruntfile.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382383572923" ignored="false" />
     <file path="/fragment.java" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382024319202" ignored="false" />
     <file path="/ndgmr.Collision.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382127510820" ignored="false" />
-    <file path="/training-drones.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382673317540" ignored="false" />
+    <file path="/training-drones.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383264338536" ignored="false" />
     <file path="/weapons.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382196891531" ignored="false" />
     <file path="/README.md" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382383919813" ignored="false" />
     <file path="/ProfileScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382655979618" ignored="false" />
     <file path="/TextInput.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382665366217" ignored="false" />
     <file path="$PROJECT_DIR$/out/SpaceDominationGame.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382672653595" ignored="false" />
+    <file path="/trigger-examples.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383263159107" ignored="false" />
+    <file path="/training-squadron.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383265165475" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,55 +111,28 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="SpaceDominationGame.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="16" column="53" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HUD.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="68" column="62" selection-start="2403" selection-end="2403" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="training-drones.json" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="training-drones.json" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/missions/training-drones.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="5" selection-start="514" selection-end="514" vertical-scroll-proportion="-17.653847">
+                <state line="11" column="21" selection-start="226" selection-end="226" vertical-scroll-proportion="0.21371429">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="trigger-examples.json" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="training-squadron.json" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/assets/missions/training-squadron.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="62" column="51" selection-start="1275" selection-end="1275" vertical-scroll-proportion="-24.923077">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="trigger-examples.json" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/assets/missions/trigger-examples.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="46" selection-start="335" selection-end="335" vertical-scroll-proportion="0.23261118">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Ship.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="96" column="21" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ProfileScreen.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/screens/ProfileScreen.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="92" column="21" selection-start="2636" selection-end="2636" vertical-scroll-proportion="0.0">
+                <state line="17" column="40" selection-start="453" selection-end="453" vertical-scroll-proportion="-11.115385">
                   <folding />
                 </state>
               </provider>
@@ -161,37 +142,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="MissionSelectScreen.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/screens/MissionSelectScreen.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TextMenu.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ui/TextMenu.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="64" column="26" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="LevelScreen.coffee" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/screens/LevelScreen.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="103" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="TextButton.coffee" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ui/TextButton.coffee">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="0" selection-start="0" selection-end="202" vertical-scroll-proportion="0.0">
+                <state line="192" column="30" selection-start="6351" selection-end="6351" vertical-scroll-proportion="0.5641892">
                   <folding />
                 </state>
               </provider>
@@ -218,7 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/screens/MissionSelectScreen.coffee" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/main.coffee" />
         <option value="$PROJECT_DIR$/src/ui/TextInput.coffee" />
@@ -229,11 +182,12 @@
         <option value="$PROJECT_DIR$/src/GameObject.coffee" />
         <option value="$PROJECT_DIR$/src/Ship.coffee" />
         <option value="$PROJECT_DIR$/src/SpaceDominationGame.coffee" />
-        <option value="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
         <option value="$PROJECT_DIR$/assets/missions/trigger-examples.js" />
-        <option value="$PROJECT_DIR$/assets/missions/trigger-examples.json" />
         <option value="$PROJECT_DIR$/src/HUD.coffee" />
+        <option value="$PROJECT_DIR$/assets/missions/trigger-examples.json" />
         <option value="$PROJECT_DIR$/assets/missions/training-drones.json" />
+        <option value="$PROJECT_DIR$/assets/missions/training-squadron.json" />
+        <option value="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
       </list>
     </option>
   </component>
@@ -269,6 +223,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -372,7 +327,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -390,8 +344,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -426,17 +380,7 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -467,7 +411,17 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -539,7 +493,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1081" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -556,8 +510,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20245726" sideWeight="0.67849463" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32150537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20192307" sideWeight="0.6795699" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3204301" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -629,60 +583,34 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/out/SpaceDominationGame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="34" selection-start="2311" selection-end="2311" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/TextButton.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="0" selection-end="202" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="8" column="0" selection-start="0" selection-end="202" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="27" selection-start="790" selection-end="790" vertical-scroll-proportion="0.6145833">
-          <folding />
-        </state>
+        <state line="38" column="27" selection-start="790" selection-end="790" vertical-scroll-proportion="0.6145833" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/TextInput.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="38" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.8614865">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/ProfileScreen.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="21" selection-start="2636" selection-end="2636" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="45" column="38" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.8614865" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/MissionSelectScreen.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="13" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ui/TextMenu.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="26" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="64" column="26" selection-start="1591" selection-end="1591" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Projectile.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="27" selection-start="705" selection-end="705" vertical-scroll-proportion="0.58152795">
-          <folding />
-        </state>
+        <state line="30" column="27" selection-start="705" selection-end="705" vertical-scroll-proportion="0.58152795" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/ships.json">
@@ -694,49 +622,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GameObject.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="15" selection-start="422" selection-end="422" vertical-scroll-proportion="0.30324075">
-          <folding />
-        </state>
+        <state line="20" column="15" selection-start="422" selection-end="422" vertical-scroll-proportion="0.30324075" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="53" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="62" selection-start="2664" selection-end="2664" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/ProfileScreen.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="47" selection-start="2513" selection-end="2513" vertical-scroll-proportion="0.22666667" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Ship.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="21" selection-start="2946" selection-end="2946" vertical-scroll-proportion="0.0">
+        <state line="105" column="21" selection-start="3189" selection-end="3189" vertical-scroll-proportion="0.023030303" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/missions/training-squadron.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="51" selection-start="1275" selection-end="1275" vertical-scroll-proportion="-24.923077">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/LevelScreen.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="103" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpaceDominationGame.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="53" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="62" selection-start="2403" selection-end="2403" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/missions/training-drones.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="5" selection-start="514" selection-end="514" vertical-scroll-proportion="-17.653847">
+        <state line="192" column="30" selection-start="6351" selection-end="6351" vertical-scroll-proportion="0.5641892">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/missions/trigger-examples.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="46" selection-start="335" selection-end="335" vertical-scroll-proportion="0.23261118">
+        <state line="17" column="40" selection-start="453" selection-end="453" vertical-scroll-proportion="-11.115385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/missions/training-drones.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="21" selection-start="226" selection-end="226" vertical-scroll-proportion="0.21371429">
           <folding />
         </state>
       </provider>

@@ -14,14 +14,10 @@
             "x": -200,
             "y": -200,
             "id": "base-fighter",
-            "team": 1
+            "team": 1,
+            "gid": "wingman"
         },
-        {
-            "x": -200,
-            "y": 200,
-            "id": "base-fighter",
-            "team": 1
-        },
+
         {
             "x": 1000,
             "y": 200,
@@ -58,5 +54,13 @@
             "team": 2
         }
 
+    ],
+    "triggers": [
+        {
+            "type": "survive",
+            "value": "wingman",
+            "action": "defeat",
+            "message": "Your wingman must survive."
+        }
     ]
 }
