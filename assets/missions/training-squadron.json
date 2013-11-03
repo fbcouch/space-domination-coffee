@@ -17,41 +17,60 @@
             "team": 1,
             "gid": "wingman"
         },
-
         {
-            "x": 1000,
+            "x": -200,
             "y": 200,
-            "r": -180,
-            "id": "practice-drone",
-            "team": 2
-        },
-        {
-            "x": 1000,
-            "y": -200,
-            "r": -180,
-            "id": "practice-drone",
-            "team": 2
-        },
-        {
-            "x": 1200,
-            "y": 400,
-            "r": -180,
-            "id": "practice-drone",
-            "team": 2
-        },
-        {
-            "x": 1200,
-            "y": -400,
-            "r": -180,
-            "id": "practice-drone",
-            "team": 2
+            "id": "base-fighter",
+            "team": 1,
+            "gid": "wingman"
         },
         {
             "x": 800,
             "y": 0,
             "r": -180,
             "id": "practice-drone",
-            "team": 2
+            "team": 2,
+            "gid": "wave1"
+        },
+        {
+            "x": 1000,
+            "y": -200,
+            "r": -180,
+            "id": "practice-drone",
+            "team": 2,
+            "gid": "wave1"
+        },
+        {
+            "x": 1000,
+            "y": 200,
+            "r": -180,
+            "id": "practice-drone",
+            "team": 2,
+            "gid": "wave1"
+        },
+        {
+            "x": 800,
+            "y": 0,
+            "r": -180,
+            "id": "practice-drone",
+            "team": 2,
+            "gid": "wave2"
+        },
+        {
+            "x": 1000,
+            "y": -200,
+            "r": -180,
+            "id": "practice-drone",
+            "team": 2,
+            "gid": "wave2"
+        },
+        {
+            "x": 1000,
+            "y": 200,
+            "r": -180,
+            "id": "practice-drone",
+            "team": 2,
+            "gid": "wave2"
         }
 
     ],
@@ -61,6 +80,18 @@
             "value": "wingman",
             "action": "defeat",
             "message": "Your wingman must survive."
+        },
+        {
+            "type": "destroy",
+            "value": "wave1",
+            "action": {"spawn": "wave2", "primary": ""},
+            "message": "Destroy the first wave!"
+        },
+        {
+            "type": "destroy",
+            "value": "wave2",
+            "action": "victory",
+            "message": "Destroy the second wave!"
         }
     ]
 }
