@@ -75,7 +75,9 @@ init = ->
   ]
 
   other = [
-    {id: 'bg-menu', src: 'assets/bg-menu.png'}
+    {id: 'bg-menu', src: 'assets/bg-menu.png'},
+    {id: 'obj-pointer-green', src: 'assets/objective-pointer-green.png'},
+    {id: 'obj-pointer-yellow', src: 'assets/objective-pointer-yellow.png'}
   ]
   
   preload = new createjs.LoadQueue()

@@ -49,6 +49,7 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     obj.x = minx for obj in @objectives.secondary
     @objectives.primary[0]?.x = minx - 20
     @objectives.secondary[0]?.x = minx - 20
+
   update: () ->
     if not @weaponStatus?
       @weaponStatus = new createjs.Container()
@@ -92,7 +93,7 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     if not @init_objectives
       @init_objectives = true
       for trigger in @game.triggers
-        obj = new HUDObjective(trigger)
+        obj = new HUDObjective(trigger, @game)
         if trigger.action is 'primary' or (typeof trigger.action is 'object' and 'primary' in (key for key of trigger.action))
           @addChild obj
           @objectives.primary.push obj
@@ -151,13 +152,52 @@ class HUDShipOverlay extends createjs.Container
     @y = view.y + @ship.y + @ship.height * 0.5
 
 class HUDObjective extends createjs.Text
-  constructor: (@trigger) ->
+  constructor: (@trigger, @level) ->
     @initialize @trigger.message, 'normal 14px Courier', '#FF0'
 
     {width: @width, height: @height} = @getBounds() if @text isnt ''
 
+    if @trigger.ships
+      for ship in @trigger.ships
+        ship.obj_marker = new createjs.Bitmap @level.preload.getResult (if @trigger.type is 'survive' then 'obj-pointer-green' else 'obj-pointer-yellow')
+        ship.obj_marker.regX = ship.obj_marker.image.width * 0.5
+        ship.obj_marker.regY = ship.obj_marker.image.height * 0.5
+
+
   update: ->
     if @trigger.completed
       @color = if @trigger.failed then '#F00' else '#0F0'
+      @parent.removeChild ship.obj_marker for ship in @trigger.ships
     else
       @color = '#FF0'
+      for ship in @trigger.ships
+        if ship.parent is null
+          @parent.removeChild ship.obj_marker
+        else
+          if (ship.x > - @level.levelGroup.x + @level.width or ship.x < - @level.levelGroup.x or
+              ship.y > - @level.levelGroup.y + @level.height or ship.y < - @level.levelGroup.y)
+            @parent.addChild ship.obj_marker if ship.obj_marker.parent is null
+            {x: ship.obj_marker.x, y: ship.obj_marker.y} = @get_screen_intersection ship
+          else
+            @parent.removeChild ship.obj_marker if ship.obj_marker.parent isnt null
+
+  get_screen_intersection: (ship) ->
+    coords = ship.localToGlobal(ship.regX, ship.regY)
+    screen_slope = @parent.height / @parent.width
+    slope_to_coords = (@parent.height * 0.5 - coords.y) / (@parent.width * 0.5 - coords.x)
+    b_to_coords = coords.y - (coords.x * slope_to_coords)
+
+    if (coords.x) * screen_slope >= (coords.y)
+      console.log 'yes'
+      if 0 > slope_to_coords >= - screen_slope
+        return {x: @parent.width, y: slope_to_coords * @parent.width + b_to_coords}
+      else
+        return {x: - b_to_coords / slope_to_coords, y: 0}
+    else
+      console.log 'no: ' + slope_to_coords
+      if 0 > slope_to_coords > - screen_slope
+        return {x: 0, y: b_to_coords}
+      else
+        return {x: (@parent.height - b_to_coords) / slope_to_coords, y: @parent.height}
+
+    return {x: 0, y: 0}
