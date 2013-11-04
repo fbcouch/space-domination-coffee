@@ -268,8 +268,8 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     @triggers = []
     for trigger in @level.triggers or []
-      tg = {}
-      tg[key] = val for key, val of trigger
+      tg = JSON.parse JSON.stringify trigger
+
       if tg.type in ["destroy", "survive"]
         tg.ships = (ship for ship in allships when ship.gid is tg.value or (typeof ship.gid is 'object' and tg.value in ship.gid))
       if typeof tg.action is "object"

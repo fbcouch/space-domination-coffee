@@ -94,12 +94,9 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
       for trigger in @game.triggers
         obj = new HUDObjective(trigger)
         if trigger.action is 'primary' or (typeof trigger.action is 'object' and 'primary' in (key for key of trigger.action))
-          console.log 'one'
           @addChild obj
           @objectives.primary.push obj
-          console.log @objectives.primary
         else if trigger.action is 'secondary' or (typeof trigger.action is 'object' and 'secondary' in (key for key  of trigger.action))
-          console.log 'two'
           @addChild obj
           @objectives.secondary.push obj
 

@@ -4,8 +4,6 @@
     <list default="true" id="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/HUD.coffee" afterPath="$PROJECT_DIR$/src/HUD.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/screens/LevelScreen.coffee" afterPath="$PROJECT_DIR$/src/screens/LevelScreen.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/ships.json" afterPath="$PROJECT_DIR$/assets/ships.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/missions/training-squadron.json" afterPath="$PROJECT_DIR$/assets/missions/training-squadron.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="space-domination-coffee.iws" />
@@ -32,7 +30,7 @@
     <file path="/YALEDIAG.js" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381686117755" ignored="false" />
     <file path="/training-crates.json" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1382126840297" ignored="false" />
     <file path="/Screen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381846803545" ignored="false" />
-    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383574533592" ignored="false" />
+    <file path="/LevelScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1383575196456" ignored="false" />
     <file path="/fragment.js2" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381772679996" ignored="false" />
     <file path="/MissionSelectScreen.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381941086501" ignored="false" />
     <file path="/TextButton.coffee" changelist="91cc5806-a3a7-4f8f-be9a-78dbb3a2269a" time="1381940752353" ignored="false" />
@@ -131,7 +129,7 @@
           <file leaf-file-name="HUD.coffee" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="50" column="42" selection-start="1653" selection-end="1653" vertical-scroll-proportion="0.0">
+                <state line="97" column="0" selection-start="3575" selection-end="3575" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -171,7 +169,7 @@
           <file leaf-file-name="LevelScreen.coffee" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/screens/LevelScreen.coffee">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="181" column="41" selection-start="5996" selection-end="5996" vertical-scroll-proportion="0.4403153">
+                <state line="265" column="18" selection-start="8920" selection-end="8920" vertical-scroll-proportion="0.5495495">
                   <folding />
                 </state>
               </provider>
@@ -688,7 +686,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/HUD.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="42" selection-start="1653" selection-end="1653" vertical-scroll-proportion="0.0">
+        <state line="97" column="0" selection-start="3575" selection-end="3575" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -702,7 +700,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/LevelScreen.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="41" selection-start="5996" selection-end="5996" vertical-scroll-proportion="0.4403153">
+        <state line="265" column="18" selection-start="8920" selection-end="8920" vertical-scroll-proportion="0.5495495">
           <folding />
         </state>
       </provider>
