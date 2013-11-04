@@ -11,6 +11,9 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     @initialize()
 
     @shipOverlays = []
+    @objectives =
+      primary: []
+      secondary: []
 
     @healthBar = new HUDProgressBar 'HULL  |----------|', 'normal 32px Courier', '#0F0'
     @shieldBar = new HUDProgressBar 'SHIELD|----------|', 'normal 32px Courier', '#00F'
@@ -21,7 +24,6 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     @addChild @shieldBar
     @addChild @gameTimer
 
-
   resize: (@width, @height) ->
     @healthBar.y = @height - @healthBar.getBounds().height - 10
     @shieldBar.y = @healthBar.y - @shieldBar.getBounds().height - 10
@@ -30,6 +32,23 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
 
     @weaponStatus?.y = @height - @weaponStatus.getBounds().height - 10
 
+    y = @gameTimer.y + @gameTimer.getBounds().height
+    minx = @width
+    for obj in @objectives.primary
+      obj.y = y + (obj.height or obj.getBounds().height) + 10
+      y = obj.y
+      obj.x = @width - (obj.width or obj.getBounds().width)
+      minx = obj.x if obj.x < minx
+    for obj in @objectives.secondary
+      obj.y = y + (obj.height or obj.getBounds().height) + 10
+      y = obj.y
+      obj.x = @width - (obj.width or obj.getBounds().width)
+      minx = obj.x if obj.x < minx
+
+    obj.x = minx for obj in @objectives.primary
+    obj.x = minx for obj in @objectives.secondary
+    @objectives.primary[0]?.x = minx - 20
+    @objectives.secondary[0]?.x = minx - 20
   update: () ->
     if not @weaponStatus?
       @weaponStatus = new createjs.Container()
@@ -70,6 +89,34 @@ window.SpaceDom.HUD = class HUD extends createjs.Container
     secs = Math.floor(@game.gameTime % 60)
     @gameTimer.text = "Mission Time: #{Math.floor(@game.gameTime / 60)}:#{if secs < 10 then '0' else ''}#{secs}"
 
+    if not @init_objectives
+      @init_objectives = true
+      for trigger in @game.triggers
+        obj = new HUDObjective(trigger)
+        if trigger.action is 'primary' or (typeof trigger.action is 'object' and 'primary' in (key for key of trigger.action))
+          console.log 'one'
+          @addChild obj
+          @objectives.primary.push obj
+          console.log @objectives.primary
+        else if trigger.action is 'secondary' or (typeof trigger.action is 'object' and 'secondary' in (key for key  of trigger.action))
+          console.log 'two'
+          @addChild obj
+          @objectives.secondary.push obj
+
+      if @objectives.primary.length isnt 0
+        prim = new createjs.Text 'PRIMARY OBJECTIVES', 'normal 14px Courier', '#FF0'
+        @addChild prim
+        @objectives.primary.unshift prim
+      if @objectives.secondary.length isnt 0
+        sec = new createjs.Text 'SECONDARY OBJECTIVES', 'normal 14px Courier', '#FF0'
+        @addChild sec
+        @objectives.secondary.unshift sec
+
+      @resize @width, @height
+
+    obj.update?() for obj in @objectives.primary
+    obj.update?() for obj in @objectives.secondary
+
   hasOverlay: (obj) ->
     return true for overlay in @shipOverlays when overlay.ship is obj
     false
@@ -105,3 +152,15 @@ class HUDShipOverlay extends createjs.Container
 
     @x = view.x + @ship.x - @width * 0.5
     @y = view.y + @ship.y + @ship.height * 0.5
+
+class HUDObjective extends createjs.Text
+  constructor: (@trigger) ->
+    @initialize @trigger.message, 'normal 14px Courier', '#FF0'
+
+    {width: @width, height: @height} = @getBounds() if @text isnt ''
+
+  update: ->
+    if @trigger.completed
+      @color = if @trigger.failed then '#F00' else '#0F0'
+    else
+      @color = '#FF0'

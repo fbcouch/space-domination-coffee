@@ -78,19 +78,19 @@
         {
             "type": "survive",
             "value": "wingman",
-            "action": "defeat",
-            "message": "Your wingman must survive."
+            "action": "secondary",
+            "message": "Your wingmen must survive."
         },
         {
             "type": "destroy",
             "value": "wave1",
-            "action": {"spawn": "wave2", "primary": ""},
+            "action": {"spawn": "wave2", "primary":""},
             "message": "Destroy the first wave!"
         },
         {
             "type": "destroy",
             "value": "wave2",
-            "action": "victory",
+            "action": "primary",
             "message": "Destroy the second wave!"
         }
     ]

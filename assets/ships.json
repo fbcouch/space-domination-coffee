@@ -85,7 +85,7 @@
             "maxhp": 50
         },
         "destroyed": { "particle": "explosion-md" },
-        "xp": 25,
+        "xp": 0,
         "bounty": 0
     }
 }

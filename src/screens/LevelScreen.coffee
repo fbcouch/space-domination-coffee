@@ -19,6 +19,8 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
 
     @HUD = new SpaceDom.HUD @
 
+    @xp = @money = 0
+
   show: () ->
     @levelGroup = new createjs.Container()
 
@@ -175,6 +177,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
           when 'timer'
             if @gameTime >= trigger.value
               trigger.completed = true
+              trigger.failed = true if trigger.action is 'defeat' or (typeof trigger.action is 'object' and 'defeat' in (key for key of trigger.action))
               result = @doAction(trigger.action)
               return false if not result
 
@@ -182,6 +185,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
             remaining = trigger.ships.reduce(((prev, ship) -> if not ship.isRemove or ship.status.curhp > 0 then prev + 1 else prev), 0)
             if remaining is 0
               trigger.completed = true
+              trigger.failed = true if trigger.type is 'survive'
               return false if not @doAction trigger.action
 
       if trigger.action is 'primary'
@@ -218,7 +222,7 @@ window.SpaceDom.LevelScreen = class LevelScreen extends SpaceDom.Screen
     @_pauseMenuTitle.text = if victory then "VICTORY" else "DEFEAT"
     @addChild @_pauseMenu
     @gameState = 'gameover'
-    @game.processStats @level_id, @player.stats, victory
+    @game.processStats @level_id, @player.stats, victory, @xp, @money
 
   addObject: (obj) ->
     @gameObjects.push obj if obj not in @gameObjects
